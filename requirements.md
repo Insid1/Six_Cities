@@ -13,7 +13,7 @@ npm i react@16.12 -E
 <!-- * history@4.10 -->
 * prop-types@15.7
 * react@16.14
-<!-- * react-dom@16.14 -->
+* react-dom@16.14
 <!-- * react-redux@7.2 -->
 <!-- * react-router-dom@5.2 -->
 <!-- * redux@4 -->
