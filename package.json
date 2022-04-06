@@ -1,0 +1,31 @@
+{
+  "name": "six-cities",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Личный проект «Six Cities» от HTML Academy",
+  "scripts": {
+    "build": "webpack --mode development --watch",
+    "prod": "webpack --mode production",
+    "start": "webpack serve",
+    "eslint": "eslint --ext .jsx --ext .js src/",
+    "test": "npm run eslint"
+  },
+  "devDependencies": {
+    "@babel/core": "7.12",
+    "@babel/preset-env": "7.12",
+    "@babel/preset-react": "7.12",
+    "babel-loader": "8.2",
+    "css-loader": "^6.7.1",
+    "eslint": "8.10.0",
+    "eslint-config-htmlacademy": "2.1.0",
+    "eslint-plugin-react": "^7.29.4",
+    "prop-types": "15.7",
+    "style-loader": "^3.3.1",
+    "webpack": "5.71.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
