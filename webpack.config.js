@@ -13,6 +13,7 @@ module.exports = {
     hot: false,
     static: path.resolve(__dirname, `public`),
     port: 1337,
+    historyApiFallback: true,
     open: {
       app: {
         name: `firefox`,

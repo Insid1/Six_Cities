@@ -14,8 +14,8 @@ npm i react@16.12 -E
 * prop-types@15.7
 * react@16.14
 * react-dom@16.14
+* react-router-dom@5.2
 <!-- * react-redux@7.2 -->
-<!-- * react-router-dom@5.2 -->
 <!-- * redux@4 -->
 <!-- * redux-thunk@2.3 -->
 <!-- * redux-devtools-extension@2.13 -->
