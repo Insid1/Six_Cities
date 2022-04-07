@@ -1,5 +1,6 @@
 import React from "react";
 import {Card} from "../card/card";
+import {offersType} from "../../prop-type";
 import {nanoid} from "nanoid";
 
 const MainPage = ({offers}) => {
@@ -97,6 +98,10 @@ const MainPage = ({offers}) => {
       </div>
     </main>
   </div>;
+};
+
+MainPage.propTypes = {
+  offers: offersType
 };
 
 export {MainPage};

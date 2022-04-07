@@ -1,4 +1,6 @@
 import React from "react";
+import {offerType} from "../../prop-type";
+
 const RATING_WIDTH = 20;
 
 const Card = ({offer = {}}) => {
@@ -50,6 +52,10 @@ const Card = ({offer = {}}) => {
       <p className="place-card__type">{type}</p>
     </div>
   </article>;
+};
+
+Card.propTypes = {
+  offer: offerType
 };
 
 export {Card};
