@@ -4,9 +4,9 @@ import {offerType} from "../../prop-type";
 const RATING_WIDTH = 20;
 
 const Card = ({offer = {}}) => {
-  const {price, imgSrc, imgAlt, type, isBooked, isPremium, rating} = offer;
+  const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
 
-  const bookBtnClass = `place-card__bookmark-button button ${isBooked ? `place-card__bookmark-button--active` : ``}`;
+  const bookBtnClass = `place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`;
 
   return <article className="cities__place-card place-card">
     {isPremium &&
@@ -17,10 +17,10 @@ const Card = ({offer = {}}) => {
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#" />
       <img className="place-card__image"
-        src={imgSrc}
+        src={previewImage}
         width="260"
         height="200"
-        alt={imgAlt} />
+        alt={id} />
     </div>
     <div className="place-card__info">
       <div className="place-card__price-wrapper">
