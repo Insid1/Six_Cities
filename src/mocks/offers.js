@@ -1,64 +1,6 @@
 import {nanoid} from 'nanoid';
 import {getRandomFloat, getRandomInt, getRandomValueFromArr, getTrueOrFalse} from '../util.js/common';
 
-// const offersAmsterdam = [
-//   {
-//     id: 0,
-//     name: `Nice, cozy, warm big bed apartment`,
-//     type: `Private room`,
-//     price: 123,
-//     isPremium: false,
-//     isBooked: false,
-//     imgSrc: `img/apartment-01.jpg`,
-//     imgAlt: ``,
-//     rating: 1,
-//   },
-//   {
-//     id: 1,
-//     name: `Wood and stone place`,
-//     type: `Apartment`,
-//     price: 456,
-//     isPremium: true,
-//     isBooked: true,
-//     imgSrc: `img/room.jpg`,
-//     imgAlt: ``,
-//     rating: 2,
-//   },
-//   {
-//     id: 2,
-//     name: `Canal View Prinsengracht`,
-//     type: `Private room`,
-//     price: 789,
-//     isPremium: false,
-//     isBooked: true,
-//     imgSrc: `img/apartment-02.jpg`,
-//     imgAlt: ``,
-//     rating: 3,
-//   },
-//   {
-//     id: 3,
-//     name: `Nice, cozy, warm big bed apartment`,
-//     type: `Apartment`,
-//     price: 1011,
-//     isPremium: false,
-//     isBooked: false,
-//     imgSrc: `img/apartment-01.jpg`,
-//     imgAlt: ``,
-//     rating: 4,
-//   },
-//   {
-//     id: 4,
-//     name: `Wood and stone place`,
-//     type: `Private room`,
-//     price: 1213,
-//     isPremium: true,
-//     isBooked: false,
-//     imgSrc: `img/apartment-03.jpg`,
-//     imgAlt: ``,
-//     rating: 5,
-//   },
-// ];
-
 const Cities = [
   `Paris`,
   `Cologne`,

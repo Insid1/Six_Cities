@@ -1,7 +1,6 @@
 import React from "react";
-import {Card} from "../card/card";
 import {offersType} from "../../prop-type";
-import {nanoid} from "nanoid";
+import {OfferList} from "./offer-list";
 import {Link} from 'react-router-dom';
 import {AppRoute} from "../../const";
 
@@ -90,12 +89,7 @@ const Main = ({offers}) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {offers.map((offer) => (
-                <Card
-                  offer={offer}
-                  key={nanoid()} />)) }
-            </div>
+            <OfferList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>

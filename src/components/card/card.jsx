@@ -1,10 +1,13 @@
 import React from "react";
 import {offerType} from "../../prop-type";
 
+
 const RATING_WIDTH = 20;
 
 const Card = ({offer = {}}) => {
   const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
+
+  // useState(id);
 
   const bookBtnClass = `place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`;
 
