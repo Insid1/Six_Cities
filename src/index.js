@@ -5,9 +5,11 @@ import {offersAmsterdam} from './mocks/offers';
 
 
 ReactDOM.render(
-    <App
-      offers={offersAmsterdam}
-    />,
+    <React.StrictMode>
+      <App
+        offers={offersAmsterdam}
+      />
+    </React.StrictMode>,
     document.querySelector(`#root`)
 );
 

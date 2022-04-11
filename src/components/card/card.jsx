@@ -1,29 +1,36 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 import {offerType} from "../../prop-type";
+import {RATING_WIDTH} from "../../const";
 
 
-const RATING_WIDTH = 20;
-
-const Card = ({offer = {}}) => {
+const Card = ({offer = {}, mouseEnterHandler, mouseLeaveHandler}) => {
   const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
 
-  // useState(id);
+  const handleMouseEnter = () => {
+    mouseEnterHandler(id);
+  };
 
   const bookBtnClass = `place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`;
 
-  return <article className="cities__place-card place-card">
+  return <article className="cities__place-card place-card"
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={mouseLeaveHandler}
+  >
     {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
     }
     <div className="cities__image-wrapper place-card__image-wrapper">
-      <a href="#" />
-      <img className="place-card__image"
-        src={previewImage}
-        width="260"
-        height="200"
-        alt={id} />
+      <Link to={`offer/${id}`}>
+        <img className="place-card__image"
+          src={previewImage}
+          width="260"
+          height="200"
+          alt={id} />
+      </Link>
     </div>
     <div className="place-card__info">
       <div className="place-card__price-wrapper">
@@ -58,7 +65,9 @@ const Card = ({offer = {}}) => {
 };
 
 Card.propTypes = {
-  offer: offerType
+  offer: offerType,
+  mouseEnterHandler: PropTypes.func.isRequired,
+  mouseLeaveHandler: PropTypes.func.isRequired,
 };
 
 export {Card};

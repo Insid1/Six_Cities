@@ -21,7 +21,9 @@ const App = ({offers}) => {
           <SignIn />
         </Route>
         <Route path={AppRoute.FAVORITES} exact>
-          <Favorites />
+          <Favorites
+            offers={offers}
+          />
         </Route>
         <Route path={AppRoute.ROOM} exact>
           <Room />

@@ -3,7 +3,12 @@ env:
   browser: true
   commonjs: true
 
-extends: ["htmlacademy/es6", "plugin:react/recommended"]
+extends:
+  [
+    "htmlacademy/es6",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+  ]
 
 parserOptions:
   ecmaFeatures:
