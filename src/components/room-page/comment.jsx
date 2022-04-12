@@ -6,8 +6,8 @@ const FormClass = {
 };
 
 const Comment = () => {
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState(``);
+  const [, setRating] = useState(0);
+  const [, setComment] = useState(``);
 
   const handleChangeForm = (evt) => {
     evt.preventDefault();

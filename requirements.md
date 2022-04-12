@@ -19,7 +19,7 @@ npm i react@16.12 -E
 <!-- * redux@4 -->
 <!-- * redux-thunk@2.3 -->
 <!-- * redux-devtools-extension@2.13 -->
-<!-- * leaflet@1.7.1 -->
+* leaflet@1.7.1
 <!-- * reselect@4 -->
 
 ## devDependencies
@@ -38,6 +38,6 @@ npm i react@16.12 -E
 * webpack@5.71.0
 * webpack-cli@4.9.2
 * webpack-dev-server@4.7.4
-<!-- * file-loader@6.2 -->
+* file-loader@6.2
 * css-loader@6.7.1
 * style-loader@3.3.1
