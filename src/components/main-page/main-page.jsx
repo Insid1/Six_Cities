@@ -3,6 +3,8 @@ import {offersType} from "../../prop-type";
 import {OfferList} from "./offer-list";
 import {Link} from 'react-router-dom';
 import {AppRoute} from "../../const";
+import {Map} from "./map";
+
 
 const Main = ({offers}) => {
   return <div className="page page--gray page--main">
@@ -92,7 +94,7 @@ const Main = ({offers}) => {
             <OfferList offers={offers} />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map offers={offers}></Map>
           </div>
         </div>
       </div>

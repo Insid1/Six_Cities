@@ -59,38 +59,41 @@ const Titles = [
   `Beautiful & luxurious studio at great location`,
 ];
 
-const createAmsterdamOffer = () => ({
-  bedrooms: getRandomInt(1, 5),
-  city: {
-    location: AmsterdamLocation,
-    name: Cities[3],
-  },
-  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
-  goods: Goods,
-  host: {
-    avatarUrl: `img/avatar.swg`,
-    hostId: nanoid(),
-    isPro: getTrueOrFalse(),
-    name: getRandomValueFromArr(HostNames)
-  },
-  id: nanoid(),
-  images: Images,
-  isFavorite: getTrueOrFalse(),
-  isPremium: getTrueOrFalse(),
-  offerLocation: {
-    lat: Locations[0][0],
-    lng: Locations[0][1],
-    zoom: 8
-  },
-  maxAdults: getRandomInt(0, 6),
-  previewImage: getRandomValueFromArr(Images),
-  price: getRandomInt(10, 200),
-  rating: getRandomFloat(0, 5, 1),
-  title: getRandomValueFromArr(Titles),
-  type: getRandomValueFromArr(types),
-
-});
+const createAmsterdamOffer = () => {
+  const currLocation = Locations.splice((getRandomInt(0, Locations.length - 1)), 1)[0];
+  return {
+    bedrooms: getRandomInt(1, 5),
+    city: {
+      location: AmsterdamLocation,
+      name: Cities[3],
+    },
+    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    goods: Goods,
+    host: {
+      avatarUrl: `img/avatar.swg`,
+      hostId: nanoid(),
+      isPro: getTrueOrFalse(),
+      name: getRandomValueFromArr(HostNames)
+    },
+    id: nanoid(),
+    images: Images,
+    isFavorite: getTrueOrFalse(),
+    isPremium: getTrueOrFalse(),
+    location: {
+      lat: currLocation[0],
+      lng: currLocation[1],
+      zoom: 8,
+    },
+    maxAdults: getRandomInt(0, 6),
+    previewImage: getRandomValueFromArr(Images),
+    price: getRandomInt(10, 200),
+    rating: getRandomFloat(0, 5, 1),
+    title: getRandomValueFromArr(Titles),
+    type: getRandomValueFromArr(types),
+  };
+};
 
 const offersAmsterdam = new Array(4).fill().map(createAmsterdamOffer);
+
 
 export {offersAmsterdam};

@@ -31,7 +31,7 @@ const offerType = PropTypes.shape({
   images: PropTypes.arrayOf(PropTypes.string.isRequired),
   isFavorite: PropTypes.bool.isRequired,
   isPremium: PropTypes.bool.isRequired,
-  offerLocation: offerLocationType,
+  location: offerLocationType,
   previewImage: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
