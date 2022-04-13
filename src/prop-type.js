@@ -47,6 +47,20 @@ const offerType = PropTypes.shape({
 }
 );
 
-const offersType = PropTypes.arrayOf(offerType);
+const reviewType = PropTypes.shape({
+  comment: PropTypes.string.isRequired,
+  date: PropTypes.object,
+  id: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  user: PropTypes.shape({
+    avatarUrl: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    isPro: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+  })
+});
 
-export {offerType, offersType};
+const offersType = PropTypes.arrayOf(offerType);
+const reviewsType = PropTypes.arrayOf(reviewType);
+
+export {offerType, offersType, reviewType, reviewsType};

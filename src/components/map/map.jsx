@@ -53,21 +53,21 @@ const useIcons = (offers, mapElement, activeOffer) => {
   const [markersLayer, setMarkersLayer] = useState(null);
 
   useEffect(() => {
+    const getIconsGroup = () => {
+      const layerMarker = offers.map((offer) => {
+        const iconParam = {
+          iconUrl: offer.id === activeOffer ? IconUrl.ACTIVE : IconUrl.GENERAL,
+          iconSize: IconSize,
+          iconAnchor: [IconSize[0] / 2, IconSize[1]],
+        };
+        const icon = leaflet.icon(iconParam);
+        const {lat, lng} = offer.location;
+        return leaflet.marker([lat, lng], {icon});
+      });
+      return layerGroup(layerMarker);
+    };
+    const icons = getIconsGroup();
     if (mapElement) {
-      const getIconsGroup = () => {
-        const layerMarker = offers.map((offer) => {
-          const iconParam = {
-            iconUrl: offer.id === activeOffer ? IconUrl.ACTIVE : IconUrl.GENERAL,
-            iconSize: IconSize,
-            iconAnchor: [IconSize[0] / 2, IconSize[1]],
-          };
-          const icon = leaflet.icon(iconParam);
-          const {lat, lng} = offer.location;
-          return leaflet.marker([lat, lng], {icon});
-        });
-        return layerGroup(layerMarker);
-      };
-      const icons = getIconsGroup();
       icons.addTo(mapElement);
 
       if (markersLayer) {

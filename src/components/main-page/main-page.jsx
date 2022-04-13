@@ -3,7 +3,7 @@ import {offersType} from "../../prop-type";
 import {OfferList} from "./offer-list";
 import {Link} from 'react-router-dom';
 import {AppRoute} from "../../const";
-import {Map} from "./map";
+import {Map} from "../map/map";
 
 
 const Main = ({offers}) => {

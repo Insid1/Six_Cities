@@ -15,6 +15,7 @@ npm i react@16.12 -E
 * react@16.14
 * react-dom@16.14
 * react-router-dom@5.2
+* dayjs@1.11.0
 <!-- * react-redux@7.2 -->
 <!-- * redux@4 -->
 <!-- * redux-thunk@2.3 -->
