@@ -1,24 +1,19 @@
-import React, {useState} from "react";
+import React from "react";
 import {Card} from "../card/card";
 import {offersType} from "../../prop-type";
+import PropTypes from 'prop-types';
 
 
-const OfferList = ({offers}) => {
-  const [, setActiveOffer] = useState(null);
-  const handleMouseEnter = (id) => {
-    setActiveOffer(id);
-  };
-  const handleMouseLeave = () => {
-    setActiveOffer(null);
-  };
+const OfferList = ({offers, onMouseEnter, onMouseLeave}) => {
+
   return (
     <div className="cities__places-list places__list tabs__content" >
       {offers.map((offer) => (
         <Card
           offer={offer}
           key={offer.id}
-          mouseEnterHandler={handleMouseEnter}
-          mouseLeaveHandler={handleMouseLeave}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />)
       )}
     </div>
@@ -27,6 +22,9 @@ const OfferList = ({offers}) => {
 
 OfferList.propTypes = {
   offers: offersType,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
+
 };
 
 export {OfferList};

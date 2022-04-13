@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {offersType} from "../../prop-type";
 import {OfferList} from "./offer-list";
 import {Link} from 'react-router-dom';
@@ -7,6 +7,13 @@ import {Map} from "./map";
 
 
 const Main = ({offers}) => {
+  const [activeOffer, setActiveOffer] = useState(null);
+  const handleMouseEnter = (id) => {
+    setActiveOffer(id);
+  };
+  const handleMouseLeave = () => {
+    setActiveOffer(null);
+  };
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -91,10 +98,16 @@ const Main = ({offers}) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <OfferList offers={offers} />
+            <OfferList
+              offers={offers}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            />
           </section>
           <div className="cities__right-section">
-            <Map offers={offers}></Map>
+            <Map
+              activeOffer={activeOffer}
+              offers={offers} />
           </div>
         </div>
       </div>

@@ -5,18 +5,18 @@ import {offerType} from "../../prop-type";
 import {RATING_WIDTH} from "../../const";
 
 
-const Card = ({offer = {}, mouseEnterHandler, mouseLeaveHandler}) => {
+const Card = ({offer = {}, onMouseEnter, onMouseLeave}) => {
   const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
 
   const handleMouseEnter = () => {
-    mouseEnterHandler(id);
+    onMouseEnter(id);
   };
 
   const bookBtnClass = `place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`;
 
   return <article className="cities__place-card place-card"
     onMouseEnter={handleMouseEnter}
-    onMouseLeave={mouseLeaveHandler}
+    onMouseLeave={onMouseLeave}
   >
     {isPremium &&
       <div className="place-card__mark">
@@ -66,8 +66,8 @@ const Card = ({offer = {}, mouseEnterHandler, mouseLeaveHandler}) => {
 
 Card.propTypes = {
   offer: offerType,
-  mouseEnterHandler: PropTypes.func.isRequired,
-  mouseLeaveHandler: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export {Card};
