@@ -4,12 +4,24 @@ import {useState, useRef, useEffect} from 'react';
 import {offersType} from '../../prop-type';
 import PropTypes from 'prop-types';
 import '../../../node_modules/leaflet/dist/leaflet.css';
+import {PageType} from '../../const';
 
 const IconSize = [30, 45];
 const IconUrl = {
   GENERAL: `./img/pin.svg`,
   ACTIVE: `./img/pin-active.svg`,
 
+};
+
+
+const chooseClassForMap = (type) => {
+  switch (type) {
+    case PageType.MAIN:
+      return `cities__map map`;
+    case PageType.ROOM:
+      return `property__map map`;
+  }
+  return `map`;
 };
 
 const useMap = (offers, mapRef) => {
@@ -49,7 +61,7 @@ const useMap = (offers, mapRef) => {
 
   return mapElement;
 };
-const useIcons = (offers, mapElement, activeOffer) => {
+const useIcons = (offers, mapElement, activeOffer = {}) => {
   const [markersLayer, setMarkersLayer] = useState(null);
 
   useEffect(() => {
@@ -79,20 +91,22 @@ const useIcons = (offers, mapElement, activeOffer) => {
   }, [offers, mapElement, activeOffer]);
 };
 
-const Map = ({offers, activeOffer = {}}) => {
+const Map = ({offers, activeOffer = {}, type}) => {
   const mapRef = useRef();
 
   const mapElement = useMap(offers, mapRef);
   useIcons(offers, mapElement, activeOffer);
 
   return (
-    <section ref={mapRef} className="cities__map" style={{height: `530px`}} ></section>
+    <section ref={mapRef} className={chooseClassForMap(type)} style={{height: `530px`}} ></section>
   );
 };
 
 Map.propTypes = {
   offers: offersType,
   activeOffer: PropTypes.oneOfType([PropTypes.string]),
+  type: PropTypes.string.isRequired,
+
 };
 
 export {Map};

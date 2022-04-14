@@ -1,19 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import {offersType} from "../../prop-type";
-import {OfferList} from "./offer-list";
+import {CardList} from "./card-list";
 import {Link} from 'react-router-dom';
 import {AppRoute} from "../../const";
 import {Map} from "../map/map";
+import PropTypes from 'prop-types';
 
 
-const Main = ({offers}) => {
-  const [activeOffer, setActiveOffer] = useState(null);
-  const handleMouseEnter = (id) => {
-    setActiveOffer(id);
-  };
-  const handleMouseLeave = () => {
-    setActiveOffer(null);
-  };
+const Main = ({offers, onMouseEnter, onMouseLeave, activeOffer, type}) => {
+
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -98,16 +93,19 @@ const Main = ({offers}) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <OfferList
+            <CardList
               offers={offers}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+              type={type}
             />
           </section>
           <div className="cities__right-section">
             <Map
               activeOffer={activeOffer}
-              offers={offers} />
+              offers={offers}
+              type={type}
+            />
           </div>
         </div>
       </div>
@@ -116,7 +114,14 @@ const Main = ({offers}) => {
 };
 
 Main.propTypes = {
-  offers: offersType
+  offers: offersType,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
+  activeOffer: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.oneOf([null]).isRequired,
+  ]),
+  type: PropTypes.string.isRequired,
 };
 
 export default Main;
