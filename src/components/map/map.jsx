@@ -1,17 +1,23 @@
 import React from 'react';
-import leaflet, {layerGroup} from 'leaflet';
+import L from 'leaflet';
 import {useState, useRef, useEffect} from 'react';
 import {offersType} from '../../prop-type';
 import PropTypes from 'prop-types';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 import {PageType} from '../../const';
-
+import {connect} from 'react-redux';
 const IconSize = [30, 45];
 const IconUrl = {
   GENERAL: `./img/pin.svg`,
   ACTIVE: `./img/pin-active.svg`,
 
 };
+
+
+const LAYER_PARAM = [
+  `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
+  {attribution: `© OpenStreetMap contributors © CARTO`}
+];
 
 
 const chooseClassForMap = (type) => {
@@ -24,78 +30,50 @@ const chooseClassForMap = (type) => {
   return `map`;
 };
 
-const useMap = (offers, mapRef) => {
+
+const Map = ({offers, activeOffer = ``, type}) => {
+  const mapRef = useRef();
   const [mapElement, setMapElement] = useState(null);
+  const {lat: cityLat, lng: cityLng, zoom} = offers[0].city.location;
 
   useEffect(() => {
-    const container = mapRef.current;
-    const {lat: cityLat, lng: cityLng, zoom} = offers[0].city.location;
-
-    const createMap = () => {
-      const mapParam = {
-        center: [cityLat, cityLng],
-        zoom,
-        zoomControl: false,
-        marker: true,
-      };
-      const layerParam = [
-        `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
-        {attribution: `© OpenStreetMap contributors © CARTO`}
-      ];
-
-      const map = leaflet.map(container, mapParam);
-
-      map.setView([cityLat, cityLng], zoom);
-      leaflet.tileLayer(...layerParam).addTo(map);
-      setMapElement(map);
+    const mapParam = {
+      center: [cityLat, cityLng],
+      zoom,
+      zoomControl: false,
+      marker: true,
     };
-
-    createMap(container);
+    const map = L.map(mapRef.current, mapParam);
+    L.tileLayer(...LAYER_PARAM).addTo(map);
+    setMapElement(map);
 
     return (() => {
-      container.remove();
+      map.remove();
       setMapElement(null);
     });
-
-  }, [offers, mapRef]);
-
-  return mapElement;
-};
-const useIcons = (offers, mapElement, activeOffer = {}) => {
-  const [markersLayer, setMarkersLayer] = useState(null);
+  }, [offers]);
 
   useEffect(() => {
-    const getIconsGroup = () => {
-      const layerMarker = offers.map((offer) => {
+    let markerLayer;
+    if (mapElement) {
+      const iconGroup = offers.map((offer) => {
         const iconParam = {
           iconUrl: offer.id === activeOffer ? IconUrl.ACTIVE : IconUrl.GENERAL,
           iconSize: IconSize,
           iconAnchor: [IconSize[0] / 2, IconSize[1]],
         };
-        const icon = leaflet.icon(iconParam);
         const {lat, lng} = offer.location;
-        return leaflet.marker([lat, lng], {icon});
+        const icon = L.icon(iconParam);
+        return L.marker([lat, lng], {icon});
       });
-      return layerGroup(layerMarker);
-    };
-    const icons = getIconsGroup();
-    if (mapElement) {
-      icons.addTo(mapElement);
-
-      if (markersLayer) {
-        mapElement.removeLayer(markersLayer);
-      }
-
-      setMarkersLayer(icons);
+      markerLayer = L.layerGroup(iconGroup).addTo(mapElement);
     }
-  }, [offers, mapElement, activeOffer]);
-};
-
-const Map = ({offers, activeOffer = {}, type}) => {
-  const mapRef = useRef();
-
-  const mapElement = useMap(offers, mapRef);
-  useIcons(offers, mapElement, activeOffer);
+    return (() => {
+      if (markerLayer) {
+        markerLayer.remove();
+      }
+    });
+  }, [mapElement, activeOffer]);
 
   return (
     <section ref={mapRef} className={chooseClassForMap(type)} style={{height: `530px`}} ></section>
@@ -109,4 +87,9 @@ Map.propTypes = {
 
 };
 
+const mapStateToProps = (state) => ({
+  activeOffer: state.activeOffer,
+});
+
 export {Map};
+export default connect(mapStateToProps)(Map);

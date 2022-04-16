@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {offerType} from "../../prop-type";
 import {RATING_WIDTH} from "../../const";
 import {PageType} from "../../const";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 const mapForRoomType = {
   apartments: `Apartments`,
@@ -30,19 +32,22 @@ const choosePath = (type) => {
   return `offer/`;
 };
 
-const Card = ({offer = {}, onMouseEnter, onMouseLeave, pageType}) => {
+const Card = ({offer = {}, pageType, setActiveOffer}) => {
   const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
-
   const handleMouseEnter = (evt) => {
     evt.preventDefault();
-    onMouseEnter(id);
+    setActiveOffer(id);
+  };
+  const handleMouseLeave = (evt) => {
+    evt.preventDefault();
+    setActiveOffer(null);
   };
 
   const bookBtnClass = `place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`;
   return (
     <article className={chooseClassForCard(pageType)}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={onMouseLeave}>
+      onMouseLeave={handleMouseLeave}>
       {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
@@ -93,8 +98,18 @@ const Card = ({offer = {}, onMouseEnter, onMouseLeave, pageType}) => {
 Card.propTypes = {
   offer: offerType,
   pageType: PropTypes.string.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
+  setActiveOffer: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) =>({
+  activeOffer: state.activeOffer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setActiveOffer(offerId) {
+    dispatch(ActionCreator.setActiveOffer(offerId));
+  },
+});
+
 export {Card};
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

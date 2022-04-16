@@ -1,14 +1,18 @@
 import React from "react";
 import {offersType} from "../../prop-type";
-import {CardList} from "./card-list";
+import CardList from "./card-list";
 import {Link} from 'react-router-dom';
 import {AppRoute} from "../../const";
-import {Map} from "../map/map";
+import Map from "../map/map";
 import PropTypes from 'prop-types';
+import {ActionCreator} from "../../store/action";
+import {connect} from 'react-redux';
+import LocationList from "../location/location-list";
+import {capitalize} from "../../util.js/common";
 
 
-const Main = ({offers, onMouseEnter, onMouseLeave, activeOffer, type}) => {
-
+const Main = (props) => {
+  const {offers, type, currCity} = props;
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -38,46 +42,13 @@ const Main = ({offers, onMouseEnter, onMouseLeave, activeOffer, type}) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
-        </section>
+        <LocationList/>
       </div>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in {capitalize(currCity)}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by </span>
               <span className="places__sorting-type" tabIndex="0">
@@ -95,14 +66,11 @@ const Main = ({offers, onMouseEnter, onMouseLeave, activeOffer, type}) => {
             </form>
             <CardList
               offers={offers}
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
               type={type}
             />
           </section>
           <div className="cities__right-section">
             <Map
-              activeOffer={activeOffer}
               offers={offers}
               type={type}
             />
@@ -115,13 +83,19 @@ const Main = ({offers, onMouseEnter, onMouseLeave, activeOffer, type}) => {
 
 Main.propTypes = {
   offers: offersType,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  activeOffer: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.oneOf([null]).isRequired,
-  ]),
   type: PropTypes.string.isRequired,
+  currCity: PropTypes.string.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  currCity: state.city,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fillOffers() {
+    dispatch(ActionCreator.fillOffers());
+  },
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

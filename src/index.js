@@ -1,20 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {App} from './components/app/app';
-import {offersAmsterdam} from './mocks/offers';
-import {reviews} from './mocks/reviews';
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import App from './components/app/app';
+import {reducer} from "./store/reducer";
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-const nearOffers = offersAmsterdam.slice(0, 3);
+
+const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
     <React.StrictMode>
-      <App
-        offers={offersAmsterdam}
-        nearOffers={nearOffers}
-        reviews={reviews}
-      />
+      <Provider
+        store={store}>
+        <App/>
+      </Provider>
     </React.StrictMode>,
     document.querySelector(`#root`)
 );
-
-

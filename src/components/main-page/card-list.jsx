@@ -1,5 +1,5 @@
 import React from "react";
-import {Card} from "../card/card";
+import Card from "../card/card";
 import {offersType} from "../../prop-type";
 import PropTypes from 'prop-types';
 import {PageType} from "../../const";
@@ -14,7 +14,7 @@ const chooseClassForList = (type) => {
   return `places__list`;
 };
 
-const CardList = ({offers, onMouseEnter, onMouseLeave, type}) => {
+const CardList = ({offers, type}) => {
 
   return (
     <div className={chooseClassForList(type)} >
@@ -22,8 +22,6 @@ const CardList = ({offers, onMouseEnter, onMouseLeave, type}) => {
         <Card
           offer={offer}
           key={offer.id}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
           pageType={type}
         />)
       )}
@@ -33,9 +31,8 @@ const CardList = ({offers, onMouseEnter, onMouseLeave, type}) => {
 
 CardList.propTypes = {
   offers: offersType,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
 };
 
 export {CardList};
+export default CardList;

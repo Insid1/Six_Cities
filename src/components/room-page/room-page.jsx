@@ -4,18 +4,16 @@ import {AppRoute} from "../../const";
 import {Comment} from './comment';
 import {ReviewList} from './review/review-list';
 import {offersType, reviewsType} from '../../prop-type';
-import {Map} from '../map/map';
+import Map from '../map/map';
 import PropTypes from 'prop-types';
 import {CardList} from '../main-page/card-list';
+import {connect} from 'react-redux';
 
 
 const Room = ({
   reviews,
   nearOffers,
-  activeOffer,
   type,
-  onMouseEnter,
-  onMouseLeave
 }) => {
   return (
     <div className="page">
@@ -174,7 +172,6 @@ const Room = ({
           </div>
           <Map
             offers={nearOffers}
-            activeOffer={activeOffer}
             type={type}
           />
         </section>
@@ -184,8 +181,6 @@ const Room = ({
             <div className="near-places__list places__list">
               <CardList
                 offers={nearOffers}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
                 type={type}
               />
             </div>
@@ -199,13 +194,12 @@ const Room = ({
 Room.propTypes = {
   reviews: reviewsType,
   nearOffers: offersType,
-  activeOffer: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.oneOf([null]).isRequired,
-  ]),
   type: PropTypes.string.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
 };
 
-export default Room;
+const mapStateToProps = (state) => ({
+  nearOffers: state.nearOffers,
+  reviews: state.reviews,
+});
+
+export default connect(mapStateToProps)(Room);

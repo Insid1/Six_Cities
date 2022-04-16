@@ -27,7 +27,7 @@ const getRandomValueFromArr = (arr) => {
 
 const getTrueOrFalse = () => Boolean(getRandomInt(0, 1));
 
-const capitalize = (str) => `${str[0].toUpperCase()}${str.slice(1)}`;
+const capitalize = (str) => `${str[0].toUpperCase()}${(str.slice(1).toLowerCase())}`;
 
 
 export {getRandomInt, getRandomFloat, getRandomValueFromArr, getTrueOrFalse, capitalize};

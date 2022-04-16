@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {offersType} from "../../prop-type";
 import {reviewsType} from "../../prop-type";
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
@@ -9,16 +9,10 @@ import Room from '../room-page/room-page';
 import NotFound from '../not-found-page/not-found-page';
 import {AppRoute} from '../../const';
 import {PageType} from "../../const";
+import {connect} from "react-redux";
 
-const App = ({offers, reviews, nearOffers}) => {
-  const [activeOffer, setActiveOffer] = useState(null);
-  const handleMouseEnter = (id) => {
-    setActiveOffer(id);
-  };
-  const handleMouseLeave = (evt) => {
-    evt.preventDefault();
-    setActiveOffer(null);
-  };
+const App = ({offers}) => {
+
 
   return (
     <BrowserRouter>
@@ -26,9 +20,6 @@ const App = ({offers, reviews, nearOffers}) => {
         <Route path={AppRoute.MAIN} exact>
           <Main
             offers={offers}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            activeOffer={activeOffer}
             type={PageType.MAIN}
           />
         </Route>
@@ -42,11 +33,6 @@ const App = ({offers, reviews, nearOffers}) => {
         </Route>
         <Route path={AppRoute.ROOM} exact>
           <Room
-            reviews={reviews}
-            nearOffers={nearOffers}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            activeOffer={activeOffer}
             type={PageType.ROOM}
           />
         </Route>
@@ -65,4 +51,9 @@ App.propTypes = {
   reviews: reviewsType,
 };
 
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
 export {App};
+export default connect(mapStateToProps)(App);

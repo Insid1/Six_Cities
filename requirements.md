@@ -16,10 +16,10 @@ npm i react@16.12 -E
 * react-dom@16.14
 * react-router-dom@5.2
 * dayjs@1.11.0
-<!-- * react-redux@7.2 -->
-<!-- * redux@4 -->
+* react-redux@7.2
+* redux@4
 <!-- * redux-thunk@2.3 -->
-<!-- * redux-devtools-extension@2.13 -->
+* redux-devtools-extension@2.13
 * leaflet@1.7.1
 <!-- * reselect@4 -->
 

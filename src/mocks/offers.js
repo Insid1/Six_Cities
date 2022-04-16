@@ -1,14 +1,6 @@
 import {nanoid} from 'nanoid';
+import {Cities} from '../const';
 import {getRandomFloat, getRandomInt, getRandomValueFromArr, getTrueOrFalse} from '../util.js/common';
-
-const Cities = [
-  `Paris`,
-  `Cologne`,
-  `Brussels`,
-  `Amsterdam`,
-  `Hamburg`,
-  `Dusseldorf`
-];
 
 const Goods = [
   `Heating,`,
@@ -27,12 +19,13 @@ const HostNames = [
   `Max`,
 ];
 
-const Locations = [
-  [52.3909553943508, 4.85309666406198],
-  [52.369553943508, 4.85309666406198],
-  [52.3909553943508, 4.929309666406198],
-  [52.3809553943508, 4.939309666406198],
-];
+const addRandCord = (location) => {
+  const randCord = getRandomFloat(0, 0.1, 4);
+  if (Math.random() > 0.5) {
+    return location + randCord;
+  }
+  return location - randCord;
+};
 
 const Images = [
   `img/apartment-01.jpg`,
@@ -46,12 +39,6 @@ const types = [
   `apartments`,
 ];
 
-const AmsterdamLocation = {
-  lat: 52.370216,
-  lng: 4.895168,
-  zoom: 10
-};
-
 const Titles = [
   `Nice, cozy, warm big bed apartment`,
   `Wood and stone place`,
@@ -59,13 +46,21 @@ const Titles = [
   `Beautiful & luxurious studio at great location`,
 ];
 
-const createAmsterdamOffer = () => {
-  const currLocation = Locations.splice((getRandomInt(0, Locations.length - 1)), 1)[0];
+const cityNames = Object.keys(Cities);
+
+
+const createCityOffer = (city = `amsterdam`) => {
+  city = city.toUpperCase();
+
   return {
     bedrooms: getRandomInt(1, 5),
     city: {
-      location: AmsterdamLocation,
-      name: Cities[3],
+      location: {
+        lat: Cities[city].location[0],
+        lng: Cities[city].location[1],
+        zoom: 10,
+      },
+      name: Cities[city].name,
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     goods: Goods,
@@ -80,8 +75,8 @@ const createAmsterdamOffer = () => {
     isFavorite: getTrueOrFalse(),
     isPremium: getTrueOrFalse(),
     location: {
-      lat: currLocation[0],
-      lng: currLocation[1],
+      lat: addRandCord(Cities[city].location[0]),
+      lng: addRandCord(Cities[city].location[1]),
       zoom: 8,
     },
     maxAdults: getRandomInt(0, 6),
@@ -93,7 +88,18 @@ const createAmsterdamOffer = () => {
   };
 };
 
-const offersAmsterdam = new Array(4).fill().map(createAmsterdamOffer);
 
+const createOffers = () => {
+  const totalOffers = {};
 
-export {offersAmsterdam};
+  cityNames.forEach((cityName) => {
+    totalOffers[cityName] = new Array(5).fill().map(() => createCityOffer(cityName));
+  });
+  return totalOffers;
+};
+
+const offers = createOffers();
+
+const test = offers[`AMSTERDAM`];
+
+export {test as offersAmsterdam, offers};
