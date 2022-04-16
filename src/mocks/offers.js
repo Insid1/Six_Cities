@@ -1,6 +1,8 @@
 import {nanoid} from 'nanoid';
-import {Cities} from '../const';
+import {mapToCityLocation} from '../const';
 import {getRandomFloat, getRandomInt, getRandomValueFromArr, getTrueOrFalse} from '../util.js/common';
+
+const OFFERS_NUMBER = 4;
 
 const Goods = [
   `Heating,`,
@@ -18,14 +20,6 @@ const HostNames = [
   `Ivan`,
   `Max`,
 ];
-
-const addRandCord = (location) => {
-  const randCord = getRandomFloat(0, 0.1, 4);
-  if (Math.random() > 0.5) {
-    return location + randCord;
-  }
-  return location - randCord;
-};
 
 const Images = [
   `img/apartment-01.jpg`,
@@ -46,8 +40,15 @@ const Titles = [
   `Beautiful & luxurious studio at great location`,
 ];
 
-const cityNames = Object.keys(Cities);
+const cityNames = Object.keys(mapToCityLocation);
 
+const addRandCord = (location) => {
+  const randCord = getRandomFloat(0, 0.1, 4);
+  if (Math.random() > 0.5) {
+    return location + randCord;
+  }
+  return location - randCord;
+};
 
 const createCityOffer = (city = `amsterdam`) => {
   city = city.toUpperCase();
@@ -56,11 +57,11 @@ const createCityOffer = (city = `amsterdam`) => {
     bedrooms: getRandomInt(1, 5),
     city: {
       location: {
-        lat: Cities[city].location[0],
-        lng: Cities[city].location[1],
+        lat: mapToCityLocation[city].location[0],
+        lng: mapToCityLocation[city].location[1],
         zoom: 10,
       },
-      name: Cities[city].name,
+      name: mapToCityLocation[city].name,
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     goods: Goods,
@@ -75,8 +76,8 @@ const createCityOffer = (city = `amsterdam`) => {
     isFavorite: getTrueOrFalse(),
     isPremium: getTrueOrFalse(),
     location: {
-      lat: addRandCord(Cities[city].location[0]),
-      lng: addRandCord(Cities[city].location[1]),
+      lat: addRandCord(mapToCityLocation[city].location[0]),
+      lng: addRandCord(mapToCityLocation[city].location[1]),
       zoom: 8,
     },
     maxAdults: getRandomInt(0, 6),
@@ -88,12 +89,11 @@ const createCityOffer = (city = `amsterdam`) => {
   };
 };
 
-
 const createOffers = () => {
   const totalOffers = {};
 
   cityNames.forEach((cityName) => {
-    totalOffers[cityName] = new Array(5).fill().map(() => createCityOffer(cityName));
+    totalOffers[cityName] = new Array(OFFERS_NUMBER).fill().map(() => createCityOffer(cityName));
   });
   return totalOffers;
 };

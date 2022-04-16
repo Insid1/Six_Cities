@@ -10,7 +10,7 @@ const PageType = {
   ROOM: `ROOM`,
 };
 
-const Cities = {
+const mapToCityLocation = {
   PARIS: {
     name: `Paris`,
     location: [48.8653, 2.34565],
@@ -39,4 +39,4 @@ const Cities = {
 
 const RATING_WIDTH = 20;
 
-export {AppRoute, RATING_WIDTH, PageType, Cities};
+export {AppRoute, RATING_WIDTH, PageType, mapToCityLocation};

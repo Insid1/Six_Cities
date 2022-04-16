@@ -11,22 +11,16 @@ const initialState = {
   nearOffers,
   reviews,
   cities: Object.keys(offers),
-  map: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SET_MAP:{
-      return {
-        ...state,
-        map: action.payload,
-      };
-    }
     case ActionType.SET_CITY:{
       return {
         ...state,
         city: action.payload,
         offers: offers[action.payload],
+        nearOffers: offers[action.payload].slice(0, 3),
       };
     }
     case ActionType.SET_ACTIVE_OFFER: {
@@ -35,15 +29,10 @@ const reducer = (state = initialState, action) => {
         activeOffer: action.payload,
       };
     }
-    case ActionType.FILL_OFFERS: {
-      // console.log(1);
-      break;
-    }
     default: {
       return state;
     }
   }
-  return state;
 };
 
 export {reducer};

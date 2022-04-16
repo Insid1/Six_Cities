@@ -6,18 +6,33 @@ import PropTypes from 'prop-types';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 import {PageType} from '../../const';
 import {connect} from 'react-redux';
-const IconSize = [30, 45];
-const IconUrl = {
+import {mapToCityLocation} from '../../const';
+
+const mapToIconUrl = {
   GENERAL: `./img/pin.svg`,
   ACTIVE: `./img/pin-active.svg`,
 
 };
 
+const ICON_SIZE = [30, 45];
 
-const LAYER_PARAM = [
+const LAYER_OPTION = [
   `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   {attribution: `© OpenStreetMap contributors © CARTO`}
 ];
+
+const MAP_OPTION = {
+  center: [55.7797, 37.50353], // cords for Moscow
+  zoom: 10,
+  zoomControl: false,
+  marker: true,
+};
+
+const iconParam = {
+  iconUrl: mapToIconUrl.GENERAL,
+  iconSize: ICON_SIZE,
+  iconAnchor: [ICON_SIZE[0] / 2, ICON_SIZE[1]],
+};
 
 
 const chooseClassForMap = (type) => {
@@ -30,40 +45,39 @@ const chooseClassForMap = (type) => {
   return `map`;
 };
 
-
-const Map = ({offers, activeOffer = ``, type}) => {
+const Map = ({offers, activeOffer = ``, type, currCity}) => {
   const mapRef = useRef();
   const [mapElement, setMapElement] = useState(null);
-  const {lat: cityLat, lng: cityLng, zoom} = offers[0].city.location;
 
   useEffect(() => {
-    const mapParam = {
-      center: [cityLat, cityLng],
-      zoom,
-      zoomControl: false,
-      marker: true,
-    };
-    const map = L.map(mapRef.current, mapParam);
-    L.tileLayer(...LAYER_PARAM).addTo(map);
+
+    const map = L.map(mapRef.current, {
+      ...MAP_OPTION,
+      center: mapToCityLocation[currCity].location
+    });
+    L.tileLayer(...LAYER_OPTION).addTo(map);
     setMapElement(map);
 
     return (() => {
       map.remove();
       setMapElement(null);
     });
-  }, [offers]);
+  }, [offers, currCity]);
 
   useEffect(() => {
     let markerLayer;
     if (mapElement) {
       const iconGroup = offers.map((offer) => {
-        const iconParam = {
-          iconUrl: offer.id === activeOffer ? IconUrl.ACTIVE : IconUrl.GENERAL,
-          iconSize: IconSize,
-          iconAnchor: [IconSize[0] / 2, IconSize[1]],
-        };
         const {lat, lng} = offer.location;
-        const icon = L.icon(iconParam);
+        const icon = L.icon({
+          ...iconParam,
+          iconUrl: (offer.id === activeOffer)
+            ?
+            mapToIconUrl.ACTIVE
+            :
+            mapToIconUrl.GENERAL
+        });
+
         return L.marker([lat, lng], {icon});
       });
       markerLayer = L.layerGroup(iconGroup).addTo(mapElement);
@@ -76,7 +90,9 @@ const Map = ({offers, activeOffer = ``, type}) => {
   }, [mapElement, activeOffer]);
 
   return (
-    <section ref={mapRef} className={chooseClassForMap(type)} style={{height: `530px`}} ></section>
+    <section className={chooseClassForMap(type)}
+      ref={mapRef}
+    />
   );
 };
 
@@ -84,11 +100,12 @@ Map.propTypes = {
   offers: offersType,
   activeOffer: PropTypes.oneOfType([PropTypes.string]),
   type: PropTypes.string.isRequired,
-
+  currCity: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   activeOffer: state.activeOffer,
+  currCity: state.city,
 });
 
 export {Map};
