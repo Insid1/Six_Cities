@@ -10,6 +10,13 @@ const PageType = {
   ROOM: `ROOM`,
 };
 
+const SortingType = {
+  POPULAR: `POPULAR`,
+  PRICE_LOW_TO_HIGH: `PRICE_LOW_TO_HIGH`,
+  PRICE_HIGH_TO_LOW: `PRICE_HIGH_TO_LOW`,
+  TOP_RATED: `TOP_RATED`,
+};
+
 const mapToCityLocation = {
   PARIS: {
     name: `Paris`,
@@ -39,4 +46,4 @@ const mapToCityLocation = {
 
 const RATING_WIDTH = 20;
 
-export {AppRoute, RATING_WIDTH, PageType, mapToCityLocation};
+export {AppRoute, RATING_WIDTH, PageType, mapToCityLocation, SortingType};
