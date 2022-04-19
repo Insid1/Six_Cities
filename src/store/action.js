@@ -5,6 +5,8 @@ const ActionType = {
   FILL_OFFERS: `FILL_OFFERS`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_USER_EMAIL: `SET_USER_EMAIL`,
+  SET_LOADER: `SET_LOADER`,
 };
 
 const ActionCreator = {
@@ -28,10 +30,17 @@ const ActionCreator = {
     type: ActionType.SET_SORTING_TYPE,
     payload: sortingType,
   }),
+  setUserEmail: (email) => ({
+    type: ActionType.SET_USER_EMAIL,
+    payload: email,
+  }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
-  })
+  }),
+  setLoader: () => ({
+    type: ActionType.SET_LOADER,
+  }),
 };
 
 export {ActionType, ActionCreator};

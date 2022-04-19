@@ -1,0 +1,9 @@
+.sign-out-btn {
+  margin-left: 10px;
+  display: inline-block;
+  transition: all 0.1s ease-in-out;
+}
+.sign-out-btn:hover {
+  font-weight: 700;
+  color: #3069a6;
+}

@@ -49,6 +49,16 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+const ServerRoute = {
+  OFFERS: `/hotels`,
+  OFFER: ` /hotels/: id`, // REWORK IT
+  NEAR_BY_OFFERS: `/hotels/: hotel_id/nearby`, // REWORK IT
+  FAVORITE_OFFERS: `/favorite`,
+  FAVORITE_OFFER: `/favorite/: hotel_id/: status`,
+  LOGIN: `/login`,
+  LOGOUT: `/logout`,
+};
+
 const RATING_WIDTH = 20;
 
-export {AppRoute, RATING_WIDTH, PageType, mapToCityLocation, SortingType, AuthorizationStatus};
+export {AppRoute, RATING_WIDTH, PageType, mapToCityLocation, SortingType, AuthorizationStatus, ServerRoute};

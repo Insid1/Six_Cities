@@ -5,6 +5,7 @@ import {AuthorizationStatus} from "../const";
 import {capitalize} from "../util.js/common";
 
 const initialState = {
+  userEmail: ``,
   city: `PARIS`,
   offers: [],
   allOffers: [],
@@ -45,6 +46,12 @@ const sortOffers = (currOffers, sortType) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.SET_LOADER: {
+      return {
+        ...state,
+        isDataLoaded: false,
+      };
+    }
     case ActionType.LOAD_OFFERS: {
       return {
         ...state,
@@ -85,6 +92,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         authorizationStatus: action.payload,
+        isDataLoaded: true,
+      };
+    }
+    case ActionType.SET_USER_EMAIL: {
+      return {
+        ...state,
+        userEmail: action.payload,
       };
     }
     default: {

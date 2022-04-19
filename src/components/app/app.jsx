@@ -10,10 +10,9 @@ import NotFound from '../not-found-page/not-found-page';
 import {AppRoute} from '../../const';
 import {PageType} from "../../const";
 import {connect} from "react-redux";
+import PrivateRoute from "../private-route/private-route";
 
 const App = ({offers}) => {
-
-
   return (
     <BrowserRouter>
       <Switch>
@@ -26,11 +25,16 @@ const App = ({offers}) => {
         <Route path={AppRoute.LOGIN} exact>
           <SignIn />
         </Route>
-        <Route path={AppRoute.FAVORITES} exact>
-          <Favorites
-            offers={offers}
-          />
-        </Route>
+        <PrivateRoute
+          path={AppRoute.FAVORITES}
+          exact
+          render={() => (
+            <Favorites
+              offers={offers}
+            />
+          ) }
+        />
+        {/*  */}
         <Route path={AppRoute.ROOM} exact>
           <Room
             type={PageType.ROOM}

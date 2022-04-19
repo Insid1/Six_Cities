@@ -1,52 +1,45 @@
-import React from "react";
-import {Link} from 'react-router-dom';
-import {AppRoute} from "../../const";
+import React, {useRef} from "react";
+import Header from "../header/header";
+import {login} from "../../api/api-actions";
+import {connect} from "react-redux";
+import Loader from "../loader/loader";
+import PropTypes from 'prop-types';
 
-const SignIn = () => {
+
+const SignIn = ({onSubmit, isDataLoaded}) => {
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    onSubmit({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    });
+  };
+
   return (
     <div className="page page--gray page--login">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Link className="header__logo-link"
-                to={AppRoute.MAIN}>
-                <img className="header__logo"
-                  src="img/logo.svg"
-                  alt="6 cities logo"
-                  width="81"
-                  height="41" />
-              </Link>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile"
-                    href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__login">Sign in</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      {isDataLoaded || <Loader/>}
+      <Header/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
             <form className="login__form form"
               action="#"
-              method="post">
+              onSubmit={handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input className="login__input form__input"
                   type="email"
                   name="email"
                   placeholder="Email"
-                  required="" />
+                  required
+                  ref={emailRef}
+                />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
@@ -54,7 +47,9 @@ const SignIn = () => {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  required="" />
+                  required
+                  ref={passwordRef}
+                />
               </div>
               <button className="login__submit form__submit button"
                 type="submit">Sign in</button>
@@ -74,4 +69,20 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+SignIn.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(userData) {
+    dispatch(login(userData));
+  }
+});
+
+const mapStateToProps = (state) => ({
+  isDataLoaded: state.isDataLoaded
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
