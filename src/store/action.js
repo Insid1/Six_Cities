@@ -2,9 +2,20 @@ const ActionType = {
   SET_CITY: `SET_CITY`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   SET_SORTING_TYPE: `SET_SORTING_TYPE`,
+  FILL_OFFERS: `FILL_OFFERS`,
+  LOAD_OFFERS: `LOAD_OFFERS`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
 };
 
 const ActionCreator = {
+  loadOffers: (offers) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload: offers,
+  }),
+  fillOffers: (city) => ({
+    type: ActionType.FILL_OFFERS,
+    payload: city,
+  }),
   setCity: (city) => ({
     type: ActionType.SET_CITY,
     payload: city,
@@ -16,6 +27,10 @@ const ActionCreator = {
   setSortingType: (sortingType) => ({
     type: ActionType.SET_SORTING_TYPE,
     payload: sortingType,
+  }),
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRED_AUTHORIZATION,
+    payload: status,
   })
 };
 

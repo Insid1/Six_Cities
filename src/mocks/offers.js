@@ -56,11 +56,6 @@ const createCityOffer = (city = `amsterdam`) => {
   return {
     bedrooms: getRandomInt(1, 5),
     city: {
-      location: {
-        lat: mapToCityLocation[city].location[0],
-        lng: mapToCityLocation[city].location[1],
-        zoom: 10,
-      },
       name: mapToCityLocation[city].name,
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,

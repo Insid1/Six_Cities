@@ -44,6 +44,11 @@ const mapToCityLocation = {
   }
 };
 
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
 const RATING_WIDTH = 20;
 
-export {AppRoute, RATING_WIDTH, PageType, mapToCityLocation, SortingType};
+export {AppRoute, RATING_WIDTH, PageType, mapToCityLocation, SortingType, AuthorizationStatus};

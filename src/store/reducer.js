@@ -1,19 +1,25 @@
 import {ActionType} from "./action";
-import {offers} from "../mocks/offers";
 import {reviews} from "../mocks/reviews";
-import {SortingType} from "../const";
+import {mapToCityLocation, SortingType} from "../const";
+import {AuthorizationStatus} from "../const";
+import {capitalize} from "../util.js/common";
 
-// temp data for nearOffers
-const nearOffers = offers.PARIS.slice(0, 3);
+const filterByCity = (offers = [], cityName) => {
+  cityName = capitalize(cityName);
+  return offers.filter((offer) => offer.city.name === cityName);
+};
 
 const initialState = {
   city: `PARIS`,
-  offers: offers.PARIS,
+  offers: [],
+  allOffers: [],
   activeOffer: null,
-  nearOffers,
+  nearOffers: [],
   reviews,
-  cities: Object.keys(offers),
+  cities: Object.keys(mapToCityLocation),
   sortingType: `POPULAR`,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isDataLoaded: false,
 };
 
 const sortOffers = (currOffers, sortType) => {
@@ -39,12 +45,25 @@ const sortOffers = (currOffers, sortType) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SET_CITY:{
+    case ActionType.LOAD_OFFERS: {
+      return {
+        ...state,
+        allOffers: action.payload,
+        offers: filterByCity(action.payload, state.city)
+      };
+    }
+    case ActionType.FILL_OFFERS: {
+      return {
+        ...state,
+        offers: filterByCity(state.allOffers, action.payload),
+      };
+    }
+    case ActionType.SET_CITY: {
       return {
         ...state,
         city: action.payload,
-        offers: offers[action.payload],
-        nearOffers: offers[action.payload].slice(0, 3),
+        offers: filterByCity(state.allOffers, action.payload),
+        nearOffers: state.allOffers.slice(0, 3),
         sortingType: SortingType.POPULAR,
       };
     }
@@ -58,7 +77,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         sortingType: action.payload,
-        offers: sortOffers(offers[state.city], action.payload),
+        offers: sortOffers(filterByCity(state.allOffers, state.city), action.payload),
+      };
+    }
+    case ActionType.REQUIRED_AUTHORIZATION: {
+      return {
+        ...state,
+        authorizationStatus: action.payload,
       };
     }
     default: {

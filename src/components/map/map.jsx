@@ -23,12 +23,12 @@ const LAYER_OPTION = [
 
 const MAP_OPTION = {
   center: [55.7797, 37.50353], // cords for Moscow
-  zoom: 10,
+  zoom: 12,
   zoomControl: false,
   marker: true,
 };
 
-const iconParam = {
+const ICON_OPTION = {
   iconUrl: mapToIconUrl.GENERAL,
   iconSize: ICON_SIZE,
   iconAnchor: [ICON_SIZE[0] / 2, ICON_SIZE[1]],
@@ -70,7 +70,7 @@ const Map = ({offers, activeOffer = ``, type, currCity}) => {
       const iconGroup = offers.map((offer) => {
         const {lat, lng} = offer.location;
         const icon = L.icon({
-          ...iconParam,
+          ...ICON_OPTION,
           iconUrl: (offer.id === activeOffer)
             ?
             mapToIconUrl.ACTIVE
@@ -98,7 +98,7 @@ const Map = ({offers, activeOffer = ``, type, currCity}) => {
 
 Map.propTypes = {
   offers: offersType,
-  activeOffer: PropTypes.oneOfType([PropTypes.string]),
+  activeOffer: PropTypes.number,
   type: PropTypes.string.isRequired,
   currCity: PropTypes.string.isRequired,
 };
