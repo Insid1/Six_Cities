@@ -4,11 +4,6 @@ import {mapToCityLocation, SortingType} from "../const";
 import {AuthorizationStatus} from "../const";
 import {capitalize} from "../util.js/common";
 
-const filterByCity = (offers = [], cityName) => {
-  cityName = capitalize(cityName);
-  return offers.filter((offer) => offer.city.name === cityName);
-};
-
 const initialState = {
   city: `PARIS`,
   offers: [],
@@ -20,6 +15,11 @@ const initialState = {
   sortingType: `POPULAR`,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   isDataLoaded: false,
+};
+
+const filterByCity = (offers = [], cityName) => {
+  cityName = capitalize(cityName);
+  return offers.filter((offer) => offer.city.name === cityName);
 };
 
 const sortOffers = (currOffers, sortType) => {
@@ -49,7 +49,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allOffers: action.payload,
-        offers: filterByCity(action.payload, state.city)
+        offers: filterByCity(action.payload, state.city),
+        isDataLoaded: true,
       };
     }
     case ActionType.FILL_OFFERS: {

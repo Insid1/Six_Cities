@@ -1,0 +1,50 @@
+.loader {
+  --main-loader-color: rgb(73, 73, 73);
+}
+
+.loader {
+  font-family: 'rubik','arial','sans-serif';
+  font-size: 26px;
+  color: var(--main-loader-color);
+  font-weight: 700;
+  position: fixed;
+  background-color: rgba(240, 248, 255, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  /* Добавить стоп для прокрутки */
+}
+
+.loader span {
+  display: inline-block;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid var(--main-loader-color);
+  border-color: var(--main-loader-color) transparent var(--main-loader-color) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
