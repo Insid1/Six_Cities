@@ -7,6 +7,7 @@ const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SET_USER_EMAIL: `SET_USER_EMAIL`,
   SET_LOADER: `SET_LOADER`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
 const ActionCreator = {
@@ -41,6 +42,10 @@ const ActionCreator = {
   setLoader: () => ({
     type: ActionType.SET_LOADER,
   }),
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  })
 };
 
 export {ActionType, ActionCreator};

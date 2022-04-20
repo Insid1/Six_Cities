@@ -8,11 +8,13 @@ import App from './components/app/app';
 import {reducer} from "./store/reducer";
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {fetchOfferList, checkAuthorization} from "./api/api-actions";
+import {redirect} from "./store/middlewares/redirect";
 
 const api = createApi();
 
 const store = createStore(reducer, composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api))
+    applyMiddleware(thunk.withExtraArgument(api)),
+    applyMiddleware(redirect),
 ));
 
 store.dispatch(fetchOfferList());

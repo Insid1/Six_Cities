@@ -1,5 +1,5 @@
 import {ActionCreator} from "../store/action";
-import {AuthorizationStatus} from "../const";
+import {AppRoute, AuthorizationStatus} from "../const";
 import {adaptOfferForClient} from "../util.js/adapter";
 import {ServerRoute} from "../const";
 
@@ -31,9 +31,13 @@ const login = ({email, password}) => (dispatch, _getState, api) => {
     password,
   })
     .then(() => {
-      dispatch(ActionCreator.setUserEmail(email));
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-    });
+    })
+    .then(() => {
+      dispatch(ActionCreator.setUserEmail(email));
+      dispatch(ActionCreator.redirectToRoute(AppRoute.MAIN));
+    })
+  ;
 };
 
 const logout = () => (dispatch, _getState, api) => {

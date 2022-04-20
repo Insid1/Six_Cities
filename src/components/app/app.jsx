@@ -1,7 +1,7 @@
 import React from "react";
 import {offersType} from "../../prop-type";
 import {reviewsType} from "../../prop-type";
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import Main from '../main-page/main-page';
 import SignIn from '../sign-in-page/sign-in-page';
 import Favorites from '../favorites-page/favorites-page';
@@ -11,10 +11,11 @@ import {AppRoute} from '../../const';
 import {PageType} from "../../const";
 import {connect} from "react-redux";
 import PrivateRoute from "../private-route/private-route";
+import {browserHistory} from "../../browser-history/browser-history";
 
 const App = ({offers}) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route path={AppRoute.MAIN} exact>
           <Main
