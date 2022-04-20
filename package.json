@@ -23,6 +23,7 @@
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.4.0",
     "file-loader": "6.2",
+    "history": "4.10",
     "leaflet": "1.7.1",
     "nanoid": "^3.3.2",
     "prop-types": "15.7",
