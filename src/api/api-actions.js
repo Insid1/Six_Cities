@@ -59,8 +59,8 @@ const fetchOffer = (id) => (dispatch, _getState, api) => {
     .then((data) => {
       dispatch(ActionCreator.selectOffer(data));
     })
-    .catch((err) => {
-      // console.log(err);
+    .catch(() => {
+      dispatch(ActionCreator.redirectToRoute(`../error`));
     });
 };
 

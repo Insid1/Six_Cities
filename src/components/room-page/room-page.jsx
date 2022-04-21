@@ -8,20 +8,24 @@ import {CardList} from '../main-page/card-list';
 import {connect} from 'react-redux';
 import Header from '../header/header';
 import TitleImg from './title-img';
-import {RATING_WIDTH} from '../../const';
 import {capitalize} from '../../util.js/common';
 import HostInfo from './host-info';
-import NotFound from '../not-found-page/not-found-page';
+import Loader from '../loader/loader';
 import {fetchOffer} from '../../api/api-actions';
 import {AuthorizationStatus} from '../../const';
+import {useParams} from 'react-router-dom';
 
-const Room = ({reviews, nearOffers, type, offer, activeOffer, getOffers, authorizationStatus}) => {
+const RATING_WIDTH = 30;
+
+const Room = ({reviews, nearOffers, type, authorizationStatus, getOffer, selectedOffer, isDataLoaded}) => {
+  const {id} = useParams();
+
   useEffect(() => {
-    getOffers(activeOffer);
-  }, [activeOffer, getOffers]);
+    getOffer(id);
+  }, [id, getOffer]);
 
-  if (!offer) {
-    return <NotFound/>;
+  if (selectedOffer === null || !isDataLoaded) {
+    return <Loader />;
   }
 
   const {
@@ -35,8 +39,7 @@ const Room = ({reviews, nearOffers, type, offer, activeOffer, getOffers, authori
     rating,
     bedrooms,
     price,
-    id,
-  } = offer;
+  } = selectedOffer;
 
   return (
     <div className="page">
@@ -109,7 +112,7 @@ const Room = ({reviews, nearOffers, type, offer, activeOffer, getOffers, authori
                   reviews={reviews}
                 />
                 {authorizationStatus === AuthorizationStatus.AUTH
-                  && <Comment id={id}
+                  && <Comment id={+id}
                   />}
               </section>
             </div>
@@ -139,22 +142,22 @@ Room.propTypes = {
   reviews: reviewsType,
   nearOffers: offersType,
   type: PropTypes.string.isRequired,
-  offer: offerType,
-  activeOffer: PropTypes.number.isRequired,
-  getOffers: PropTypes.func.isRequired,
+  selectedOffer: offerType,
+  getOffer: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   nearOffers: state.nearOffers,
   reviews: state.reviews,
-  offer: state.selectedOffer,
-  activeOffer: state.activeOffer,
+  selectedOffer: state.selectedOffer,
   authorizationStatus: state.authorizationStatus,
+  isDataLoaded: state.isDataLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getOffers(id) {
+  getOffer(id) {
     dispatch(fetchOffer(id));
   }
 });
