@@ -59,4 +59,4 @@ const reviewType = PropTypes.shape({
 const offersType = PropTypes.arrayOf(offerType);
 const reviewsType = PropTypes.arrayOf(reviewType);
 
-export {offerType, offersType, reviewType, reviewsType};
+export {offerType, offersType, reviewType, reviewsType, hostType};

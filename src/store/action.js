@@ -8,6 +8,7 @@ const ActionType = {
   SET_USER_EMAIL: `SET_USER_EMAIL`,
   SET_LOADER: `SET_LOADER`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  SELECT_OFFER: `SELECT_OFFER`
 };
 
 const ActionCreator = {
@@ -45,6 +46,10 @@ const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
+  }),
+  selectOffer: (offer) => ({
+    type: ActionType.SELECT_OFFER,
+    payload: offer,
   })
 };
 

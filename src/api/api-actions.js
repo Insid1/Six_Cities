@@ -22,7 +22,6 @@ const checkAuthorization = () => (dispatch, _getState, api) => {
 
 };
 
-
 const login = ({email, password}) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setLoader());
 
@@ -50,5 +49,24 @@ const logout = () => (dispatch, _getState, api) => {
     });
 };
 
+const fetchOffer = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setLoader());
 
-export {fetchOfferList, checkAuthorization, login, logout};
+  return api.get(`${ServerRoute.OFFER}${id}`)
+    .then(({data}) => {
+      return adaptOfferForClient(data);
+    })
+    .then((data) => {
+      dispatch(ActionCreator.selectOffer(data));
+    })
+    .catch((err) => {
+      // console.log(err);
+    });
+};
+
+const postComment = (id, {rating, comment}) => (dispatch, _getState, api) => {
+  return api.post(ServerRoute.COMMENT + id, {comment, rating});
+};
+
+
+export {fetchOfferList, checkAuthorization, login, logout, fetchOffer, postComment};

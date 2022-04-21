@@ -16,6 +16,7 @@ const initialState = {
   sortingType: `POPULAR`,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   isDataLoaded: false,
+  selectedOffer: null,
 };
 
 const filterByCity = (offers = [], cityName) => {
@@ -99,6 +100,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userEmail: action.payload,
+      };
+    }
+    case ActionType.SELECT_OFFER: {
+      return {
+        ...state,
+        selectedOffer: action.payload,
+        isDataLoaded: true,
       };
     }
     default: {

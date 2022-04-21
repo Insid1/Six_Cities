@@ -35,7 +35,6 @@ const App = ({offers}) => {
             />
           ) }
         />
-        {/*  */}
         <Route path={AppRoute.ROOM} exact>
           <Room
             type={PageType.ROOM}

@@ -51,12 +51,13 @@ const AuthorizationStatus = {
 
 const ServerRoute = {
   OFFERS: `/hotels`,
-  OFFER: ` /hotels/: id`, // REWORK IT
+  OFFER: `/hotels/`,
   NEAR_BY_OFFERS: `/hotels/: hotel_id/nearby`, // REWORK IT
   FAVORITE_OFFERS: `/favorite`,
   FAVORITE_OFFER: `/favorite/: hotel_id/: status`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
+  COMMENT: `/comments/`
 };
 
 const RATING_WIDTH = 20;

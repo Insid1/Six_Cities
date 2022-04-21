@@ -1,11 +1,11 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {offerType} from "../../prop-type";
 import {RATING_WIDTH} from "../../const";
 import {PageType} from "../../const";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
+import {Link} from "react-router-dom";
 
 const mapForRoomType = {
   apartments: `Apartments`,
@@ -22,15 +22,6 @@ const chooseClassForCard = (type) => {
   return `places__list`;
 };
 
-const choosePath = (type) => {
-  switch (type) {
-    case PageType.MAIN:
-      return `offer/`;
-    case PageType.ROOM:
-      return ``;
-  }
-  return `offer/`;
-};
 
 const Card = ({offer = {}, pageType, setActiveOffer}) => {
   const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
@@ -54,7 +45,7 @@ const Card = ({offer = {}, pageType, setActiveOffer}) => {
       </div>
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${choosePath(pageType)}${id}`}>
+        <Link to={`offer/${id}`}>
           <img className="place-card__image"
             src={previewImage}
             width="260"
@@ -108,7 +99,7 @@ const mapStateToProps = (state) =>({
 const mapDispatchToProps = (dispatch) => ({
   setActiveOffer(offerId) {
     dispatch(ActionCreator.setActiveOffer(offerId));
-  },
+  }
 });
 
 export {Card};
