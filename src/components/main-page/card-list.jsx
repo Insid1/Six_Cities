@@ -15,7 +15,6 @@ const chooseClassForList = (type) => {
 };
 
 const CardList = ({offers, type}) => {
-
   return (
     <div className={chooseClassForList(type)} >
       {offers.map((offer) => (

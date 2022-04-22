@@ -23,7 +23,6 @@ const Location = ({city, currentCity, setActiveCity}) => {
     </li>
   );
 };
-// tabs__item--active
 const mapStateToProps = (state) => ({
   currentCity: state.city,
 });

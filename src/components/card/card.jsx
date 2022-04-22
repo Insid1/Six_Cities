@@ -25,6 +25,7 @@ const chooseClassForCard = (type) => {
 
 const Card = ({offer = {}, pageType, setActiveOffer}) => {
   const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
+
   const handleMouseEnter = (evt) => {
     evt.preventDefault();
     setActiveOffer(id);
@@ -92,9 +93,6 @@ Card.propTypes = {
   setActiveOffer: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) =>({
-  activeOffer: state.activeOffer,
-});
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveOffer(offerId) {
@@ -103,4 +101,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {Card};
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(null, mapDispatchToProps)(Card);
