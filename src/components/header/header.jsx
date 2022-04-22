@@ -1,13 +1,21 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AuthorizationStatus} from "../../const";
-import PropTypes from 'prop-types';
 import {logout} from "../../store/api-actions";
 import './sign-out-btn.css';
 
-const Header = ({authorizationStatus, userEmail, onLogout}) => {
+const Header = () => {
+  const authorizationStatus = useSelector((state) => state.AUTH_DATA.authorizationStatus);
+  const userEmail = useSelector((state) => state.AUTH_DATA.userEmail);
+  const dispatch = useDispatch();
+
+  const handleLogOutClick = (evt) => {
+    evt.preventDefault();
+    dispatch(logout());
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -40,7 +48,7 @@ const Header = ({authorizationStatus, userEmail, onLogout}) => {
                 authorizationStatus === AuthorizationStatus.AUTH
                   &&
                   <li className="header__nav-item user"
-                    onClick={onLogout}>
+                    onClick={handleLogOutClick}>
                     <a className="sign-out-btn">Sign out</a>
                   </li> }
             </ul>
@@ -51,21 +59,5 @@ const Header = ({authorizationStatus, userEmail, onLogout}) => {
   );
 };
 
-Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  userEmail: PropTypes.string.isRequired,
-  onLogout: PropTypes.func.isRequired,
-};
 
-const mapStateToProps = ({AUTH_DATA}) => ({
-  authorizationStatus: AUTH_DATA.authorizationStatus,
-  userEmail: AUTH_DATA.userEmail,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLogout() {
-    dispatch(logout());
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

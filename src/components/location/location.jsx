@@ -1,15 +1,18 @@
 import React from "react";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setCity} from "../../store/action";
 import {capitalize} from "../../util.js/common";
 import PropTypes from 'prop-types';
 
 
-const Location = ({city, currentCity, setActiveCity}) => {
+const Location = ({city}) => {
+
+  const currentCity = useSelector((state) => state.DATA.city);
+  const dispatch = useDispatch();
 
   const handleClick = (evt) => {
     evt.preventDefault();
-    setActiveCity(city);
+    dispatch(setCity(city));
   };
 
   return (
@@ -23,22 +26,11 @@ const Location = ({city, currentCity, setActiveCity}) => {
     </li>
   );
 };
-const mapStateToProps = (state) => ({
-  currentCity: state.city,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setActiveCity(city) {
-    dispatch(setCity(city));
-  }
-});
 
 Location.propTypes = {
   city: PropTypes.string.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  setActiveCity: PropTypes.func.isRequired,
 };
 
 
 export {Location};
-export default connect(mapStateToProps, mapDispatchToProps)(Location);
+export default Location;

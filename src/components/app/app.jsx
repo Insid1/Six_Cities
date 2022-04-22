@@ -1,6 +1,4 @@
 import React from "react";
-import {offersType} from "../../prop-type";
-import {reviewsType} from "../../prop-type";
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import Main from '../main-page/main-page';
 import SignIn from '../sign-in-page/sign-in-page';
@@ -9,17 +7,15 @@ import Room from '../room-page/room-page';
 import NotFound from '../not-found-page/not-found-page';
 import {AppRoute} from '../../const';
 import {PageType} from "../../const";
-import {connect} from "react-redux";
 import PrivateRoute from "../private-route/private-route";
 import {browserHistory} from "../../browser-history/browser-history";
 
-const App = ({offers}) => {
+const App = () => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route path={AppRoute.MAIN} exact>
           <Main
-            offers={offers}
             type={PageType.MAIN}
           />
         </Route>
@@ -30,10 +26,8 @@ const App = ({offers}) => {
           path={AppRoute.FAVORITES}
           exact
           render={() => (
-            <Favorites
-              offers={offers}
-            />
-          ) }
+            <Favorites/>
+          )}
         />
         <Route path={AppRoute.ROOM} exact>
           <Room
@@ -49,15 +43,5 @@ const App = ({offers}) => {
   );
 };
 
-App.propTypes = {
-  nearOffers: offersType,
-  offers: offersType,
-  reviews: reviewsType,
-};
-
-const mapStateToProps = ({DATA}) => ({
-  offers: DATA.offers,
-});
-
 export {App};
-export default connect(mapStateToProps)(App);
+export default App;

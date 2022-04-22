@@ -45,7 +45,7 @@ const offerType = PropTypes.shape({
 
 const reviewType = PropTypes.shape({
   comment: PropTypes.string.isRequired,
-  date: PropTypes.object,
+  date: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   user: PropTypes.shape({

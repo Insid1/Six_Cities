@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import {nanoid} from 'nanoid';
 import {getRandomFloat, getTrueOrFalse, getRandomValueFromArr} from '../util.js/common';
 
@@ -27,7 +26,7 @@ const AvatarUrls = [
 
 const createComment = () => ({
   comment: getRandomValueFromArr(Comments),
-  date: dayjs(`2019-05-08T14:13:56.569Z`),
+  date: `2019-05-08T14:13:56.569Z`,
   id: nanoid(),
   rating: getRandomFloat(0, 5, 1),
   user: {

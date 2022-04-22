@@ -1,8 +1,9 @@
 import React from "react";
-import {reviewsType} from "../../../prop-type";
+import {useSelector} from "react-redux";
 import {Review} from "./review";
 
-const ReviewList = ({reviews}) => {
+const ReviewList = () => {
+  const reviews = useSelector((state) => state.DATA.reviews);
   return (
     <>
       <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
@@ -15,8 +16,5 @@ const ReviewList = ({reviews}) => {
   );
 };
 
-ReviewList.propTypes = {
-  reviews: reviewsType,
-};
 
 export {ReviewList};

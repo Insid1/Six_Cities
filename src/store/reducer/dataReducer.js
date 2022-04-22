@@ -1,4 +1,5 @@
 import {ActionType} from "../action";
+import {createReducer} from "@reduxjs/toolkit";
 import {mapToCityLocation} from "../../const";
 import {reviews} from "../../mocks/reviews";
 import {capitalize} from "../../util.js/common";
@@ -43,61 +44,43 @@ const sortOffers = (currOffers, sortType) => {
   }
 };
 
+// Под капотом RTK есть библеотека imer, которая отвечает за имутабельность, следовательно копировать изначальный state ненужно
+const dataReducer = createReducer(initialState, (builder) => {
+  builder.addCase(ActionType.SET_LOADER, (state, action) => {
+    state.isDataLoaded = !action.payload;
+  });
 
-const dataReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.SET_LOADER: {
-      return {
-        ...state,
-        isDataLoaded: !action.payload,
-      };
-    }
-    case ActionType.LOAD_OFFERS: {
-      return {
-        ...state,
-        allOffers: action.payload,
-        offers: filterByCity(action.payload, state.city),
-      };
-    }
-    case ActionType.FILL_OFFERS: {
-      return {
-        ...state,
-        offers: filterByCity(state.allOffers, action.payload),
-      };
-    }
-    case ActionType.SET_CITY: {
-      return {
-        ...state,
-        city: action.payload,
-        offers: filterByCity(state.allOffers, action.payload),
-        nearOffers: state.allOffers.slice(0, 3),
-        sortingType: SortingType.POPULAR,
-      };
-    }
-    case ActionType.SET_ACTIVE_OFFER: {
-      return {
-        ...state,
-        activeOffer: action.payload,
-      };
-    }
-    case ActionType.SET_SORTING_TYPE: {
-      return {
-        ...state,
-        sortingType: action.payload,
-        offers: sortOffers(filterByCity(state.allOffers, state.city), action.payload),
-      };
-    }
-    case ActionType.SELECT_OFFER: {
-      return {
-        ...state,
-        selectedOffer: action.payload,
-        isDataLoaded: true,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+  builder.addCase(ActionType.LOAD_OFFERS, (state, action) => {
+    state.allOffers = action.payload;
+    state.offers = filterByCity(action.payload, state.city);
+  });
+
+  builder.addCase(ActionType.FILL_OFFERS, (state, action) => {
+    state.offers = filterByCity(state.allOffers, action.payload);
+  });
+
+  builder.addCase(ActionType.SET_CITY, (state, action) => {
+    state.city = action.payload;
+    state.offers = filterByCity(state.allOffers, action.payload);
+    state.nearOffers = state.allOffers.slice(0, 3);
+    state.sortingType = SortingType.POPULAR;
+  });
+
+  builder.addCase(ActionType.SET_ACTIVE_OFFER, (state, action) => {
+    state.activeOffer = action.payload;
+  });
+
+  builder.addCase(ActionType.SET_SORTING_TYPE, (state, action) => {
+    state.sortingType = action.payload;
+    state.offers = sortOffers(filterByCity(state.allOffers, state.city), action.payload);
+  });
+
+  builder.addCase(ActionType.SELECT_OFFER, (state, action) => {
+    state.selectedOffer = action.payload;
+    state.isDataLoaded = true;
+
+  });
+});
+
 
 export default dataReducer;

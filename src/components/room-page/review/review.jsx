@@ -11,6 +11,7 @@ const DateFormat = {
 
 const Review = ({review}) => {
   const {comment, date, rating, user} = review;
+  const adaptedDate = dayjs(date);
   const {avatarUrl, name} = user;
   return (
     <li className="reviews__item">
@@ -39,7 +40,7 @@ const Review = ({review}) => {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime={date.utc().format()}>{date.format(DateFormat.SHORT)}</time>
+        <time className="reviews__time" dateTime={adaptedDate.utc().format()}>{adaptedDate.format(DateFormat.SHORT)}</time>
       </div>
     </li>
   );

@@ -1,23 +1,23 @@
 import React, {useRef} from "react";
 import Header from "../header/header";
 import {login} from "../../store/api-actions";
-import {connect} from "react-redux";
 import Loader from "../loader/loader";
-import PropTypes from 'prop-types';
+import {useDispatch, useSelector} from "react-redux";
 
 
-const SignIn = ({onSubmit, isDataLoaded}) => {
-
+const SignIn = () => {
+  const {isDataLoaded} = useSelector((state) => state.DATA);
+  const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    onSubmit({
+    dispatch(login({
       email: emailRef.current.value,
       password: passwordRef.current.value,
-    });
+    }));
   };
 
   return (
@@ -69,20 +69,5 @@ const SignIn = ({onSubmit, isDataLoaded}) => {
   );
 };
 
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
-};
 
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(userData) {
-    dispatch(login(userData));
-  }
-});
-
-const mapStateToProps = ({DATA}) => ({
-  isDataLoaded: DATA.isDataLoaded
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;

@@ -1,10 +1,11 @@
 import React from "react";
-import {connect} from "react-redux";
 import Location from "./location";
-import PropTypes from 'prop-types';
+import {useSelector} from "react-redux";
 
 
-const LocationList = ({cities}) => {
+const LocationList = () => {
+  const cities = useSelector((state) => state.DATA.cities);
+
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
@@ -14,13 +15,6 @@ const LocationList = ({cities}) => {
   );
 };
 
-const mapStateToProps = ({DATA}) => ({
-  cities: DATA.cities,
-});
-
-LocationList.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-};
 
 export {LocationList};
-export default connect(mapStateToProps)(LocationList);
+export default LocationList;

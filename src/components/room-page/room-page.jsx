@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
 import Comment from './comment';
 import {ReviewList} from './review/review-list';
-import {offersType, offerType, reviewsType} from '../../prop-type';
 import Map from '../map/map';
 import PropTypes from 'prop-types';
 import {CardList} from '../main-page/card-list';
-import {connect} from 'react-redux';
 import Header from '../header/header';
 import TitleImg from './title-img';
 import {capitalize} from '../../util.js/common';
@@ -14,15 +12,23 @@ import Loader from '../loader/loader';
 import {fetchOffer} from '../../store/api-actions';
 import {AuthorizationStatus} from '../../const';
 import {useParams} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 const RATING_WIDTH = 30;
 
-const Room = ({reviews, nearOffers, type, authorizationStatus, getOffer, selectedOffer, isDataLoaded}) => {
+const Room = ({type}) => {
   const {id} = useParams();
 
+  const nearOffers = useSelector((state) => state.DATA.nearOffers);
+  const reviews = useSelector((state) => state.DATA.reviews);
+  const selectedOffer = useSelector((state) => state.DATA.selectedOffer);
+  const isDataLoaded = useSelector((state) => state.DATA.isDataLoaded);
+  const authorizationStatus = useSelector((state) => state.AUTH_DATA.authorizationStatus);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getOffer(id);
-  }, [id, getOffer]);
+    dispatch(fetchOffer(id));
+  }, [id, dispatch]);
 
   if (selectedOffer === null || !isDataLoaded) {
     return <Loader />;
@@ -127,7 +133,6 @@ const Room = ({reviews, nearOffers, type, authorizationStatus, getOffer, selecte
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               <CardList
-                offers={nearOffers}
                 type={type}
               />
             </div>
@@ -139,28 +144,8 @@ const Room = ({reviews, nearOffers, type, authorizationStatus, getOffer, selecte
 };
 
 Room.propTypes = {
-  reviews: reviewsType,
-  nearOffers: offersType,
   type: PropTypes.string.isRequired,
-  selectedOffer: offerType,
-  getOffer: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({DATA, AUTH_DATA}) => ({
-  nearOffers: DATA.nearOffers,
-  reviews: DATA.reviews,
-  selectedOffer: DATA.selectedOffer,
-  authorizationStatus: AUTH_DATA.authorizationStatus,
-  isDataLoaded: DATA.isDataLoaded,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  getOffer(id) {
-    dispatch(fetchOffer(id));
-  }
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Room);
+export default Room;

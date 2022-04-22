@@ -20,6 +20,7 @@ npm i react@16.12 -E
 * redux@4
 * redux-thunk@2.3
 * redux-devtools-extension@2.13
+* @reduxjs/toolkit@1.5.0
 * leaflet@1.7.1
 <!-- * reselect@4 -->
 

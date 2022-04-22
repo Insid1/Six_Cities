@@ -1,12 +1,11 @@
 import React from 'react';
 import {useRef} from 'react';
-import {offersType} from '../../prop-type';
 import PropTypes from 'prop-types';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 import {PageType} from '../../const';
-import {connect} from 'react-redux';
 import useMap from '../../hooks/usemap';
 import useIcons from '../../hooks/useIcons';
+import {useSelector} from 'react-redux';
 
 
 const chooseClassForMap = (type) => {
@@ -19,10 +18,12 @@ const chooseClassForMap = (type) => {
   return `map`;
 };
 
-const Map = ({offers, activeOffer, type, currCity}) => {
+const Map = ({type}) => {
   const mapRef = useRef();
-  const mapElement = useMap(mapRef, currCity, offers);
-  useIcons(mapElement, activeOffer, offers);
+  const offers = useSelector((state) => state.DATA.offer);
+  const {activeOffer, city} = useSelector((state) => state.DATA);
+  // const mapElement = useMap(mapRef, city, offers);
+  // useIcons(mapElement, activeOffer, offers);
 
   return (
     <section className={chooseClassForMap(type)}
@@ -32,16 +33,9 @@ const Map = ({offers, activeOffer, type, currCity}) => {
 };
 
 Map.propTypes = {
-  offers: offersType,
-  activeOffer: PropTypes.number,
   type: PropTypes.string.isRequired,
-  currCity: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  activeOffer: DATA.activeOffer,
-  currCity: DATA.city,
-});
 
 export {Map};
-export default connect(mapStateToProps)(Map);
+export default Map;

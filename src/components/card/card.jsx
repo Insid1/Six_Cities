@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import {offerType} from "../../prop-type";
 import {RATING_WIDTH} from "../../const";
 import {PageType} from "../../const";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setActiveOffer} from "../../store/action";
 import {Link} from "react-router-dom";
 
-const mapForRoomType = {
-  apartments: `Apartments`,
-  room: `Privat Room`,
-};
 
 const chooseClassForCard = (type) => {
   switch (type) {
@@ -23,16 +19,17 @@ const chooseClassForCard = (type) => {
 };
 
 
-const Card = ({offer = {}, pageType, setActiveOffer}) => {
+const Card = ({offer = {}, pageType}) => {
   const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
+  const dispatch = useDispatch();
 
   const handleMouseEnter = (evt) => {
     evt.preventDefault();
-    setActiveOffer(id);
+    dispatch(setActiveOffer(id));
   };
   const handleMouseLeave = (evt) => {
     evt.preventDefault();
-    setActiveOffer(null);
+    dispatch(setActiveOffer(null));
   };
 
   const bookBtnClass = `place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`;
@@ -81,7 +78,7 @@ const Card = ({offer = {}, pageType, setActiveOffer}) => {
         <h2 className="place-card__name">
           <a href="#">{name}</a>
         </h2>
-        <p className="place-card__type">{mapForRoomType[type]}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );
@@ -90,15 +87,8 @@ const Card = ({offer = {}, pageType, setActiveOffer}) => {
 Card.propTypes = {
   offer: offerType,
   pageType: PropTypes.string.isRequired,
-  setActiveOffer: PropTypes.func.isRequired,
 };
 
 
-const mapDispatchToProps = (dispatch) => ({
-  setActiveOffer(offerId) {
-    dispatch(setActiveOffer(offerId));
-  }
-});
-
 export {Card};
-export default connect(null, mapDispatchToProps)(Card);
+export default Card;

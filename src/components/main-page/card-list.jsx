@@ -1,8 +1,8 @@
 import React from "react";
 import Card from "../card/card";
-import {offersType} from "../../prop-type";
 import PropTypes from 'prop-types';
 import {PageType} from "../../const";
+import {useSelector} from "react-redux";
 
 const chooseClassForList = (type) => {
   switch (type) {
@@ -14,7 +14,8 @@ const chooseClassForList = (type) => {
   return `places__list`;
 };
 
-const CardList = ({offers, type}) => {
+const CardList = ({type}) => {
+  const offers = useSelector((state) => state.DATA.offers);
   return (
     <div className={chooseClassForList(type)} >
       {offers.map((offer) => (
@@ -29,7 +30,6 @@ const CardList = ({offers, type}) => {
 };
 
 CardList.propTypes = {
-  offers: offersType,
   type: PropTypes.string.isRequired,
 };
 

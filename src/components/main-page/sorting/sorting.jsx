@@ -1,8 +1,7 @@
 import React, {useState} from "react";
-import {connect} from "react-redux";
 import SortingPoint from "./sorting-point";
-import PropTypes from 'prop-types';
 import {SortingType} from "../../../const";
+import {useSelector} from "react-redux";
 
 
 const mapToSortingName = {
@@ -12,8 +11,9 @@ const mapToSortingName = {
   [SortingType.TOP_RATED]: `Top rated first`,
 };
 
-const Sorting = ({sortingType}) => {
+const Sorting = () => {
   const [isSortingActive, setSortingStatus] = useState(false);
+  const sortingType = useSelector((state) => state.DATA.sortingType);
 
   const svgStyle = {
     transform: isSortingActive ? `rotate(0deg)` : `rotate(180deg)`,
@@ -65,13 +65,5 @@ const Sorting = ({sortingType}) => {
   );
 };
 
-Sorting.propTypes = {
-  sortingType: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = ({DATA}) => ({
-  sortingType: DATA.sortingType,
-});
-
 export {Sorting};
-export default connect(mapStateToProps)(Sorting);
+export default Sorting;

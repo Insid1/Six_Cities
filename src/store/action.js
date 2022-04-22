@@ -1,3 +1,5 @@
+import {createAction} from "@reduxjs/toolkit";
+
 const ActionType = {
   SET_CITY: `SET_CITY`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
@@ -11,54 +13,44 @@ const ActionType = {
   SELECT_OFFER: `SELECT_OFFER`
 };
 
-const loadOffers = (offers) => ({
-  type: ActionType.LOAD_OFFERS,
+const loadOffers = createAction(ActionType.LOAD_OFFERS, (offers) => ({
   payload: offers,
-});
+}));
 
-const fillOffers = (city) => ({
-  type: ActionType.FILL_OFFERS,
+const fillOffers = createAction(ActionType.FILL_OFFERS, (city) => ({
   payload: city,
-});
+}));
 
-const setCity = (city) => ({
-  type: ActionType.SET_CITY,
+const setCity = createAction(ActionType.SET_CITY, (city) => ({
   payload: city,
-});
+}));
 
-const setActiveOffer = (offerId) => ({
-  type: ActionType.SET_ACTIVE_OFFER,
+const setActiveOffer = createAction(ActionType.SET_ACTIVE_OFFER, (offerId) => ({
   payload: offerId,
-});
+}));
 
-const setSortingType = (sortingType) => ({
-  type: ActionType.SET_SORTING_TYPE,
+const setSortingType = createAction(ActionType.SET_SORTING_TYPE, (sortingType) => ({
   payload: sortingType,
-});
+}));
 
-const setUserEmail = (email) => ({
-  type: ActionType.SET_USER_EMAIL,
+const setUserEmail = createAction(ActionType.SET_USER_EMAIL, (email) => ({
   payload: email,
-});
+}));
 
-const requireAuthorization = (status) => ({
-  type: ActionType.REQUIRED_AUTHORIZATION,
+const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => ({
   payload: status,
-});
+}));
 
-const setLoader = (bool) => ({
-  type: ActionType.SET_LOADER,
+const setLoader = createAction(ActionType.SET_LOADER, (bool) => ({
   payload: bool,
-});
+}));
 
-const redirectToRoute = (url) => ({
-  type: ActionType.REDIRECT_TO_ROUTE,
+const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({
   payload: url,
-});
+}));
 
-const selectOffer = (offer) => ({
-  type: ActionType.SELECT_OFFER,
+const selectOffer = createAction(ActionType.SELECT_OFFER, (offer) => ({
   payload: offer,
-});
+}));
 
 export {ActionType, loadOffers, fillOffers, setCity, setActiveOffer, setSortingType, setUserEmail, requireAuthorization, setLoader, redirectToRoute, selectOffer};
