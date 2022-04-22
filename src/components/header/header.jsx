@@ -4,7 +4,7 @@ import {AppRoute} from "../../const";
 import {connect} from "react-redux";
 import {AuthorizationStatus} from "../../const";
 import PropTypes from 'prop-types';
-import {logout} from "../../api/api-actions";
+import {logout} from "../../store/api-actions";
 import './sign-out-btn.css';
 
 const Header = ({authorizationStatus, userEmail, onLogout}) => {

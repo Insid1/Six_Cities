@@ -4,7 +4,7 @@ import {offerType} from "../../prop-type";
 import {RATING_WIDTH} from "../../const";
 import {PageType} from "../../const";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {setActiveOffer} from "../../store/action";
 import {Link} from "react-router-dom";
 
 const mapForRoomType = {
@@ -96,7 +96,7 @@ Card.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveOffer(offerId) {
-    dispatch(ActionCreator.setActiveOffer(offerId));
+    dispatch(setActiveOffer(offerId));
   }
 });
 

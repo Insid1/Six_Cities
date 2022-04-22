@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {setCity} from "../../store/action";
 import {capitalize} from "../../util.js/common";
 import PropTypes from 'prop-types';
 
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveCity(city) {
-    dispatch(ActionCreator.setCity(city));
+    dispatch(setCity(city));
   }
 });
 

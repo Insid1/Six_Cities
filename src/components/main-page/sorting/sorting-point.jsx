@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../../store/action";
+import {setSortingType} from "../../../store/action";
 import PropTypes from 'prop-types';
 
 
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setSortingType(sortingType) {
-    dispatch(ActionCreator.setSortingType(sortingType));
+    dispatch(setSortingType(sortingType));
   }
 });
 

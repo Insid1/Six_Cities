@@ -5,9 +5,9 @@ import {createApi} from "./api/api";
 import {Provider} from "react-redux";
 import thunk from 'redux-thunk';
 import App from './components/app/app';
-import {reducer} from "./store/reducer";
+import {reducer} from "./store/reducer/reducer";
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {fetchOfferList, checkAuthorization} from "./api/api-actions";
+import {fetchOfferList, checkAuthorization} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
 
 const api = createApi();

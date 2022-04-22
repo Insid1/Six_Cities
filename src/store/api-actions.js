@@ -1,4 +1,4 @@
-import {ActionCreator} from "../store/action";
+import {setLoader, loadOffers, setUserEmail, requireAuthorization, redirectToRoute, selectOffer} from "./action";
 import {AppRoute, AuthorizationStatus} from "../const";
 import {adaptOfferForClient} from "../util.js/adapter";
 import {ServerRoute} from "../const";
@@ -6,61 +6,61 @@ import {ServerRoute} from "../const";
 const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(ServerRoute.OFFERS)
     .then(({data}) => {
-      return dispatch(ActionCreator.loadOffers(data.map(adaptOfferForClient)));
+      return dispatch(loadOffers(data.map(adaptOfferForClient)));
     })
 );
 
 const checkAuthorization = () => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setLoader());
+  dispatch(setLoader());
 
   return api.get(ServerRoute.LOGIN)
     .then(({data}) => {
-      dispatch(ActionCreator.setUserEmail(data.email));
-      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(setUserEmail(data.email));
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     })
     .catch(() => {});
 
 };
 
 const login = ({email, password}) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setLoader());
+  dispatch(setLoader());
 
   return api.post(ServerRoute.LOGIN, {
     email,
     password,
   })
     .then(() => {
-      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     })
     .then(() => {
-      dispatch(ActionCreator.setUserEmail(email));
-      dispatch(ActionCreator.redirectToRoute(AppRoute.MAIN));
+      dispatch(setUserEmail(email));
+      dispatch(redirectToRoute(AppRoute.MAIN));
     })
   ;
 };
 
 const logout = () => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setLoader());
+  dispatch(setLoader());
 
   return api.get(ServerRoute.LOGOUT)
     .then(() => {
-      dispatch(ActionCreator.setUserEmail(``));
-      dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+      dispatch(setUserEmail(``));
+      dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     });
 };
 
 const fetchOffer = (id) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setLoader());
+  dispatch(setLoader());
 
   return api.get(`${ServerRoute.OFFER}${id}`)
     .then(({data}) => {
       return adaptOfferForClient(data);
     })
     .then((data) => {
-      dispatch(ActionCreator.selectOffer(data));
+      dispatch(selectOffer(data));
     })
     .catch(() => {
-      dispatch(ActionCreator.redirectToRoute(`../error`));
+      dispatch(redirectToRoute(`../error`));
     });
 };
 

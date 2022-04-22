@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {useState} from "react";
 import {connect} from "react-redux";
-import {postComment} from "../../api/api-actions";
+import {postComment} from "../../store/api-actions";
 
 
 const FormClass = {

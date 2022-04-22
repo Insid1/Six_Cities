@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import Header from "../header/header";
-import {login} from "../../api/api-actions";
+import {login} from "../../store/api-actions";
 import {connect} from "react-redux";
 import Loader from "../loader/loader";
 import PropTypes from 'prop-types';

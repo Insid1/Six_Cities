@@ -3,7 +3,7 @@ import {offersType} from "../../prop-type";
 import CardList from "./card-list";
 import Map from "../map/map";
 import PropTypes from 'prop-types';
-import {ActionCreator} from "../../store/action";
+import {fillOffers} from "../../store/action";
 import {connect} from 'react-redux';
 import LocationList from "../location/location-list";
 import {capitalize} from "../../util.js/common";
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fillOffers() {
-    dispatch(ActionCreator.fillOffers());
+    dispatch(fillOffers());
   },
 });
 

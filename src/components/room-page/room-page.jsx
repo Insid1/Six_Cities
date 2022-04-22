@@ -11,7 +11,7 @@ import TitleImg from './title-img';
 import {capitalize} from '../../util.js/common';
 import HostInfo from './host-info';
 import Loader from '../loader/loader';
-import {fetchOffer} from '../../api/api-actions';
+import {fetchOffer} from '../../store/api-actions';
 import {AuthorizationStatus} from '../../const';
 import {useParams} from 'react-router-dom';
 
