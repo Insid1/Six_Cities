@@ -55,8 +55,8 @@ App.propTypes = {
   reviews: reviewsType,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
+const mapStateToProps = ({DATA}) => ({
+  offers: DATA.offers,
 });
 
 export {App};

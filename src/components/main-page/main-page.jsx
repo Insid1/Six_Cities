@@ -54,9 +54,9 @@ Main.propTypes = {
   currCity: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currCity: state.city,
-  isDataLoaded: state.isDataLoaded,
+const mapStateToProps = ({DATA}) => ({
+  currCity: DATA.city,
+  isDataLoaded: DATA.isDataLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

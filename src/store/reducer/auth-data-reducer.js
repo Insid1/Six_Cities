@@ -13,7 +13,6 @@ const authDataReducer = (state = initialState, action) => {
       return {
         ...state,
         authorizationStatus: action.payload,
-        isDataLoaded: true,
       };
     }
     case ActionType.SET_USER_EMAIL: {

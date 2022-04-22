@@ -80,8 +80,8 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const mapStateToProps = (state) => ({
-  isDataLoaded: state.isDataLoaded
+const mapStateToProps = ({DATA}) => ({
+  isDataLoaded: DATA.isDataLoaded
 });
 
 

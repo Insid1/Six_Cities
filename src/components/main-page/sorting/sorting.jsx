@@ -69,8 +69,8 @@ Sorting.propTypes = {
   sortingType: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  sortingType: state.sortingType,
+const mapStateToProps = ({DATA}) => ({
+  sortingType: DATA.sortingType,
 });
 
 export {Sorting};

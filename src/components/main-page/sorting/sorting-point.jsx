@@ -26,8 +26,8 @@ SortingPoint.propTypes = {
   setSortingType: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  sortingType: state.sortingType,
+const mapStateToProps = ({DATA}) => ({
+  sortingType: DATA.sortingType,
 });
 
 const mapDispatchToProps = (dispatch) => ({

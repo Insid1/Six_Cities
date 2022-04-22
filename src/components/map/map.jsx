@@ -38,9 +38,9 @@ Map.propTypes = {
   currCity: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  activeOffer: state.activeOffer,
-  currCity: state.city,
+const mapStateToProps = ({DATA}) => ({
+  activeOffer: DATA.activeOffer,
+  currCity: DATA.city,
 });
 
 export {Map};

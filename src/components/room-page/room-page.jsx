@@ -148,12 +148,12 @@ Room.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  nearOffers: state.nearOffers,
-  reviews: state.reviews,
-  selectedOffer: state.selectedOffer,
-  authorizationStatus: state.authorizationStatus,
-  isDataLoaded: state.isDataLoaded,
+const mapStateToProps = ({DATA, AUTH_DATA}) => ({
+  nearOffers: DATA.nearOffers,
+  reviews: DATA.reviews,
+  selectedOffer: DATA.selectedOffer,
+  authorizationStatus: AUTH_DATA.authorizationStatus,
+  isDataLoaded: DATA.isDataLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

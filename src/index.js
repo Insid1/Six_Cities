@@ -5,14 +5,15 @@ import {createApi} from "./api/api";
 import {Provider} from "react-redux";
 import thunk from 'redux-thunk';
 import App from './components/app/app';
-import {reducer} from "./store/reducer/reducer";
+// import {reducer} from "./store/reducer/reducer";
+import rootReducer from "./store/reducer/root-reducer";
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {fetchOfferList, checkAuthorization} from "./store/api-actions";
 import {redirect} from "./store/middlewares/redirect";
 
 const api = createApi();
 
-const store = createStore(reducer, composeWithDevTools(
+const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)),
     applyMiddleware(redirect),
 ));
