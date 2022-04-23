@@ -1,10 +1,11 @@
 import React from "react";
 import Location from "./location";
 import {useSelector} from "react-redux";
+import {getCities} from "../../store/reducer/offers/selectors";
 
 
 const LocationList = () => {
-  const cities = useSelector((state) => state.OFFERS.cities);
+  const cities = useSelector(getCities);
 
   return (
     <section className="locations container">

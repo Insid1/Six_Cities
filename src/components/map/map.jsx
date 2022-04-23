@@ -5,6 +5,8 @@ import {PageType} from '../../const';
 import useMap from '../../hooks/usemap';
 import useIcons from '../../hooks/useIcons';
 import {useSelector} from 'react-redux';
+import {getActiveOffer, getCity, getPageType} from '../../store/reducer/interface/selectors';
+import {getCurrentOffers} from '../../store/reducer/offers/selectors';
 
 
 const chooseClassForMap = (type) => {
@@ -18,22 +20,22 @@ const chooseClassForMap = (type) => {
 };
 
 const Map = () => {
-  const pageType = useSelector((state) => state.INTERFACE.pageType);
+  const pageType = useSelector(getPageType);
   const offers = useSelector((state) => {
     switch (pageType) {
       case PageType.MAIN: {
-        return state.OFFERS.offers;
+        return getCurrentOffers(state);
       }
       case PageType.ROOM: {
         return state.OFFERS.nearOffers;
       }
       default: {
-        return state.OFFERS.offers;
+        return getCurrentOffers(state);
       }
     }
   });
-  const activeOffer = useSelector((state) => state.INTERFACE.activeOffer);
-  const city = useSelector((state) => state.INTERFACE.city);
+  const activeOffer = useSelector(getActiveOffer);
+  const city = useSelector(getCity);
 
   const mapRef = useRef();
   const mapElement = useMap(mapRef, city, offers);

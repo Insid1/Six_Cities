@@ -5,11 +5,13 @@ import {fillOffers} from "../../store/reducer/offers/action";
 import {capitalize} from "../../util.js/common";
 import PropTypes from 'prop-types';
 import {filterByCity} from "../../util.js/filter";
+import {getCity} from "../../store/reducer/interface/selectors";
+import {getAllOffers} from "../../store/reducer/offers/selectors";
 
 const Location = ({city}) => {
 
-  const currentCity = useSelector((state) => state.INTERFACE.city);
-  const allOffers = useSelector((state) => state.OFFERS.allOffers);
+  const currentCity = useSelector(getCity);
+  const allOffers = useSelector(getAllOffers);
 
   const dispatch = useDispatch();
 

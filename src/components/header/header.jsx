@@ -4,11 +4,12 @@ import {AppRoute} from "../../const";
 import {useDispatch, useSelector} from "react-redux";
 import {AuthorizationStatus} from "../../const";
 import {logout} from "../../store/api-actions";
+import {getAuthStatus, getUserEmail} from "../../store/reducer/auth/selectors";
 import './sign-out-btn.css';
 
 const Header = () => {
-  const authorizationStatus = useSelector((state) => state.AUTH_DATA.authorizationStatus);
-  const userEmail = useSelector((state) => state.AUTH_DATA.userEmail);
+  const authorizationStatus = useSelector(getAuthStatus);
+  const userEmail = useSelector(getUserEmail);
   const dispatch = useDispatch();
 
   const handleLogOutClick = (evt) => {

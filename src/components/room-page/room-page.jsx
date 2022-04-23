@@ -14,6 +14,8 @@ import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {setPageType} from '../../store/reducer/interface/action';
 import {PageType} from '../../const';
+import {getAuthStatus} from "../../store/reducer/auth/selectors";
+import {getDataLoadedStatus, getSelectedOffer} from '../../store/reducer/interface/selectors';
 
 
 const RATING_WIDTH = 30;
@@ -25,9 +27,9 @@ const Room = () => {
 
   const nearOffers = useSelector((state) => state.OFFERS.nearOffers);
   const reviews = useSelector((state) => state.OFFERS.reviews);
-  const selectedOffer = useSelector((state) => state.INTERFACE.selectedOffer);
-  const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
-  const authorizationStatus = useSelector((state) => state.AUTH_DATA.authorizationStatus);
+  const selectedOffer = useSelector(getSelectedOffer);
+  const isDataLoaded = useSelector(getDataLoadedStatus);
+  const authorizationStatus = useSelector(getAuthStatus);
 
   useEffect(() => {
     dispatch(fetchOffer(id));

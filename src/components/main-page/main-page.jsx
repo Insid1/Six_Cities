@@ -9,12 +9,13 @@ import Loader from "../loader/loader";
 import Header from "../header/header";
 import {PageType} from "../../const";
 import {setPageType} from "../../store/reducer/interface/action";
+import {getDataLoadedStatus} from "../../store/reducer/interface/selectors";
 
 const Main = () => {
   const dispatch = useDispatch();
   dispatch(setPageType(PageType.MAIN));
 
-  const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
+  const isDataLoaded = useSelector(getDataLoadedStatus);
   return (
     !isDataLoaded
       ? <Loader/>
