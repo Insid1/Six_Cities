@@ -1,5 +1,5 @@
 import React from "react";
-import CardList from "./card-list";
+import CardList from "../card/card-list";
 import Map from "../map/map";
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';

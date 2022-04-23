@@ -19,11 +19,24 @@ const chooseClassForMap = (type) => {
 };
 
 const Map = ({type}) => {
+  const offers = useSelector((state) => {
+    switch (type) {
+      case PageType.MAIN: {
+        return state.DATA.offers;
+      }
+      case PageType.ROOM: {
+        return state.DATA.nearOffers;
+      }
+      default: {
+        return state.DATA.offers;
+      }
+    }
+  });
+
   const mapRef = useRef();
-  const offers = useSelector((state) => state.DATA.offer);
   const {activeOffer, city} = useSelector((state) => state.DATA);
-  // const mapElement = useMap(mapRef, city, offers);
-  // useIcons(mapElement, activeOffer, offers);
+  const mapElement = useMap(mapRef, city, offers);
+  useIcons(mapElement, activeOffer, offers);
 
   return (
     <section className={chooseClassForMap(type)}

@@ -3,7 +3,7 @@ import Comment from './comment';
 import {ReviewList} from './review/review-list';
 import Map from '../map/map';
 import PropTypes from 'prop-types';
-import {CardList} from '../main-page/card-list';
+import {CardList} from '../card/card-list';
 import Header from '../header/header';
 import TitleImg from './title-img';
 import {capitalize} from '../../util.js/common';
