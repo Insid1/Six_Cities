@@ -21,8 +21,8 @@ const Room = ({type}) => {
 
   const nearOffers = useSelector((state) => state.DATA.nearOffers);
   const reviews = useSelector((state) => state.DATA.reviews);
-  const selectedOffer = useSelector((state) => state.DATA.selectedOffer);
-  const isDataLoaded = useSelector((state) => state.DATA.isDataLoaded);
+  const selectedOffer = useSelector((state) => state.INTERFACE.selectedOffer);
+  const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
   const authorizationStatus = useSelector((state) => state.AUTH_DATA.authorizationStatus);
   const dispatch = useDispatch();
 

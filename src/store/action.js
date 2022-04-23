@@ -17,8 +17,8 @@ const loadOffers = createAction(ActionType.LOAD_OFFERS, (offers) => ({
   payload: offers,
 }));
 
-const fillOffers = createAction(ActionType.FILL_OFFERS, (city) => ({
-  payload: city,
+const fillOffers = createAction(ActionType.FILL_OFFERS, (offers) => ({
+  payload: offers,
 }));
 
 const setCity = createAction(ActionType.SET_CITY, (city) => ({

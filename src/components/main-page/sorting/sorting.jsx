@@ -13,7 +13,7 @@ const mapToSortingName = {
 
 const Sorting = () => {
   const [isSortingActive, setSortingStatus] = useState(false);
-  const sortingType = useSelector((state) => state.DATA.sortingType);
+  const sortingType = useSelector((state) => state.INTERFACE.sortingType);
 
   const svgStyle = {
     transform: isSortingActive ? `rotate(0deg)` : `rotate(180deg)`,

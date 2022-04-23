@@ -1,12 +1,31 @@
-import {setLoader, loadOffers, setUserEmail, requireAuthorization, redirectToRoute, selectOffer} from "./action";
+import {setLoader, loadOffers, setUserEmail, requireAuthorization, redirectToRoute, selectOffer, fillOffers} from "./action";
 import {AppRoute, AuthorizationStatus} from "../const";
 import {adaptOfferForClient} from "../util.js/adapter";
 import {ServerRoute} from "../const";
+import {capitalize} from "../util.js/common";
+
+const filterByCity = (offers = [], cityName) => {
+  cityName = capitalize(cityName);
+  return offers.filter((offer) => offer.city.name === cityName);
+};
 
 const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(ServerRoute.OFFERS)
     .then(({data}) => {
-      return dispatch(loadOffers(data.map(adaptOfferForClient)));
+      // adapts given data for client
+      const adaptedData = data.map(adaptOfferForClient);
+      // dispatch to store adapted data
+      dispatch(loadOffers(adaptedData));
+      return adaptedData;
+    })
+    .then((data) => {
+      // gets current city from
+      const city = _getState().INTERFACE.city;
+      // filters all offers by current city
+      const filteredOffers = filterByCity(data, city);
+      // dispatch filtered offers to store
+      dispatch(fillOffers(filteredOffers));
+
     })
 );
 

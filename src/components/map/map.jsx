@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {useRef} from 'react';
 import PropTypes from 'prop-types';
 import '../../../node_modules/leaflet/dist/leaflet.css';
@@ -32,9 +32,10 @@ const Map = ({type}) => {
       }
     }
   });
+  const activeOffer = useSelector((state) => state.INTERFACE.activeOffer);
+  const city = useSelector((state) => state.INTERFACE.city);
 
   const mapRef = useRef();
-  const {activeOffer, city} = useSelector((state) => state.DATA);
   const mapElement = useMap(mapRef, city, offers);
   useIcons(mapElement, activeOffer, offers);
 
@@ -51,4 +52,4 @@ Map.propTypes = {
 
 
 export {Map};
-export default Map;
+export default memo(Map);

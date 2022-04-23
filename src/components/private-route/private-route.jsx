@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux';
 
 
 const PrivateRoute = ({render, path, exact}) => {
-  const {authorizationStatus} = useSelector((state) => state.DATA);
+  const authorizationStatus = useSelector((state) => state.INTERFACE);
   return (
     <Route
       path={path}

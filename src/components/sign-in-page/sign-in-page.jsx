@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 
 const SignIn = () => {
-  const {isDataLoaded} = useSelector((state) => state.DATA);
+  const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();

@@ -10,7 +10,7 @@ import Loader from "../loader/loader";
 import Header from "../header/header";
 
 const Main = ({type}) => {
-  const isDataLoaded = useSelector((state) => state.DATA.isDataLoaded);
+  const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
   return (
     !isDataLoaded
       ? <Loader/>
