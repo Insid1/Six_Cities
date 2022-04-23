@@ -7,7 +7,7 @@ import {sortOffers} from "../../../util.js/sort";
 
 const SortingPoint = ({sortingKey, sortingName = `unknownName`}) => {
   const sortingType = useSelector((state) => state.INTERFACE.sortingType);
-  const offers = useSelector((state) => state.DATA.offers);
+  const offers = useSelector((state) => state.OFFERS.offers);
 
   const dispatch = useDispatch();
 

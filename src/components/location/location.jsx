@@ -8,7 +8,7 @@ import {filterByCity} from "../../util.js/filter";
 const Location = ({city}) => {
 
   const currentCity = useSelector((state) => state.INTERFACE.city);
-  const allOffers = useSelector((state) => state.DATA.allOffers);
+  const allOffers = useSelector((state) => state.OFFERS.allOffers);
 
   const dispatch = useDispatch();
 

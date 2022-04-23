@@ -1,4 +1,4 @@
-import {ActionType} from "../action";
+import {ActionType} from "./action";
 import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {

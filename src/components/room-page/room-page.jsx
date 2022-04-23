@@ -23,8 +23,8 @@ const Room = () => {
   const dispatch = useDispatch();
   dispatch(setPageType(PageType.ROOM));
 
-  const nearOffers = useSelector((state) => state.DATA.nearOffers);
-  const reviews = useSelector((state) => state.DATA.reviews);
+  const nearOffers = useSelector((state) => state.OFFERS.nearOffers);
+  const reviews = useSelector((state) => state.OFFERS.reviews);
   const selectedOffer = useSelector((state) => state.INTERFACE.selectedOffer);
   const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
   const authorizationStatus = useSelector((state) => state.AUTH_DATA.authorizationStatus);

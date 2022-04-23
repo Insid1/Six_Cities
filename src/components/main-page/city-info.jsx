@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {capitalize} from '../../util.js/common';
 
 const CityInfo = () => {
-  const offersLength = useSelector((state) => state.DATA.offers.length);
+  const offersLength = useSelector((state) => state.OFFERS.offers.length);
   const city = useSelector((state) => state.INTERFACE.city);
 
   return (

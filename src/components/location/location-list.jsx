@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 
 const LocationList = () => {
-  const cities = useSelector((state) => state.DATA.cities);
+  const cities = useSelector((state) => state.OFFERS.cities);
 
   return (
     <section className="locations container">

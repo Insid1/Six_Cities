@@ -14,7 +14,7 @@ const checkDisabledSubmit = (rating, comment) => {
 };
 
 const Comment = () => {
-  const {id} = useSelector((state) => state.DATA);
+  const {id} = useSelector((state) => state.OFFERS);
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState(``);

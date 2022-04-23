@@ -1,16 +1,16 @@
 import {combineReducers} from "redux";
-import dataReducer from "./dataReducer";
-import authDataReducer from "./auth-data-reducer";
-import interfaceReducer from "./interface-reducer";
+import offersReducer from "./offers/offers-reducer";
+import authDataReducer from "./auth/auth-data-reducer";
+import interfaceReducer from "./interface/interface-reducer";
 
 const ReducerName = {
-  DATA: `DATA`,
+  OFFERS: `OFFERS`,
   INTERFACE: `INTERFACE`,
   AUTH_DATA: `AUTH_DATA`,
 };
 
 const rootReducer = combineReducers({
-  [ReducerName.DATA]: dataReducer,
+  [ReducerName.OFFERS]: offersReducer,
   [ReducerName.INTERFACE]: interfaceReducer,
   [ReducerName.AUTH_DATA]: authDataReducer,
 });

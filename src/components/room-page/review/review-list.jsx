@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {Review} from "./review";
 
 const ReviewList = () => {
-  const reviews = useSelector((state) => state.DATA.reviews);
+  const reviews = useSelector((state) => state.OFFERS.reviews);
   return (
     <>
       <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>

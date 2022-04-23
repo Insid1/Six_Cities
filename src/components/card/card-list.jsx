@@ -18,13 +18,13 @@ const CardList = () => {
   const offers = useSelector((state) => {
     switch (pageType) {
       case PageType.MAIN: {
-        return state.DATA.offers;
+        return state.OFFERS.offers;
       }
       case PageType.ROOM: {
-        return state.DATA.nearOffers;
+        return state.OFFERS.nearOffers;
       }
       default: {
-        return state.DATA.offers;
+        return state.OFFERS.offers;
       }
     }
   });

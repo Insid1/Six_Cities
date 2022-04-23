@@ -1,5 +1,5 @@
-import {AuthorizationStatus} from "../../const";
-import {ActionType} from "../action";
+import {AuthorizationStatus} from "../../../const";
+import {ActionType} from "./action";
 import {createReducer} from "@reduxjs/toolkit";
 
 
