@@ -1,15 +1,20 @@
 import React from "react";
 import CardList from "../card/card-list";
 import Map from "../map/map";
-import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import LocationList from "../location/location-list";
 import CityInfo from "./city-info";
 import Sorting from "./sorting/sorting";
 import Loader from "../loader/loader";
 import Header from "../header/header";
+import {PageType} from "../../const";
+import {setPageType} from "../../store/action";
 
-const Main = ({type}) => {
+
+const Main = () => {
+  const dispatch = useDispatch();
+  dispatch(setPageType(PageType.MAIN));
+
   const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
   return (
     !isDataLoaded
@@ -27,14 +32,10 @@ const Main = ({type}) => {
                 <h2 className="visually-hidden">Places</h2>
                 <CityInfo/>
                 <Sorting/>
-                <CardList
-                  type={type}
-                />
+                <CardList/>
               </section>
               <div className="cities__right-section">
-                <Map
-                  type={type}
-                />
+                <Map/>
               </div>
             </div>
           </div>
@@ -42,10 +43,6 @@ const Main = ({type}) => {
       </div>
 
   );
-};
-
-Main.propTypes = {
-  type: PropTypes.string.isRequired,
 };
 
 

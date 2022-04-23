@@ -8,6 +8,8 @@ const AppRoute = {
 const PageType = {
   MAIN: `MAIN`,
   ROOM: `ROOM`,
+  FAVORITES: `FAVORITES`,
+  SIGN_IN: `SIGN_IN`,
 };
 
 const SortingType = {

@@ -16,7 +16,8 @@ const Location = ({city}) => {
     evt.preventDefault();
 
     dispatch(setCity(city));
-    dispatch(fillOffers(filterByCity(allOffers, city)));
+    const filtredOffers = filterByCity(allOffers, city);
+    dispatch(fillOffers(filtredOffers));
   };
 
   return (

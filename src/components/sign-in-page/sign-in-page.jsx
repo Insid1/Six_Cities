@@ -3,6 +3,8 @@ import Header from "../header/header";
 import {login} from "../../store/api-actions";
 import Loader from "../loader/loader";
 import {useDispatch, useSelector} from "react-redux";
+import {setPageType} from "../../store/action";
+import {PageType} from "../../const";
 
 
 const SignIn = () => {
@@ -10,6 +12,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
+  dispatch(setPageType(PageType.SIGN_IN));
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

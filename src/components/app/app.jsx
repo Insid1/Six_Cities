@@ -6,7 +6,6 @@ import Favorites from '../favorites-page/favorites-page';
 import Room from '../room-page/room-page';
 import NotFound from '../not-found-page/not-found-page';
 import {AppRoute} from '../../const';
-import {PageType} from "../../const";
 import PrivateRoute from "../private-route/private-route";
 import {browserHistory} from "../../browser-history/browser-history";
 
@@ -15,9 +14,7 @@ const App = () => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route path={AppRoute.MAIN} exact>
-          <Main
-            type={PageType.MAIN}
-          />
+          <Main/>
         </Route>
         <Route path={AppRoute.LOGIN} exact>
           <SignIn />
@@ -30,9 +27,7 @@ const App = () => {
           )}
         />
         <Route path={AppRoute.ROOM} exact>
-          <Room
-            type={PageType.ROOM}
-          />
+          <Room/>
         </Route>
         <Route render={() => (
           <NotFound />

@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./card";
-import PropTypes from 'prop-types';
 import {PageType} from "../../const";
 import {useSelector} from "react-redux";
 
@@ -14,9 +13,10 @@ const chooseClassForList = (type) => {
   return `places__list`;
 };
 
-const CardList = ({type}) => {
+const CardList = () => {
+  const pageType = useSelector((state) =>state.INTERFACE.pageType);
   const offers = useSelector((state) => {
-    switch (type) {
+    switch (pageType) {
       case PageType.MAIN: {
         return state.DATA.offers;
       }
@@ -29,20 +29,16 @@ const CardList = ({type}) => {
     }
   });
   return (
-    <div className={chooseClassForList(type)} >
+    <div className={chooseClassForList(pageType)} >
       {offers.map((offer) => (
         <Card
           offer={offer}
           key={offer.id}
-          pageType={type}
+          pageType={pageType}
         />)
       )}
     </div>
   );
-};
-
-CardList.propTypes = {
-  type: PropTypes.string.isRequired,
 };
 
 export {CardList};

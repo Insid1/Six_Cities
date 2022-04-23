@@ -1,13 +1,13 @@
 import {ActionType} from "../action";
 import {createReducer} from "@reduxjs/toolkit";
 
-
 const initialState = {
   city: `PARIS`,
   activeOffer: null,
   sortingType: `POPULAR`,
   isDataLoaded: false,
   selectedOffer: null,
+  pageType: null,
 };
 
 
@@ -30,6 +30,10 @@ const interfaceReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(ActionType.SELECT_OFFER, (state, action) => {
     state.selectedOffer = action.payload;
+  });
+
+  builder.addCase(ActionType.SET_PAGE_TYPE, (state, action) => {
+    state.pageType = action.payload;
   });
 });
 

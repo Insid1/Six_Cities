@@ -1,6 +1,5 @@
 import React, {memo} from 'react';
 import {useRef} from 'react';
-import PropTypes from 'prop-types';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 import {PageType} from '../../const';
 import useMap from '../../hooks/usemap';
@@ -18,9 +17,10 @@ const chooseClassForMap = (type) => {
   return `map`;
 };
 
-const Map = ({type}) => {
+const Map = () => {
+  const pageType = useSelector((state) => state.INTERFACE.pageType);
   const offers = useSelector((state) => {
-    switch (type) {
+    switch (pageType) {
       case PageType.MAIN: {
         return state.DATA.offers;
       }
@@ -40,14 +40,10 @@ const Map = ({type}) => {
   useIcons(mapElement, activeOffer, offers);
 
   return (
-    <section className={chooseClassForMap(type)}
+    <section className={chooseClassForMap(pageType)}
       ref={mapRef}
     />
   );
-};
-
-Map.propTypes = {
-  type: PropTypes.string.isRequired,
 };
 
 

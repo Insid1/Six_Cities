@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import Comment from './comment';
 import {ReviewList} from './review/review-list';
 import Map from '../map/map';
-import PropTypes from 'prop-types';
 import {CardList} from '../card/card-list';
 import Header from '../header/header';
 import TitleImg from './title-img';
@@ -13,18 +12,22 @@ import {fetchOffer} from '../../store/api-actions';
 import {AuthorizationStatus} from '../../const';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {setPageType} from '../../store/action';
+import {PageType} from '../../const';
+
 
 const RATING_WIDTH = 30;
 
-const Room = ({type}) => {
+const Room = () => {
   const {id} = useParams();
+  const dispatch = useDispatch();
+  dispatch(setPageType(PageType.ROOM));
 
   const nearOffers = useSelector((state) => state.DATA.nearOffers);
   const reviews = useSelector((state) => state.DATA.reviews);
   const selectedOffer = useSelector((state) => state.INTERFACE.selectedOffer);
   const isDataLoaded = useSelector((state) => state.INTERFACE.isDataLoaded);
   const authorizationStatus = useSelector((state) => state.AUTH_DATA.authorizationStatus);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchOffer(id));
@@ -45,6 +48,7 @@ const Room = ({type}) => {
     rating,
     bedrooms,
     price,
+    type,
   } = selectedOffer;
 
   return (
@@ -125,7 +129,6 @@ const Room = ({type}) => {
           </div>
           <Map
             offers={nearOffers}
-            type={type}
           />
         </section>
         <div className="container">
@@ -133,7 +136,6 @@ const Room = ({type}) => {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               <CardList
-                type={type}
               />
             </div>
           </section>
@@ -141,10 +143,6 @@ const Room = ({type}) => {
       </main>
     </div>
   );
-};
-
-Room.propTypes = {
-  type: PropTypes.string.isRequired,
 };
 
 

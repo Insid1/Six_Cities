@@ -1,6 +1,7 @@
 import {createAction} from "@reduxjs/toolkit";
 
 const ActionType = {
+  SET_PAGE_TYPE: `SET_PAGE_TYPE`,
   SET_CITY: `SET_CITY`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   SET_SORTING_TYPE: `SET_SORTING_TYPE`,
@@ -12,6 +13,10 @@ const ActionType = {
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   SELECT_OFFER: `SELECT_OFFER`
 };
+
+const setPageType = createAction(ActionType.SET_PAGE_TYPE, (type) => ({
+  payload: type,
+}));
 
 const loadOffers = createAction(ActionType.LOAD_OFFERS, (offers) => ({
   payload: offers,
@@ -53,4 +58,4 @@ const selectOffer = createAction(ActionType.SELECT_OFFER, (offer) => ({
   payload: offer,
 }));
 
-export {ActionType, loadOffers, fillOffers, setCity, setActiveOffer, setSortingType, setUserEmail, requireAuthorization, setLoader, redirectToRoute, selectOffer};
+export {ActionType, loadOffers, fillOffers, setCity, setActiveOffer, setSortingType, setUserEmail, requireAuthorization, setLoader, redirectToRoute, selectOffer, setPageType};
