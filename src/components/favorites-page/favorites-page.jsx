@@ -4,7 +4,7 @@ import {offersType} from "../../prop-type";
 import Header from "../header/header";
 import {PageType} from "../../const";
 import {useDispatch} from "react-redux";
-import {setPageType} from "../../store/action";
+import {setPageType} from "../../store/reducer/interface/action";
 
 const Favorites = ({offers}) => {
   const dispatch = useDispatch();

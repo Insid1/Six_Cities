@@ -12,7 +12,7 @@ import {fetchOffer} from '../../store/api-actions';
 import {AuthorizationStatus} from '../../const';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {setPageType} from '../../store/action';
+import {setPageType} from '../../store/reducer/interface/action';
 import {PageType} from '../../const';
 
 

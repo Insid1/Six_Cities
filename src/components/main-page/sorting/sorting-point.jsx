@@ -1,5 +1,6 @@
 import React from "react";
-import {setSortingType, fillOffers} from "../../../store/action";
+import {setSortingType} from "../../../store/reducer/interface/action";
+import {fillOffers} from "../../../store/reducer/offers/action";
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from "react-redux";
 import {sortOffers} from "../../../util.js/sort";

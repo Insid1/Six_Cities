@@ -8,8 +8,7 @@ import Sorting from "./sorting/sorting";
 import Loader from "../loader/loader";
 import Header from "../header/header";
 import {PageType} from "../../const";
-import {setPageType} from "../../store/action";
-
+import {setPageType} from "../../store/reducer/interface/action";
 
 const Main = () => {
   const dispatch = useDispatch();

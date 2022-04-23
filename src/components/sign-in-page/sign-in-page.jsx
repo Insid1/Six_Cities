@@ -3,8 +3,8 @@ import Header from "../header/header";
 import {login} from "../../store/api-actions";
 import Loader from "../loader/loader";
 import {useDispatch, useSelector} from "react-redux";
-import {setPageType} from "../../store/action";
 import {PageType} from "../../const";
+import {setPageType} from "../../store/reducer/interface/action";
 
 
 const SignIn = () => {

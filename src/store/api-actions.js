@@ -1,4 +1,6 @@
-import {setLoader, loadOffers, setUserEmail, requireAuthorization, redirectToRoute, selectOffer, fillOffers} from "./action";
+import {loadOffers, fillOffers} from "./reducer/offers/action";
+import {setLoader, redirectToRoute, selectOffer} from "./reducer/interface/action";
+import {setUserEmail, requireAuthorization} from "./reducer/auth/action";
 import {AppRoute, AuthorizationStatus} from "../const";
 import {adaptOfferForClient} from "../util.js/adapter";
 import {ServerRoute} from "../const";

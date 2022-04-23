@@ -1,5 +1,5 @@
 import {browserHistory} from "../../browser-history/browser-history";
-import {ActionType} from "../action";
+import {ActionType} from "../reducer/interface/action";
 
 
 const redirect = (_store) => (next) => (action) => {

@@ -4,7 +4,7 @@ import {offerType} from "../../prop-type";
 import {RATING_WIDTH} from "../../const";
 import {PageType} from "../../const";
 import {useDispatch} from "react-redux";
-import {setActiveOffer} from "../../store/action";
+import {setActiveOffer} from "../../store/reducer/interface/action";
 import {Link} from "react-router-dom";
 
 

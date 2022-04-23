@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setCity, fillOffers} from "../../store/action";
+import {setCity} from "../../store/reducer/interface/action";
+import {fillOffers} from "../../store/reducer/offers/action";
 import {capitalize} from "../../util.js/common";
 import PropTypes from 'prop-types';
 import {filterByCity} from "../../util.js/filter";
