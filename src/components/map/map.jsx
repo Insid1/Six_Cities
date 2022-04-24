@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {useRef} from 'react';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 import {PageType} from '../../const';
@@ -6,7 +6,7 @@ import useMap from '../../hooks/usemap';
 import useIcons from '../../hooks/useIcons';
 import {useSelector} from 'react-redux';
 import {selectActiveOffer, selectCity, selectPageType} from '../../store/reducer/interface/selectors';
-import {selectCurrentOffers} from '../../store/reducer/offers/selectors';
+import {selectFilteredOffers} from '../../store/reducer/offers/selectors';
 
 
 const chooseClassForMap = (type) => {
@@ -21,19 +21,7 @@ const chooseClassForMap = (type) => {
 
 const Map = () => {
   const pageType = useSelector(selectPageType);
-  const offers = useSelector((state) => {
-    switch (pageType) {
-      case PageType.MAIN: {
-        return selectCurrentOffers(state);
-      }
-      case PageType.ROOM: {
-        return state.OFFERS.nearOffers;
-      }
-      default: {
-        return selectCurrentOffers(state);
-      }
-    }
-  });
+  const offers = useSelector(selectFilteredOffers);
   const activeOffer = useSelector(selectActiveOffer);
   const city = useSelector(selectCity);
 
@@ -50,4 +38,4 @@ const Map = () => {
 
 
 export {Map};
-export default memo(Map);
+export default Map;

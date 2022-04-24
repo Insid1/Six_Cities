@@ -3,7 +3,7 @@ import Card from "./card";
 import {PageType} from "@src/const";
 import {useSelector} from "react-redux";
 import {selectPageType} from "@store/reducer/interface/selectors";
-import {selectCurrentOffers} from "@store/reducer/offers/selectors";
+import {selectFilteredOffers} from "@store/reducer/offers/selectors";
 
 const chooseClassForList = (type) => {
   switch (type) {
@@ -17,19 +17,9 @@ const chooseClassForList = (type) => {
 
 const CardList = () => {
   const pageType = useSelector(selectPageType);
-  const offers = useSelector((state) => {
-    switch (pageType) {
-      case PageType.MAIN: {
-        return selectCurrentOffers(state);
-      }
-      case PageType.ROOM: {
-        return state.OFFERS.nearOffers;
-      }
-      default: {
-        return selectCurrentOffers(state);
-      }
-    }
-  });
+
+  const offers = useSelector(selectFilteredOffers);
+
   return (
     <div className={chooseClassForList(pageType)} >
       {offers.map((offer) => (

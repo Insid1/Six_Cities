@@ -1,15 +1,10 @@
-import {loadOffers, fillOffers} from "@reducer/offers/action";
+import {loadOffers} from "@reducer/offers/action";
 import {setLoader, redirectToRoute, selectOffer} from "@reducer/interface/action";
 import {setUserEmail, requireAuthorization} from "@reducer/auth/action";
 import {AppRoute, AuthorizationStatus} from "@src/const";
 import {adaptOfferForClient} from "@util/adapter";
 import {ServerRoute} from "@src/const";
-import {capitalize} from "@util/common";
 
-const filterByCity = (offers = [], cityName) => {
-  cityName = capitalize(cityName);
-  return offers.filter((offer) => offer.city.name === cityName);
-};
 
 const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(ServerRoute.OFFERS)
@@ -19,15 +14,6 @@ const fetchOfferList = () => (dispatch, _getState, api) => (
       // dispatch to store adapted data
       dispatch(loadOffers(adaptedData));
       return adaptedData;
-    })
-    .then((data) => {
-      // gets current city from
-      const city = _getState().INTERFACE.city;
-      // filters all offers by current city
-      const filteredOffers = filterByCity(data, city);
-      // dispatch filtered offers to store
-      dispatch(fillOffers(filteredOffers));
-
     })
 );
 

@@ -3,7 +3,6 @@ import {createReducer} from "@reduxjs/toolkit";
 import {mapToCityLocation} from "../../../const";
 
 const initialState = {
-  offers: [],
   allOffers: [],
   // nearOffers: [],
   // reviews,
@@ -16,10 +15,6 @@ const offersReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(ActionType.LOAD_OFFERS, (state, action) => {
     state.allOffers = action.payload;
-  });
-
-  builder.addCase(ActionType.FILL_OFFERS, (state, action) => {
-    state.offers = action.payload;
   });
 
 });
