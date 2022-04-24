@@ -3,7 +3,7 @@ import Card from "./card";
 import {PageType} from "@src/const";
 import {useSelector} from "react-redux";
 import {selectPageType} from "@store/reducer/interface/selectors";
-import {selectFilteredOffers} from "@store/reducer/offers/selectors";
+import {selectFilteredOffers} from "@reducer/selectors-common";
 
 const chooseClassForList = (type) => {
   switch (type) {

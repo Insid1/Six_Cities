@@ -6,8 +6,7 @@ import useMap from '../../hooks/usemap';
 import useIcons from '../../hooks/useIcons';
 import {useSelector} from 'react-redux';
 import {selectActiveOffer, selectCity, selectPageType} from '../../store/reducer/interface/selectors';
-import {selectFilteredOffers} from '../../store/reducer/offers/selectors';
-
+import {selectFilteredOffers} from "@reducer/selectors-common";
 
 const chooseClassForMap = (type) => {
   switch (type) {
