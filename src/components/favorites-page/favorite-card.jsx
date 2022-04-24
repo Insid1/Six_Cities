@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {RATING_WIDTH} from "../../const";
-import {offerType} from "../../prop-type";
+import {offerType} from "@src/prop-type";
+import {RATING_WIDTH} from "@src/const";
 
 const FavoriteCard = ({offer}) => {
   const {previewImage, price, title, type, rating, id} = offer;

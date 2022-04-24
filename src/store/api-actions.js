@@ -1,10 +1,10 @@
-import {loadOffers, fillOffers} from "./reducer/offers/action";
-import {setLoader, redirectToRoute, selectOffer} from "./reducer/interface/action";
-import {setUserEmail, requireAuthorization} from "./reducer/auth/action";
-import {AppRoute, AuthorizationStatus} from "../const";
-import {adaptOfferForClient} from "../util.js/adapter";
-import {ServerRoute} from "../const";
-import {capitalize} from "../util.js/common";
+import {loadOffers, fillOffers} from "@reducer/offers/action";
+import {setLoader, redirectToRoute, selectOffer} from "@reducer/interface/action";
+import {setUserEmail, requireAuthorization} from "@reducer/auth/action";
+import {AppRoute, AuthorizationStatus} from "@src/const";
+import {adaptOfferForClient} from "@util/adapter";
+import {ServerRoute} from "@src/const";
+import {capitalize} from "@util/common";
 
 const filterByCity = (offers = [], cityName) => {
   cityName = capitalize(cityName);

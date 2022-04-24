@@ -1,5 +1,5 @@
 import {nanoid} from 'nanoid';
-import {getRandomFloat, getTrueOrFalse, getRandomValueFromArr} from '../util.js/common';
+import {getRandomFloat, getTrueOrFalse, getRandomValueFromArr} from '@util/common';
 
 const Comments = [
   `Nice, cozy, warm big bed apartment.`,

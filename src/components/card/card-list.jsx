@@ -1,9 +1,9 @@
 import React from "react";
 import Card from "./card";
-import {PageType} from "../../const";
+import {PageType} from "@src/const";
 import {useSelector} from "react-redux";
-import {getPageType} from "../../store/reducer/interface/selectors";
-import {getCurrentOffers} from "../../store/reducer/offers/selectors";
+import {getPageType} from "@store/reducer/interface/selectors";
+import {getCurrentOffers} from "@store/reducer/offers/selectors";
 
 const chooseClassForList = (type) => {
   switch (type) {

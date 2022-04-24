@@ -1,22 +1,21 @@
 import React, {useEffect} from 'react';
 import Comment from './comment';
 import {ReviewList} from './review/review-list';
-import Map from '../map/map';
-import {CardList} from '../card/card-list';
-import Header from '../header/header';
+import Map from '@components/map/map';
+import CardList from '@components/card/card-list';
+import Header from '@components/header/header';
 import TitleImg from './title-img';
-import {capitalize} from '../../util.js/common';
+import {capitalize} from '@util/common';
 import HostInfo from './host-info';
-import Loader from '../loader/loader';
-import {fetchOffer} from '../../store/api-actions';
-import {AuthorizationStatus} from '../../const';
+import Loader from '@components/loader/loader';
+import {fetchOffer} from '@store/api-actions';
+import {AuthorizationStatus} from '@src/const';
+import {setPageType} from '@reducer/interface/action';
+import {PageType} from '@src/const';
+import {getAuthStatus} from '@reducer/auth/selectors';
+import {getDataLoadedStatus, getSelectedOffer} from '@reducer/interface/selectors';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {setPageType} from '../../store/reducer/interface/action';
-import {PageType} from '../../const';
-import {getAuthStatus} from "../../store/reducer/auth/selectors";
-import {getDataLoadedStatus, getSelectedOffer} from '../../store/reducer/interface/selectors';
-
 
 const RATING_WIDTH = 30;
 

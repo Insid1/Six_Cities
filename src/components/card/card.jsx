@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {offerType} from "../../prop-type";
-import {RATING_WIDTH} from "../../const";
-import {PageType} from "../../const";
+import {offerType} from "@src/prop-type";
+import {RATING_WIDTH, PageType} from "@src/const";
 import {useDispatch} from "react-redux";
-import {setActiveOffer} from "../../store/reducer/interface/action";
+import {setActiveOffer} from "@store/reducer/interface/action";
 import {Link} from "react-router-dom";
 
 

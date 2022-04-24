@@ -1,12 +1,13 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setCity} from "../../store/reducer/interface/action";
-import {fillOffers} from "../../store/reducer/offers/action";
-import {capitalize} from "../../util.js/common";
+import {setCity} from "@reducer/interface/action";
+import {fillOffers} from "@reducer/offers/action";
+import {capitalize} from "@src/util/common";
 import PropTypes from 'prop-types';
-import {filterByCity} from "../../util.js/filter";
-import {getCity} from "../../store/reducer/interface/selectors";
-import {getAllOffers} from "../../store/reducer/offers/selectors";
+import {filterByCity} from "@util/filter";
+import {getCity} from "@reducer/interface/selectors";
+import {getAllOffers} from "@reducer/offers/selectors";
+
 
 const Location = ({city}) => {
 

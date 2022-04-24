@@ -23,9 +23,18 @@ module.exports = {
   mode: `development`,
   devtool: `source-map`,
   resolve: {
-    extensions: [`.js`, `.jsx`]
+    extensions: [`.js`, `.jsx`],
+    alias: {
+      '@src': path.resolve(__dirname, `src/`),
+      '@util': path.resolve(__dirname, `src/util/`),
+      '@api': path.resolve(__dirname, `src/api/`),
+      '@components': path.resolve(__dirname, `src/components/`),
+      "@store": path.resolve(__dirname, `src/store/`),
+      "@reducer": path.resolve(__dirname, `src/store/reducer`),
+    }
   },
   module: {
+
     rules: [
       {
         test: /\.css$/i,
@@ -40,7 +49,8 @@ module.exports = {
       },
       {
         test: /. (png|jpe? g|gif)$/i,
-        use: [`file-loader`]}
+        use: [`file-loader`],
+      },
     ]
   }
 };

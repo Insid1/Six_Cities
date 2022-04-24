@@ -1,13 +1,13 @@
 import React from "react";
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
-import Main from '../main-page/main-page';
-import SignIn from '../sign-in-page/sign-in-page';
-import Favorites from '../favorites-page/favorites-page';
-import Room from '../room-page/room-page';
-import NotFound from '../not-found-page/not-found-page';
-import {AppRoute} from '../../const';
+import Main from "../main-page/main-page";
+import SignIn from "../sign-in-page/sign-in-page";
+import Favorites from "../favorites-page/favorites-page";
+import Room from "../room-page/room-page";
+import NotFound from "../not-found-page/not-found-page";
+import {AppRoute} from "@src/const";
 import PrivateRoute from "../private-route/private-route";
-import {browserHistory} from "../../browser-history/browser-history";
+import {browserHistory} from "@src/browser-history/browser-history";
 
 const App = () => {
   return (

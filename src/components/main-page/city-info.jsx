@@ -1,8 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {capitalize} from '../../util.js/common';
-import {getCity} from '../../store/reducer/interface/selectors';
-import {getCurrOffersLength} from '../../store/reducer/offers/selectors';
+import {capitalize} from '@util/common';
+import {getCity} from '@reducer/interface/selectors';
+import {getCurrOffersLength} from '@reducer/offers/selectors';
 
 const CityInfo = () => {
   const offersLength = useSelector(getCurrOffersLength);
