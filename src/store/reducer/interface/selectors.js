@@ -1,13 +1,13 @@
-const getPageType = (state) =>state.INTERFACE.pageType;
+const selectPageType = (state) =>state.INTERFACE.pageType;
 
-const getCity = (state) => state.INTERFACE.city;
+const selectCity = (state) => state.INTERFACE.city;
 
-const getDataLoadedStatus = (state) => state.INTERFACE.isDataLoaded;
+const selectDataLoadedStatus = (state) => state.INTERFACE.isDataLoaded;
 
-const getSortingType = (state) => state.INTERFACE.sortingType;
+const selectSortingType = (state) => state.INTERFACE.sortingType;
 
-const getActiveOffer = (state) => state.INTERFACE.activeOffer;
+const selectActiveOffer = (state) => state.INTERFACE.activeOffer;
 
-const getSelectedOffer = (state) => state.INTERFACE.selectedOffer;
+const selectSelectedOffer = (state) => state.INTERFACE.selectedOffer;
 
-export {getPageType, getCity, getDataLoadedStatus, getSortingType, getActiveOffer, getSelectedOffer};
+export {selectPageType, selectCity, selectDataLoadedStatus, selectSortingType, selectActiveOffer, selectSelectedOffer};

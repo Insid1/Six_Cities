@@ -5,11 +5,11 @@ import Loader from "../loader/loader";
 import {useDispatch, useSelector} from "react-redux";
 import {PageType} from "../../const";
 import {setPageType} from "../../store/reducer/interface/action";
-import {getDataLoadedStatus} from "../../store/reducer/interface/selectors";
+import {selectDataLoadedStatus} from "../../store/reducer/interface/selectors";
 
 
 const SignIn = () => {
-  const isDataLoaded = useSelector(getDataLoadedStatus);
+  const isDataLoaded = useSelector(selectDataLoadedStatus);
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();

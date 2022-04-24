@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import SortingPoint from "./sorting-point";
 import {SortingType} from "../../../const";
 import {useSelector} from "react-redux";
-import {getSortingType} from "../../../store/reducer/interface/selectors";
+import {selectSortingType} from "../../../store/reducer/interface/selectors";
 
 
 const mapToSortingName = {
@@ -14,7 +14,7 @@ const mapToSortingName = {
 
 const Sorting = () => {
   const [isSortingActive, setSortingStatus] = useState(false);
-  const sortingType = useSelector(getSortingType);
+  const sortingType = useSelector(selectSortingType);
 
   const svgStyle = {
     transform: isSortingActive ? `rotate(0deg)` : `rotate(180deg)`,

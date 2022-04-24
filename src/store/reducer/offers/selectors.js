@@ -1,9 +1,9 @@
-const getAllOffers = (state) => state.OFFERS.allOffers;
+const selectAllOffers = (state) => state.OFFERS.allOffers;
 
-const getCurrentOffers = (state) => state.OFFERS.offers;
+const selectCurrentOffers = (state) => state.OFFERS.offers;
 
-const getCities = (state) => state.OFFERS.cities;
+const selectCities = (state) => state.OFFERS.cities;
 
-const getCurrOffersLength = (state) => state.OFFERS.offers.length;
+const selectCurrOffersLength = (state) => state.OFFERS.offers.length;
 
-export {getAllOffers, getCurrentOffers, getCities, getCurrOffersLength};
+export {selectAllOffers, selectCurrentOffers, selectCities, selectCurrOffersLength};

@@ -1,16 +1,16 @@
 import React from "react";
 import {setSortingType} from "@reducer/interface/action";
-import {getSortingType} from "@reducer/interface/selectors";
+import {selectSortingType} from "@reducer/interface/selectors";
 import {fillOffers} from "@reducer/offers/action";
 import {sortOffers} from "@util/sort";
-import {getCurrentOffers} from "@reducer/offers/selectors";
+import {selectCurrentOffers} from "@reducer/offers/selectors";
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from "react-redux";
 
 
 const SortingPoint = ({sortingKey, sortingName = `unknownName`}) => {
-  const sortingType = useSelector(getSortingType);
-  const offers = useSelector(getCurrentOffers);
+  const sortingType = useSelector(selectSortingType);
+  const offers = useSelector(selectCurrentOffers);
 
   const dispatch = useDispatch();
 

@@ -12,8 +12,8 @@ import {fetchOffer} from '@store/api-actions';
 import {AuthorizationStatus} from '@src/const';
 import {setPageType} from '@reducer/interface/action';
 import {PageType} from '@src/const';
-import {getAuthStatus} from '@reducer/auth/selectors';
-import {getDataLoadedStatus, getSelectedOffer} from '@reducer/interface/selectors';
+import {selectAuthStatus} from '@reducer/auth/selectors';
+import {selectDataLoadedStatus, selectSelectedOffer} from '@reducer/interface/selectors';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -26,9 +26,9 @@ const Room = () => {
 
   const nearOffers = useSelector((state) => state.OFFERS.nearOffers);
   const reviews = useSelector((state) => state.OFFERS.reviews);
-  const selectedOffer = useSelector(getSelectedOffer);
-  const isDataLoaded = useSelector(getDataLoadedStatus);
-  const authorizationStatus = useSelector(getAuthStatus);
+  const selectedOffer = useSelector(selectSelectedOffer);
+  const isDataLoaded = useSelector(selectDataLoadedStatus);
+  const authorizationStatus = useSelector(selectAuthStatus);
 
   useEffect(() => {
     dispatch(fetchOffer(id));
