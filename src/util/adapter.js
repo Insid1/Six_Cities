@@ -3,8 +3,10 @@ import {mapToCityLocation} from "../const";
 const adaptReviewForClient = (review) => {
   const adaptedReview = {
     ...review,
+    id: +review.id,
     user: {
       ...review.user,
+      id: +review.user.id,
       isPro: review.user[`is_pro`],
       avatarUrl: review.user[`avatar_url`],
     }

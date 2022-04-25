@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Comment from './comment';
+import Comment from './review';
 import {ReviewList} from './review/review-list';
 import Map from '@components/map/map';
 import CardList from '@components/card/card-list';
@@ -127,7 +127,7 @@ const Room = () => {
               <section className="property__reviews reviews">
                 <ReviewList/>
                 {authorizationStatus === AuthorizationStatus.AUTH
-                  && <Comment id={+id}
+                  && <Comment hotelId={+id}
                   />}
               </section>
             </div>

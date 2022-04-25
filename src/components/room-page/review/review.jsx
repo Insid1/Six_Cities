@@ -2,8 +2,9 @@ import React from "react";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
-import {RATING_WIDTH} from "../../../const";
-import {reviewType} from "../../../prop-type";
+import {RATING_WIDTH} from "@src/const";
+import {reviewType} from "@src/prop-type";
+
 const DateFormat = {
   SHORT: `MMMM YYYY`,
 };

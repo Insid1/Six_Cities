@@ -1,7 +1,8 @@
 import React from "react";
 import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {postComment} from "../../store/api-actions";
+import {useDispatch} from "react-redux";
+import {postReview} from "@reducer/reviews/api-actions";
+import PropTypes from 'prop-types';
 
 
 const FormClass = {
@@ -13,8 +14,7 @@ const checkDisabledSubmit = (rating, comment) => {
   return !((rating > 0 && rating <= 5) && comment.length >= 50 && comment.length <= 300);
 };
 
-const Comment = () => {
-  const {id} = useSelector((state) => state.OFFERS);
+const Review = ({hotelId}) => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState(``);
@@ -32,8 +32,10 @@ const Comment = () => {
 
   const handleSubmitForm = (evt) => {
     evt.preventDefault();
-    dispatch(postComment(id, {rating, comment}));
+    const commentForm = evt.target;
+    dispatch(postReview(hotelId, rating, comment, commentForm));
   };
+
   return (
     <form className="reviews__form form"
       action="#"
@@ -122,6 +124,9 @@ const Comment = () => {
   );
 };
 
+Review.propTypes = {
+  hotelId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
 
-export {Comment};
-export default Comment;
+export {Review};
+export default Review;

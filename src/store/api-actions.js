@@ -70,9 +70,5 @@ const fetchOffer = (id) => (dispatch, _getState, api) => {
     });
 };
 
-const postComment = (id, {rating, comment}) => (dispatch, _getState, api) => {
-  return api.post(ServerRoute.COMMENTS + id, {comment, rating});
-};
 
-
-export {fetchOfferList, checkAuthorization, login, logout, fetchOffer, postComment};
+export {fetchOfferList, checkAuthorization, login, logout, fetchOffer};
