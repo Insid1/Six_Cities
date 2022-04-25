@@ -16,16 +16,22 @@ import {selectAuthStatus} from '@reducer/auth/selectors';
 import {selectDataLoadedStatus, selectSelectedOffer} from '@reducer/interface/selectors';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {fetchReviews} from '@reducer/reviews/api-actions';
+
 
 const RATING_WIDTH = 30;
 
 const Room = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
+
   dispatch(setPageType(PageType.ROOM));
 
-  const nearOffers = useSelector((state) => state.OFFERS.nearOffers);
-  const reviews = useSelector((state) => state.OFFERS.reviews);
+  useEffect(() => {
+    dispatch(fetchReviews(id));
+  }, [id, dispatch]);
+
+
   const selectedOffer = useSelector(selectSelectedOffer);
   const isDataLoaded = useSelector(selectDataLoadedStatus);
   const authorizationStatus = useSelector(selectAuthStatus);
@@ -119,9 +125,7 @@ const Room = () => {
                 description={description}
                 host={host}/>
               <section className="property__reviews reviews">
-                <ReviewList
-                  reviews={reviews}
-                />
+                <ReviewList/>
                 {authorizationStatus === AuthorizationStatus.AUTH
                   && <Comment id={+id}
                   />}
@@ -129,15 +133,14 @@ const Room = () => {
             </div>
           </div>
           <Map
-            offers={nearOffers}
+            // offers={nearOffers}
           />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <CardList
-              />
+              <CardList/>
             </div>
           </section>
         </div>

@@ -1,4 +1,4 @@
-const getReviews = (state) => state.REVIEWS.reviews;
+const selectReviews = (state) => state.REVIEWS.reviews;
 
 
-export {getReviews};
+export {selectReviews};

@@ -59,7 +59,7 @@ const ServerRoute = {
   FAVORITE_OFFER: `/favorite/: hotel_id/: status`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
-  COMMENT: `/comments/`
+  COMMENTS: `/comments/`
 };
 
 const RATING_WIDTH = 20;

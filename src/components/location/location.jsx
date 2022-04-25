@@ -1,9 +1,10 @@
 import React from "react";
-import {setCity} from "@reducer/interface/action";
+import {setCity, setSortingType} from "@reducer/interface/action";
 import {capitalize} from "@src/util/common";
 import {selectCity} from "@reducer/interface/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import PropTypes from 'prop-types';
+import {SortingType} from "@src/const";
 
 
 const Location = ({city}) => {
@@ -15,6 +16,7 @@ const Location = ({city}) => {
   const handleClick = (evt) => {
     evt.preventDefault();
     dispatch(setCity(city));
+    dispatch(setSortingType(SortingType.POPULAR));
   };
 
   return (

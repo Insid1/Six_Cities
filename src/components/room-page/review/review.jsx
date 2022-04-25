@@ -21,7 +21,7 @@ const Review = ({review}) => {
         <div className="reviews__avatar-wrapper user__avatar-wrapper"
         >
           <img className="reviews__avatar user__avatar"
-            src={`img/${avatarUrl}`}
+            src={avatarUrl}
             alt="Reviews avatar"
             height="54px"
             width="54px"

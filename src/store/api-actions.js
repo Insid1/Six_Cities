@@ -13,7 +13,6 @@ const fetchOfferList = () => (dispatch, _getState, api) => (
       const adaptedData = data.map(adaptOfferForClient);
       // dispatch to store adapted data
       dispatch(loadOffers(adaptedData));
-      return adaptedData;
     })
 );
 
@@ -72,7 +71,7 @@ const fetchOffer = (id) => (dispatch, _getState, api) => {
 };
 
 const postComment = (id, {rating, comment}) => (dispatch, _getState, api) => {
-  return api.post(ServerRoute.COMMENT + id, {comment, rating});
+  return api.post(ServerRoute.COMMENTS + id, {comment, rating});
 };
 
 
