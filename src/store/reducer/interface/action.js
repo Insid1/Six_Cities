@@ -5,7 +5,8 @@ const ActionType = {
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   SET_SORTING_TYPE: `SET_SORTING_TYPE`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
-  SELECT_OFFER: `SELECT_OFFER`
+  SELECT_OFFER: `SELECT_OFFER`,
+  IS_SELECTED_OFFER_LOADED: `IS_SELECTED_OFFER_LOADED`,
 };
 
 const setCity = createAction(ActionType.SET_CITY, (city) => ({
@@ -28,4 +29,8 @@ const selectOffer = createAction(ActionType.SELECT_OFFER, (offer) => ({
   payload: offer,
 }));
 
-export {ActionType, setCity, setActiveOffer, setSortingType, redirectToRoute, selectOffer};
+const setIsSelectedOfferLoaded = createAction(ActionType.IS_SELECTED_OFFER_LOADED, (bool) => ({
+  payload: bool,
+}));
+
+export {ActionType, setCity, setActiveOffer, setSortingType, redirectToRoute, selectOffer, setIsSelectedOfferLoaded};

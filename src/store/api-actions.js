@@ -1,5 +1,5 @@
 import {loadOffers, setIsOffersLoaded} from "@reducer/offers/action";
-import {redirectToRoute, selectOffer, setCity} from "@reducer/interface/action";
+import {redirectToRoute, selectOffer, setCity, setIsSelectedOfferLoaded} from "@reducer/interface/action";
 import {setUserEmail, requireAuthorization} from "@reducer/auth/action";
 import {AppRoute, AuthorizationStatus} from "@src/const";
 import {adaptOfferForClient} from "@util/adapter";
@@ -55,7 +55,7 @@ const logout = () => (dispatch, _getState, api) => {
 };
 
 const fetchOffer = (id) => (dispatch, _getState, api) => {
-
+  dispatch(setIsSelectedOfferLoaded(false));
   return api.get(`${ServerRoute.OFFER}${id}`)
     .then(({data}) => {
       return adaptOfferForClient(data);
@@ -63,6 +63,9 @@ const fetchOffer = (id) => (dispatch, _getState, api) => {
     .then((data) => {
       dispatch(setCity(data.city.name.toUpperCase()));
       dispatch(selectOffer(data));
+    })
+    .then(() => {
+      dispatch(setIsSelectedOfferLoaded(true));
     })
     .catch(() => {
       dispatch(redirectToRoute(`../error`));

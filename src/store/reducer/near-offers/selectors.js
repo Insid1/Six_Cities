@@ -1,3 +1,5 @@
 const selectNearOffers = (state) => state.NEAR_OFFERS.nearOffers;
 
-export {selectNearOffers};
+const selectIsNearOffersLoaded = (state) => state.NEAR_OFFERS.isNearOffersLoaded;
+
+export {selectNearOffers, selectIsNearOffersLoaded};

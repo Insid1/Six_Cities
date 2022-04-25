@@ -3,6 +3,7 @@ import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {
   nearOffers: [],
+  isNearOffersLoaded: false,
 };
 
 
@@ -11,6 +12,10 @@ const nearOfferReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(ActionType.LOAD_NEAR_OFFERS, (state, action) => {
     state.nearOffers = action.payload;
+  });
+
+  builder.addCase(ActionType.IS_NEAR_OFFERS_LOADED, (state, action) => {
+    state.isNearOffersLoaded = action.payload;
   });
 });
 

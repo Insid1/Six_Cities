@@ -1,5 +1,5 @@
 import React from "react";
-import {hostType} from "../../prop-type";
+import {hostType} from "@src/prop-type";
 import PropTypes from 'prop-types';
 
 

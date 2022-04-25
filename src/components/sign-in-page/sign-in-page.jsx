@@ -7,12 +7,12 @@ import {selectIsOffersLoaded} from "@reducer/offers/selectors";
 
 const SignIn = () => {
 
-  const isDataLoaded = useSelector(selectIsOffersLoaded);
+  const isOffersLoaded = useSelector(selectIsOffersLoaded);
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  if (!isDataLoaded) {
+  if (!isOffersLoaded) {
     return <Loader/>;
   }
 

@@ -6,6 +6,7 @@ const initialState = {
   activeOffer: null,
   sortingType: `POPULAR`,
   selectedOffer: {},
+  isSelectedOfferLoaded: false,
 };
 
 
@@ -25,6 +26,10 @@ const interfaceReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(ActionType.SELECT_OFFER, (state, action) => {
     state.selectedOffer = action.payload;
+  });
+
+  builder.addCase(ActionType.IS_SELECTED_OFFER_LOADED, (state, action) => {
+    state.isSelectedOfferLoaded = action.payload;
   });
 
 });
