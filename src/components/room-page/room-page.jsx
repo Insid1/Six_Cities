@@ -9,14 +9,14 @@ import {capitalize} from '@util/common';
 import HostInfo from './host-info';
 import Loader from '@components/loader/loader';
 import {fetchOffer} from '@store/api-actions';
-import {AuthorizationStatus} from '@src/const';
-import {setPageType} from '@reducer/interface/action';
-import {PageType} from '@src/const';
+import {AuthorizationStatus, PageType} from '@src/const';
 import {selectAuthStatus} from '@reducer/auth/selectors';
 import {selectDataLoadedStatus, selectSelectedOffer} from '@reducer/interface/selectors';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchReviews} from '@reducer/reviews/api-actions';
+import {fetchNearOffers} from '@reducer/near-offers/api-actions';
+import {selectNearOffers} from '@reducer/near-offers/selectors';
 
 
 const RATING_WIDTH = 30;
@@ -24,21 +24,20 @@ const RATING_WIDTH = 30;
 const Room = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
+  const nearOffers = useSelector(selectNearOffers);
 
-  dispatch(setPageType(PageType.ROOM));
 
   useEffect(() => {
+    dispatch(fetchOffer(id));
     dispatch(fetchReviews(id));
+    dispatch(fetchNearOffers(id));
+
   }, [id, dispatch]);
 
 
   const selectedOffer = useSelector(selectSelectedOffer);
   const isDataLoaded = useSelector(selectDataLoadedStatus);
   const authorizationStatus = useSelector(selectAuthStatus);
-
-  useEffect(() => {
-    dispatch(fetchOffer(id));
-  }, [id, dispatch]);
 
   if (selectedOffer === null || !isDataLoaded) {
     return <Loader />;
@@ -133,14 +132,17 @@ const Room = () => {
             </div>
           </div>
           <Map
-            // offers={nearOffers}
+            pageType={PageType.ROOM}
+            offers={nearOffers}
           />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <CardList/>
+              <CardList
+                pageType={PageType.ROOM}
+                offers={nearOffers}/>
             </div>
           </section>
         </div>

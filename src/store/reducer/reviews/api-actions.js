@@ -7,6 +7,7 @@ const fetchReviews = (id) => (dispatch, _getState, api) => (
     .then(({data}) => {
       const reviews = data.map(adaptReviewForClient);
       dispatch(loadReviews(reviews));
+      return reviews;
     })
 );
 

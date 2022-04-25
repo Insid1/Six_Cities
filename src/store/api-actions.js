@@ -1,10 +1,9 @@
 import {loadOffers} from "@reducer/offers/action";
-import {setLoader, redirectToRoute, selectOffer} from "@reducer/interface/action";
+import {setLoader, redirectToRoute, selectOffer, setCity} from "@reducer/interface/action";
 import {setUserEmail, requireAuthorization} from "@reducer/auth/action";
 import {AppRoute, AuthorizationStatus} from "@src/const";
 import {adaptOfferForClient} from "@util/adapter";
 import {ServerRoute} from "@src/const";
-
 
 const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(ServerRoute.OFFERS)
@@ -63,6 +62,7 @@ const fetchOffer = (id) => (dispatch, _getState, api) => {
       return adaptOfferForClient(data);
     })
     .then((data) => {
+      dispatch(setCity(data.city.name.toUpperCase()));
       dispatch(selectOffer(data));
     })
     .catch(() => {

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import SortingPoint from "./sorting-point";
-import {SortingType} from "../../../const";
+import {SortingType} from "../../../../const";
 import {useSelector} from "react-redux";
-import {selectSortingType} from "../../../store/reducer/interface/selectors";
+import {selectSortingType} from "../../../../store/reducer/interface/selectors";
 
 
 const mapToSortingName = {

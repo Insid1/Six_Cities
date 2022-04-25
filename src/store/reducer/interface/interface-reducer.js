@@ -7,7 +7,6 @@ const initialState = {
   sortingType: `POPULAR`,
   isDataLoaded: false,
   selectedOffer: null,
-  pageType: null,
 };
 
 
@@ -32,9 +31,6 @@ const interfaceReducer = createReducer(initialState, (builder) => {
     state.selectedOffer = action.payload;
   });
 
-  builder.addCase(ActionType.SET_PAGE_TYPE, (state, action) => {
-    state.pageType = action.payload;
-  });
 });
 
 export default interfaceReducer;

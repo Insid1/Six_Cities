@@ -1,4 +1,3 @@
-const selectPageType = (state) =>state.INTERFACE.pageType;
 
 const selectCity = (state) => state.INTERFACE.city;
 
@@ -10,4 +9,4 @@ const selectActiveOffer = (state) => state.INTERFACE.activeOffer;
 
 const selectSelectedOffer = (state) => state.INTERFACE.selectedOffer;
 
-export {selectPageType, selectCity, selectDataLoadedStatus, selectSortingType, selectActiveOffer, selectSelectedOffer};
+export {selectCity, selectDataLoadedStatus, selectSortingType, selectActiveOffer, selectSelectedOffer};

@@ -1,19 +1,14 @@
 import React from "react";
-import CardList from "../card/card-list";
-import Map from "../map/map";
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import LocationList from "../location/location-list";
-import CityInfo from "./city-info";
-import Sorting from "./sorting/sorting";
 import Loader from "../loader/loader";
 import Header from "../header/header";
-import {PageType} from "../../const";
-import {setPageType} from "../../store/reducer/interface/action";
-import {selectDataLoadedStatus} from "../../store/reducer/interface/selectors";
+import {selectDataLoadedStatus} from "@reducer/interface/selectors";
+import LeftSection from "./left-section/left-section";
+import RightSection from "./right-section/right-section";
 
 const Main = () => {
-  const dispatch = useDispatch();
-  dispatch(setPageType(PageType.MAIN));
+
 
   const isDataLoaded = useSelector(selectDataLoadedStatus);
   return (
@@ -28,15 +23,8 @@ const Main = () => {
           </div>
           <div className="cities">
             <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <CityInfo/>
-                <Sorting/>
-                <CardList/>
-              </section>
-              <div className="cities__right-section">
-                <Map/>
-              </div>
+              <LeftSection/>
+              <RightSection/>
             </div>
           </div>
         </main>

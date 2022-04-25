@@ -5,8 +5,8 @@ import {PageType} from '../../const';
 import useMap from '../../hooks/usemap';
 import useIcons from '../../hooks/useIcons';
 import {useSelector} from 'react-redux';
-import {selectActiveOffer, selectCity, selectPageType} from '../../store/reducer/interface/selectors';
-import {selectFilteredOffers} from "@reducer/selectors-common";
+import {selectActiveOffer, selectCity} from '../../store/reducer/interface/selectors';
+import {offersType} from '@src/prop-type';
 
 const chooseClassForMap = (type) => {
   switch (type) {
@@ -18,9 +18,7 @@ const chooseClassForMap = (type) => {
   return `map`;
 };
 
-const Map = () => {
-  const pageType = useSelector(selectPageType);
-  const offers = useSelector(selectFilteredOffers);
+const Map = ({offers, pageType}) => {
   const activeOffer = useSelector(selectActiveOffer);
   const city = useSelector(selectCity);
 
@@ -33,6 +31,10 @@ const Map = () => {
       ref={mapRef}
     />
   );
+};
+
+Map.propTypes = {
+  offers: offersType
 };
 
 

@@ -13,6 +13,7 @@ const MAP_OPTION = {
   zoom: 12,
   zoomControl: false,
   marker: true,
+  scrollWheelZoom: false,
 };
 
 

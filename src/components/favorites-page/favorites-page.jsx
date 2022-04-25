@@ -1,14 +1,9 @@
 import React from "react";
 import {FavoritesList} from "./favorites-list";
-import {offersType} from "../../prop-type";
-import Header from "../header/header";
-import {PageType} from "../../const";
-import {useDispatch} from "react-redux";
-import {setPageType} from "../../store/reducer/interface/action";
+import {offersType} from "@src/prop-type";
+import Header from "@components/header/header";
 
 const Favorites = ({offers}) => {
-  const dispatch = useDispatch();
-  dispatch(setPageType(PageType.FAVORITES));
 
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
   return (

@@ -54,7 +54,7 @@ const AuthorizationStatus = {
 const ServerRoute = {
   OFFERS: `/hotels`,
   OFFER: `/hotels/`,
-  NEAR_BY_OFFERS: `/hotels/: hotel_id/nearby`, // REWORK IT
+  NEAR_BY_OFFERS: `/nearby`,
   FAVORITE_OFFERS: `/favorite`,
   FAVORITE_OFFER: `/favorite/: hotel_id/: status`,
   LOGIN: `/login`,

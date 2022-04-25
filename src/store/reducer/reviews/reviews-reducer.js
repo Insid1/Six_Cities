@@ -1,9 +1,8 @@
 import {ActionType} from "./action";
 import {createReducer} from "@reduxjs/toolkit";
-import {reviews} from "../../../mocks/reviews";
 
 const initialState = {
-  reviews,
+  reviews: []
 };
 
 
