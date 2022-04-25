@@ -1,12 +1,13 @@
 import React from 'react';
 import {useRef} from 'react';
 import '../../../node_modules/leaflet/dist/leaflet.css';
-import {PageType} from '../../const';
-import useMap from '../../hooks/usemap';
-import useIcons from '../../hooks/useIcons';
+import {PageType} from '@src/const';
+import useMap from '@src/hooks/usemap';
+import useIcons from '@src/hooks/useIcons';
 import {useSelector} from 'react-redux';
-import {selectActiveOffer, selectCity} from '../../store/reducer/interface/selectors';
+import {selectActiveOffer, selectCity} from '@reducer/interface/selectors';
 import {offersType} from '@src/prop-type';
+import PropTypes from 'prop-types';
 
 const chooseClassForMap = (type) => {
   switch (type) {
@@ -34,7 +35,8 @@ const Map = ({offers, pageType}) => {
 };
 
 Map.propTypes = {
-  offers: offersType
+  offers: offersType,
+  pageType: PropTypes.string.isRequired
 };
 
 

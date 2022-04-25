@@ -17,8 +17,7 @@ const store = configureStore({
       thunk: {
         extraArgument: api,
       },
-      redirect,
-    })
+    }).concat(redirect)
 });
 
 store.dispatch(fetchOfferList());

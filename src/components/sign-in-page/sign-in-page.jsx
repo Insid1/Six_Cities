@@ -3,14 +3,18 @@ import Header from "../header/header";
 import {login} from "../../store/api-actions";
 import Loader from "../loader/loader";
 import {useDispatch, useSelector} from "react-redux";
-import {selectDataLoadedStatus} from "../../store/reducer/interface/selectors";
-
+import {selectIsOffersLoaded} from "@reducer/offers/selectors";
 
 const SignIn = () => {
-  const isDataLoaded = useSelector(selectDataLoadedStatus);
+
+  const isDataLoaded = useSelector(selectIsOffersLoaded);
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  if (!isDataLoaded) {
+    return <Loader/>;
+  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -23,7 +27,6 @@ const SignIn = () => {
 
   return (
     <div className="page page--gray page--login">
-      {isDataLoaded || <Loader/>}
       <Header/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">

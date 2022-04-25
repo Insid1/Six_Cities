@@ -42,7 +42,7 @@ const Card = ({offer = {}, pageType}) => {
       </div>
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`offer/${id}`}>
+        <Link to={`../offer/${id}`}>
           <img className="place-card__image"
             src={previewImage}
             width="260"

@@ -4,8 +4,7 @@ import {mapToCityLocation} from "../../../const";
 
 const initialState = {
   allOffers: [],
-  // nearOffers: [],
-  // reviews,
+  isOffersLoaded: false,
   cities: Object.keys(mapToCityLocation),
 };
 
@@ -15,6 +14,10 @@ const offersReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(ActionType.LOAD_OFFERS, (state, action) => {
     state.allOffers = action.payload;
+  });
+
+  builder.addCase(ActionType.SET_IS_OFFERS_LOADED, (state, action) => {
+    state.isOffersLoaded = action.payload;
   });
 
 });

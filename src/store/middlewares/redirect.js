@@ -1,4 +1,4 @@
-import {browserHistory} from "../../browser-history/browser-history";
+import {browserHistory} from "@src/browser-history/browser-history";
 import {ActionType} from "../reducer/interface/action";
 
 

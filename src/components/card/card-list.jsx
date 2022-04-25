@@ -2,6 +2,8 @@ import React from "react";
 import Card from "./card";
 import {PageType} from "@src/const";
 import {offersType} from "@src/prop-type";
+import PropTypes from 'prop-types';
+
 
 const chooseClassForList = (type) => {
   switch (type) {
@@ -29,7 +31,9 @@ const CardList = ({offers, pageType}) => {
 };
 
 CardList.propTypes = {
-  offers: offersType
+  offers: offersType,
+  pageType: PropTypes.string.isRequired
+
 };
 
 export {CardList};

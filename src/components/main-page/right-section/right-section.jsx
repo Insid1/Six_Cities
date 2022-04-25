@@ -9,10 +9,14 @@ const RightSection = () => {
 
   return (
     <div className="cities__right-section">
-      <Map
-        offers={filteredOffers}
-        pageType={PageType.MAIN}
-      />
+      {filteredOffers.length === 0
+        ? ``
+        : (
+          <Map
+            offers={filteredOffers}
+            pageType={PageType.MAIN}
+          />
+        )}
     </div>
   );
 };

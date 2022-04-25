@@ -3,16 +3,16 @@ import {useSelector} from 'react-redux';
 import LocationList from "../location/location-list";
 import Loader from "../loader/loader";
 import Header from "../header/header";
-import {selectDataLoadedStatus} from "@reducer/interface/selectors";
+import {selectIsOffersLoaded} from "@reducer/offers/selectors";
 import LeftSection from "./left-section/left-section";
 import RightSection from "./right-section/right-section";
 
 const Main = () => {
+  const isOffersLoaded = useSelector(selectIsOffersLoaded);
 
 
-  const isDataLoaded = useSelector(selectDataLoadedStatus);
   return (
-    !isDataLoaded
+    !isOffersLoaded
       ? <Loader/>
       : <div className="page page--gray page--main">
         <Header/>

@@ -11,7 +11,8 @@ import Loader from '@components/loader/loader';
 import {fetchOffer} from '@store/api-actions';
 import {AuthorizationStatus, PageType} from '@src/const';
 import {selectAuthStatus} from '@reducer/auth/selectors';
-import {selectDataLoadedStatus, selectSelectedOffer} from '@reducer/interface/selectors';
+import {selectSelectedOffer} from '@reducer/interface/selectors';
+import {selectIsOffersLoaded} from '@reducer/offers/selectors';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchReviews} from '@reducer/reviews/api-actions';
@@ -31,29 +32,22 @@ const Room = () => {
     dispatch(fetchOffer(id));
     dispatch(fetchReviews(id));
     dispatch(fetchNearOffers(id));
-
   }, [id, dispatch]);
 
-
   const selectedOffer = useSelector(selectSelectedOffer);
-  const isDataLoaded = useSelector(selectDataLoadedStatus);
+  const isDataLoaded = useSelector(selectIsOffersLoaded);
   const authorizationStatus = useSelector(selectAuthStatus);
 
-  if (selectedOffer === null || !isDataLoaded) {
+  if (!isDataLoaded) {
     return <Loader />;
   }
 
   const {
-    images,
-    isPremium,
-    title,
-    description,
-    host,
-    goods,
-    maxAdults,
-    rating,
-    bedrooms,
-    price,
+    images, isPremium,
+    title, description,
+    host, goods,
+    maxAdults, rating,
+    bedrooms, price,
     type,
   } = selectedOffer;
 

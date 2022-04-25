@@ -5,15 +5,11 @@ const initialState = {
   city: `PARIS`,
   activeOffer: null,
   sortingType: `POPULAR`,
-  isDataLoaded: false,
-  selectedOffer: null,
+  selectedOffer: {},
 };
 
 
 const interfaceReducer = createReducer(initialState, (builder) => {
-  builder.addCase(ActionType.SET_LOADER, (state, action) => {
-    state.isDataLoaded = !action.payload;
-  });
 
   builder.addCase(ActionType.SET_CITY, (state, action) => {
     state.city = action.payload;
