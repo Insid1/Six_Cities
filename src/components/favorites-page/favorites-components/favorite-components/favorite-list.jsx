@@ -2,10 +2,10 @@ import {selectFavoriteOffers} from '@reducer/favorites/selectors';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {FavoriteCard} from './favorite-card';
+import FavoriteCityItem from './favorite-city-item';
 import FavoriteEmpty from './favorite-empty';
 
 const FavoriteList = () => {
-
   const favoriteOffers = useSelector(selectFavoriteOffers);
 
   if (Object.keys(favoriteOffers).length === 0) {
@@ -18,14 +18,7 @@ const FavoriteList = () => {
       <ul className="favorites__list">
         {Object.entries(favoriteOffers).map(([cityName, cityOffers]) => (
           <li key={cityName} className="favorites__locations-items">
-            <div className="favorites__locations locations locations--current">
-              <div className="locations__item">
-                <a className="locations__item-link"
-                  href="#">
-                  <span>{cityName} ({cityOffers.length})</span>
-                </a>
-              </div>
-            </div>
+            <FavoriteCityItem cityName={cityName} cityOffers={cityOffers}/>
             <div className="favorites__places">
               {cityOffers.map((offer) => (<FavoriteCard
                 offer={offer}

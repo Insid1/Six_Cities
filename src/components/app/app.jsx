@@ -19,7 +19,7 @@ const App = () => {
           <SignIn />
         </Route>
         <Favorites path={AppRoute.FAVORITES} exact/>
-        <Route path={AppRoute.ROOM} exact>
+        <Route path={`${AppRoute.ROOM}:id`} exact>
           <Room/>
         </Route>
         <Route render={() => (

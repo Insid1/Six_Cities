@@ -2,7 +2,7 @@ const AppRoute = {
   MAIN: `/`,
   FAVORITES: `/favorites`,
   LOGIN: `/login`,
-  ROOM: `/offer/:id`,
+  ROOM: `/offer/`,
 };
 
 const PageType = {
@@ -52,13 +52,13 @@ const AuthorizationStatus = {
 };
 
 const ServerRoute = {
-  OFFERS: `/hotels`,
-  OFFER: `/hotels/`,
+  OFFERS: `/hotels/`,
   NEAR_BY_OFFERS: `/nearby`,
   FAVORITE_OFFERS: `/favorite/`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
-  REVIEWS: `/comments/`
+  REVIEWS: `/comments/`,
+  ERROR: `/error/`
 };
 
 const RATING_WIDTH = 20;

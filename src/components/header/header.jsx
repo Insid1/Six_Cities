@@ -1,10 +1,9 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const";
+import {AppRoute, AuthorizationStatus} from "@src/const";
+import {logout} from "@store/api-actions";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthorizationStatus} from "../../const";
-import {logout} from "../../store/api-actions";
-import {selectAuthStatus, selectUserEmail} from "../../store/reducer/auth/selectors";
+import {selectAuthStatus, selectUserEmail} from "@reducer/auth/selectors";
 import './sign-out-btn.css';
 
 const Header = () => {

@@ -57,7 +57,7 @@ const logout = () => (dispatch, _getState, api) => {
 
 const fetchOffer = (id) => (dispatch, _getState, api) => {
   dispatch(setIsSelectedOfferLoaded(false));
-  return api.get(`${ServerRoute.OFFER}${id}`)
+  return api.get(`${ServerRoute.OFFERS}${id}`)
     .then(({data}) => {
       return adaptOfferForClient(data);
     })
@@ -69,7 +69,7 @@ const fetchOffer = (id) => (dispatch, _getState, api) => {
       dispatch(setIsSelectedOfferLoaded(true));
     })
     .catch(() => {
-      dispatch(redirectToRoute(`../error`));
+      dispatch(redirectToRoute(`..${ServerRoute.ERROR}`));
     });
 };
 

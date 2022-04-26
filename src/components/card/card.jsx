@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {setActiveOffer} from "@store/reducer/interface/action";
 import {Link} from "react-router-dom";
 import FavoriteButton from "@components/favorite-btn/favorite-button";
+import {AppRoute} from "@src/const";
 
 
 const chooseClassForCard = (type) => {
@@ -32,7 +33,6 @@ const Card = ({offer = {}, pageType}) => {
     dispatch(setActiveOffer(null));
   };
 
-
   return (
     <article className={chooseClassForCard(pageType)}
       onMouseEnter={handleMouseEnter}
@@ -43,7 +43,7 @@ const Card = ({offer = {}, pageType}) => {
       </div>
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`../offer/${id}`}>
+        <Link to={`..${AppRoute.ROOM}${id}`}>
           <img className="place-card__image"
             src={previewImage}
             width="260"

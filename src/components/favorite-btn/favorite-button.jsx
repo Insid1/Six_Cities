@@ -1,6 +1,8 @@
 import {postFavoriteOffer} from '@reducer/favorites/api-actions';
 import React, {useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
+import PropTypes from 'prop-types';
+
 
 const mapToButtonClass = {
   CARD: `place-card__`,
@@ -50,6 +52,12 @@ const FavoriteButton = ({isFavorite, buttonType = `CARD`, offerId}) => {
     </button>
 
   );
+};
+
+FavoriteButton.propTypes = {
+  isFavorite: PropTypes.bool.isRequired,
+  buttonType: PropTypes.string,
+  offerId: PropTypes.number.isRequired,
 };
 
 export default FavoriteButton;
