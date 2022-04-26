@@ -1,34 +1,31 @@
-import React from "react";
-import {FavoritesList} from "./favorites-list";
+import React, {useEffect} from "react";
 import {offersType} from "@src/prop-type";
 import Header from "@components/header/header";
+import FavoriteList from "./favorites-components/favorite-components/favorite-list";
+import {fetchFavoriteOffers} from "@reducer/favorites/api-actions";
+import {useDispatch, useSelector} from "react-redux";
+import {selectIsFavoriteOffersLoaded} from "@reducer/favorites/selectors";
+import Loader from "@components/loader/loader";
 
-const Favorites = ({offers}) => {
+const Favorites = () => {
 
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const isFavoriteOffersLoaded = useSelector(selectIsFavoriteOffersLoaded);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+  }, [dispatch]);
+
+  if (!isFavoriteOffersLoaded) {
+    return <Loader/>;
+  }
+
   return (
     <div className="page">
       <Header/>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link"
-                      href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <FavoritesList offers={favoriteOffers} />
-                </div>
-              </li>
-            </ul>
-          </section>
+          <FavoriteList/>
         </div>
       </main>
       <footer className="footer container">

@@ -4,6 +4,7 @@ import authDataReducer from "./auth/auth-data-reducer";
 import interfaceReducer from "./interface/interface-reducer";
 import reviewsReducer from "./reviews/reviews-reducer";
 import nearOfferReducer from "./near-offers/near-offers-reducer";
+import FavoritesReducer from "./favorites/favorites-reducer";
 
 const ReducerName = {
   OFFERS: `OFFERS`,
@@ -11,6 +12,7 @@ const ReducerName = {
   AUTH_DATA: `AUTH_DATA`,
   REVIEWS: `REVIEWS`,
   NEAR_OFFERS: `NEAR_OFFERS`,
+  FAVORITES: `FAVORITES`,
 };
 
 const rootReducer = combineReducers({
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   [ReducerName.AUTH_DATA]: authDataReducer,
   [ReducerName.REVIEWS]: reviewsReducer,
   [ReducerName.NEAR_OFFERS]: nearOfferReducer,
+  [ReducerName.FAVORITES]: FavoritesReducer,
+
 });
 
 export default rootReducer;
