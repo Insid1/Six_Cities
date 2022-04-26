@@ -55,8 +55,7 @@ const ServerRoute = {
   OFFERS: `/hotels`,
   OFFER: `/hotels/`,
   NEAR_BY_OFFERS: `/nearby`,
-  FAVORITE_OFFERS: `/favorite`,
-  FAVORITE_OFFER: `/favorite/: hotel_id/: status`,
+  FAVORITE_OFFERS: `/favorite/`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
   REVIEWS: `/comments/`

@@ -6,7 +6,6 @@ import Favorites from "../favorites-page/favorites-page";
 import Room from "../room-page/room-page";
 import NotFound from "../not-found-page/not-found-page";
 import {AppRoute} from "@src/const";
-import PrivateRoute from "../private-route/private-route";
 import {browserHistory} from "@src/browser-history/browser-history";
 
 const App = () => {
@@ -19,13 +18,7 @@ const App = () => {
         <Route path={AppRoute.LOGIN} exact>
           <SignIn />
         </Route>
-        <PrivateRoute
-          path={AppRoute.FAVORITES}
-          exact
-          render={() => (
-            <Favorites/>
-          )}
-        />
+        <Favorites path={AppRoute.FAVORITES} exact/>
         <Route path={AppRoute.ROOM} exact>
           <Room/>
         </Route>

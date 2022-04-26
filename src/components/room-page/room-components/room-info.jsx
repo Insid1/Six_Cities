@@ -1,6 +1,7 @@
 import React from 'react';
 import {capitalize} from '@util/common';
 import {offerType} from '@src/prop-type';
+import FavoriteButton from '@components/favorite-btn/favorite-button';
 
 const RATING_WIDTH = 30;
 
@@ -10,7 +11,7 @@ const RoomInfo = ({offer}) => {
     title, goods,
     maxAdults, rating,
     bedrooms, price,
-    type,
+    type, isFavorite, id
   } = offer;
 
   return (
@@ -19,12 +20,7 @@ const RoomInfo = ({offer}) => {
         <h1 className="property__name">
           {title}
         </h1>
-        <button className="property__bookmark-button button" type="button">
-          <svg className="property__bookmark-icon" width="31" height="33">
-            <use xlinkHref="#icon-bookmark"></use>
-          </svg>
-          <span className="visually-hidden">To bookmarks</span>
-        </button>
+        <FavoriteButton offerId={id} isFavorite={isFavorite} buttonType={`ROOM`} />
       </div>
       <div className="property__rating rating">
         <div className="property__stars rating__stars">

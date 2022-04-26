@@ -5,6 +5,7 @@ import {RATING_WIDTH, PageType} from "@src/const";
 import {useDispatch} from "react-redux";
 import {setActiveOffer} from "@store/reducer/interface/action";
 import {Link} from "react-router-dom";
+import FavoriteButton from "@components/favorite-btn/favorite-button";
 
 
 const chooseClassForCard = (type) => {
@@ -19,7 +20,7 @@ const chooseClassForCard = (type) => {
 
 
 const Card = ({offer = {}, pageType}) => {
-  const {price, previewImage, type, isFavorite, isPremium, rating, id} = offer;
+  const {price, previewImage, type, isPremium, rating, id, isFavorite} = offer;
   const dispatch = useDispatch();
 
   const handleMouseEnter = (evt) => {
@@ -31,7 +32,7 @@ const Card = ({offer = {}, pageType}) => {
     dispatch(setActiveOffer(null));
   };
 
-  const bookBtnClass = `place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`;
+
   return (
     <article className={chooseClassForCard(pageType)}
       onMouseEnter={handleMouseEnter}
@@ -56,15 +57,7 @@ const Card = ({offer = {}, pageType}) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={bookBtnClass}
-            type="button">
-            <svg className="place-card__bookmark-icon"
-              width="18"
-              height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <FavoriteButton isFavorite={isFavorite} offerId={id}/>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

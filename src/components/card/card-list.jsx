@@ -22,7 +22,7 @@ const CardList = ({offers, pageType}) => {
       {offers.map((offer) => (
         <Card
           offer={offer}
-          key={offer.id}
+          key={offer.id + offer.isFavorite}
           pageType={pageType}
         />)
       )}

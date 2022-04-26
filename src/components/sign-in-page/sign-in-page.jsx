@@ -1,28 +1,27 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import Header from "../header/header";
 import {login} from "../../store/api-actions";
-import Loader from "../loader/loader";
-import {useDispatch, useSelector} from "react-redux";
-import {selectIsOffersLoaded} from "@reducer/offers/selectors";
+import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
+import {setCity} from "@reducer/interface/action";
 
 const SignIn = () => {
 
-  const isOffersLoaded = useSelector(selectIsOffersLoaded);
+  const [isFetching, setIsFetching] = useState(false);
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  if (!isOffersLoaded) {
-    return <Loader/>;
-  }
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
+    setIsFetching(true);
     dispatch(login({
       email: emailRef.current.value,
       password: passwordRef.current.value,
-    }));
+    }, setIsFetching));
+  };
+  const handleCityClick = () => {
+    dispatch(setCity(`AMSTERDAM`));
   };
 
   return (
@@ -32,39 +31,41 @@ const SignIn = () => {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form"
-              action="#"
-              onSubmit={handleSubmit}>
-              <div className="login__input-wrapper form__input-wrapper">
-                <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  ref={emailRef}
-                />
-              </div>
-              <div className="login__input-wrapper form__input-wrapper">
-                <label className="visually-hidden">Password</label>
-                <input className="login__input form__input"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  required
-                  ref={passwordRef}
-                />
-              </div>
-              <button className="login__submit form__submit button"
-                type="submit">Sign in</button>
-            </form>
+            <fieldset disabled={isFetching} style={{borderWidth: `0px`}}>
+              <form className="login__form form"
+                action="#"
+                onSubmit={handleSubmit}>
+                <div className="login__input-wrapper form__input-wrapper">
+                  <label className="visually-hidden">E-mail</label>
+                  <input className="login__input form__input"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                    ref={emailRef}
+                  />
+                </div>
+                <div className="login__input-wrapper form__input-wrapper">
+                  <label className="visually-hidden">Password</label>
+                  <input className="login__input form__input"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    ref={passwordRef}
+                  />
+                </div>
+                <button className="login__submit form__submit button"
+                  type="submit">Sign in</button>
+              </form>
+            </fieldset>
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link"
-                href="#">
+              <Link className="locations__item-link" onClick={handleCityClick}
+                to="/">
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>

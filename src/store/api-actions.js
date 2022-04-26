@@ -29,7 +29,7 @@ const checkAuthorization = () => (dispatch, _getState, api) => {
 
 };
 
-const login = ({email, password}) => (dispatch, _getState, api) => {
+const login = ({email, password}, setIsFetching) => (dispatch, _getState, api) => {
 
   return api.post(ServerRoute.LOGIN, {
     email,
@@ -39,6 +39,7 @@ const login = ({email, password}) => (dispatch, _getState, api) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     })
     .then(() => {
+      setIsFetching(false);
       dispatch(setUserEmail(email));
       dispatch(redirectToRoute(AppRoute.MAIN));
     })

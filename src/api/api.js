@@ -18,8 +18,9 @@ const createApi = (onUnauthorized) => {
 
   const onFail = (err) => {
     const {response} = err;
-
-    if (response.status === HttpCode.UNAUTHORIZED) {
+    if (response.status === HttpCode.UNAUTHORIZED
+        &&
+        response.config.url.startsWith(`/favorite`)) {
       onUnauthorized();
       // Бросаем ошибку, потому что нам важно прервать цепочку промисов после запроса авторизации.
       // Запрос авторизации — это особый случай и важно дать понять приложению, что запрос был неудачным.
