@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute, AuthorizationStatus} from "@src/const";
-import {logout} from "@store/api-actions";
+import {logout} from "@reducer/auth/api-actions";
 import {useDispatch, useSelector} from "react-redux";
 import {selectAuthStatus, selectUserEmail} from "@reducer/auth/selectors";
 import './sign-out-btn.css';

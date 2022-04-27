@@ -26,6 +26,8 @@ const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
     })
     .then(() => {
       dispatch(setIsFavoriteOffersLoaded(true));
+    })
+    .catch(() => {
     });
 };
 

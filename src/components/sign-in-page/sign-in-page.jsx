@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import Header from "../header/header";
-import {login} from "../../store/api-actions";
+import {login} from "@reducer/auth/api-actions";
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import {setCity} from "@reducer/interface/action";

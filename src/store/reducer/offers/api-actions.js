@@ -1,7 +1,5 @@
 import {loadOffers, setIsOffersLoaded} from "@reducer/offers/action";
 import {redirectToRoute, selectOffer, setCity, setIsSelectedOfferLoaded} from "@reducer/interface/action";
-import {setUserEmail, requireAuthorization} from "@reducer/auth/action";
-import {AppRoute, AuthorizationStatus} from "@src/const";
 import {adaptOfferForClient} from "@util/adapter";
 import {ServerRoute} from "@src/const";
 
@@ -17,43 +15,6 @@ const fetchOfferList = () => (dispatch, _getState, api) => (
       dispatch(setIsOffersLoaded(true));
     })
 );
-
-const checkAuthorization = () => (dispatch, _getState, api) => {
-
-  return api.get(ServerRoute.LOGIN)
-    .then(({data}) => {
-      dispatch(setUserEmail(data.email));
-      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-    })
-    .catch(() => {});
-
-};
-
-const login = ({email, password}, setIsFetching) => (dispatch, _getState, api) => {
-
-  return api.post(ServerRoute.LOGIN, {
-    email,
-    password,
-  })
-    .then(() => {
-      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-    })
-    .then(() => {
-      setIsFetching(false);
-      dispatch(setUserEmail(email));
-      dispatch(redirectToRoute(AppRoute.MAIN));
-    })
-  ;
-};
-
-const logout = () => (dispatch, _getState, api) => {
-
-  return api.get(ServerRoute.LOGOUT)
-    .then(() => {
-      dispatch(setUserEmail(``));
-      dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
-    });
-};
 
 const fetchOffer = (id) => (dispatch, _getState, api) => {
   dispatch(setIsSelectedOfferLoaded(false));
@@ -74,4 +35,4 @@ const fetchOffer = (id) => (dispatch, _getState, api) => {
 };
 
 
-export {fetchOfferList, checkAuthorization, login, logout, fetchOffer};
+export {fetchOfferList, fetchOffer};

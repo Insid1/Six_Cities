@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import App from "./components/app/app";
 import {configureStore} from '@reduxjs/toolkit';
 import rootReducer from "./store/reducer/root-reducer";
-import {checkAuthorization} from "./store/api-actions";
+import {checkAuthorization} from "@reducer/auth/api-actions";
 import {redirect} from "./store/middlewares/redirect";
 import {onUnauthorized} from "@api/on-unauthorized";
 
@@ -21,7 +21,6 @@ const store = configureStore({
     }).concat(redirect)
 });
 
-// store.dispatch(fetchOfferList());
 store.dispatch(checkAuthorization());
 
 

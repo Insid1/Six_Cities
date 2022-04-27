@@ -6,7 +6,7 @@ import Header from "../header/header";
 import {selectIsOffersLoaded} from "@reducer/offers/selectors";
 import LeftSection from "./left-section/left-section";
 import RightSection from "./right-section/right-section";
-import {fetchOfferList} from "@store/api-actions";
+import {fetchOfferList} from "@reducer/offers/api-actions";
 
 const Main = () => {
   const isOffersLoaded = useSelector(selectIsOffersLoaded);

@@ -5,7 +5,7 @@ import Map from '@components/map/map';
 import Header from '@components/header/header';
 import HostInfo from './room-components/room-host-info';
 import Loader from '@components/loader/loader';
-import {fetchOffer} from '@store/api-actions';
+import {fetchOffer} from '@reducer/offers/api-actions';
 import {AuthorizationStatus, PageType} from '@src/const';
 import {selectAuthStatus} from '@reducer/auth/selectors';
 import {selectIsSelectedOfferLoaded, selectSelectedOffer} from '@reducer/interface/selectors';
