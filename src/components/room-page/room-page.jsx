@@ -17,6 +17,7 @@ import {selectIsNearOffersLoaded, selectNearOffers} from '@reducer/near-offers/s
 import RoomInfo from './room-components/room-info';
 import RoomNearOffers from './room-components/room-near-offers';
 import RoomGalery from './room-components/room-galery';
+import Footer from '@components/footer/footer';
 
 
 const Room = () => {
@@ -84,6 +85,7 @@ const Room = () => {
           : ``
         }
       </main>
+      <Footer/>
     </div>
   );
 };

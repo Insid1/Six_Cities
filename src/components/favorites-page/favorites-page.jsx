@@ -4,11 +4,12 @@ import Header from "@components/header/header";
 import FavoriteList from "./favorites-components/favorite-components/favorite-list";
 import {fetchFavoriteOffers} from "@reducer/favorites/api-actions";
 import {useDispatch, useSelector} from "react-redux";
-import {selectIsFavoriteOffersLoaded} from "@reducer/favorites/selectors";
+import {selectIsFavoriteOffersLoaded, selectIsNoFavoriteOffers} from "@reducer/favorites/selectors";
 import Loader from "@components/loader/loader";
+import Footer from "@components/footer/footer";
 
 const Favorites = () => {
-
+  const isNoFavoritesOffers = useSelector(selectIsNoFavoriteOffers);
   const isFavoriteOffersLoaded = useSelector(selectIsFavoriteOffersLoaded);
   const dispatch = useDispatch();
 
@@ -21,23 +22,17 @@ const Favorites = () => {
   }
 
   return (
-    <div className="page">
+    <div className={`page ${isNoFavoritesOffers ? `page--favorites-empty` : ``}`}>
       <Header/>
-      <main className="page__main page__main--favorites">
+      <main className={`page__main 
+      page__main--favorites
+      ${isNoFavoritesOffers ? `page__main--favorites-empty` : ``}
+      `}>
         <div className="page__favorites-container container">
           <FavoriteList/>
         </div>
       </main>
-      <footer className="footer container">
-        <a className="footer__logo-link"
-          href="main.html">
-          <img className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width="64"
-            height="33" />
-        </a>
-      </footer>
+      <Footer/>
     </div>
   );
 };
