@@ -12,5 +12,5 @@ Thumbs.db
 node_modules/
 
 # Файлы бандлов (сборки)
-# /public/bundle.js
-# /public/bundle.js.map
+/public/bundle.js
+/public/bundle.js.map
