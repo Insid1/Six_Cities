@@ -2,8 +2,10 @@
   margin-left: 10px;
   display: inline-block;
   transition: all 0.1s ease-in-out;
+  font-size: 14px;
 }
 .sign-out-btn:hover {
-  font-weight: 700;
+  text-shadow: .5px 0 0,-.5px 0 0;
+  /* font-weight: 700; */
   color: #3069a6;
 }

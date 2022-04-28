@@ -31,18 +31,11 @@ const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
     });
 };
 
-const postFavoriteOffer = (favoriteStatus, setFavoriteStatus, id, setIsFetching) => (dispatch, _getState, api) => {
+const postFavoriteOffer = (favoriteStatus, id) => (dispatch, _getState, api) => {
   // значения могут быть 1 - добавляет , 0 - удаляет
   const status = favoriteStatus ? 0 : 1;
-  setIsFetching(true);
-  // is offfer sending and send status
   return api.post(`${ServerRoute.FAVORITE_OFFERS}${id}/${status}`)
-    .then(() => {
-      setFavoriteStatus(!favoriteStatus);
-      setIsFetching(false);
-    })
-    .catch(() => {
-    });
+    .catch(() => {}); // Обработать ошибку отправки
 };
 
 

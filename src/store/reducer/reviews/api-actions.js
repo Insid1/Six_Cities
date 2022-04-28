@@ -11,16 +11,16 @@ const fetchReviews = (id) => (dispatch, _getState, api) => (
     })
 );
 
-const postReview = (id, rating, comment, commentForm) => (dispatch, _getState, api) => {
+const postReview = (id, rating, comment) => (dispatch, _getState, api) => (
   api.post(ServerRoute.REVIEWS + id, {comment, rating})
     .then(() => {
       dispatch(fetchReviews(id));
-      commentForm.reset();
     })
     .catch((err) => {
       throw new Error(err);
-    });
-};
+    })
+
+);
 
 
 export {fetchReviews, postReview};

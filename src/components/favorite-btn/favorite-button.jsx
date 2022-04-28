@@ -34,7 +34,13 @@ const FavoriteButton = ({isFavorite, buttonType = `CARD`, offerId}) => {
 
   const handleOnClick = (evt) => {
     evt.preventDefault();
-    dispatch(postFavoriteOffer(favoriteStatus, setFavoriteStatus, offerId, setIsFetching));
+    setIsFetching(true);
+
+    dispatch(postFavoriteOffer(favoriteStatus, offerId))
+      .then(() => {
+        setFavoriteStatus(!favoriteStatus);
+        setIsFetching(false);
+      });
   };
 
   return (
