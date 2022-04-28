@@ -11,7 +11,6 @@ const LAYER_OPTION = [
 const MAP_OPTION = {
   center: [55.7797, 37.50353], // cords for Moscow
   zoom: 12,
-  zoomControl: false,
   marker: true,
   scrollWheelZoom: false,
 };

@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import L from 'leaflet';
 
 const mapToIconUrl = {
+  CURRENT: `./img/transparent-circle.svg`,
   GENERAL: `./img/pin.svg`,
   ACTIVE: `./img/pin-active.svg`,
 };

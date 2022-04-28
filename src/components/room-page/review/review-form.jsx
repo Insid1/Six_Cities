@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {postReview} from "@reducer/reviews/api-actions";
 import PropTypes from 'prop-types';
 import RatingItem from "./rating-item";
+import ErrorMessage from "@components/error-message/error-message";
 
 
 const FormClass = {
@@ -21,6 +22,7 @@ const Review = ({hotelId}) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState(``);
   const [isFetching, setIsFetching] = useState(false);
+  const [isFetchFailed, setIsFetchFailed] = useState(false);
 
   const handleChangeForm = (evt) => {
     switch (evt.target.className) {
@@ -35,7 +37,10 @@ const Review = ({hotelId}) => {
 
   const handleSubmitForm = (evt) => {
     evt.preventDefault();
+
     setIsFetching(true);
+    setIsFetchFailed(false);
+
     dispatch(postReview(hotelId, rating, comment))
     .then(() => {
       formRef.current.reset();
@@ -45,7 +50,8 @@ const Review = ({hotelId}) => {
     })
     .catch(() =>{
       setIsFetching(false);
-    }); // Обработать ошибку отправки комментария!
+      setIsFetchFailed(true);
+    });
 
   };
 
@@ -74,6 +80,7 @@ const Review = ({hotelId}) => {
           disabled={isSubmitDisabled(rating, comment, isFetching)}
         >Submit</button>
       </div>
+      {isFetchFailed ? <ErrorMessage/> : ``}
     </form>
   );
 };

@@ -4,9 +4,10 @@ import {login} from "@reducer/auth/api-actions";
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import {setCity} from "@reducer/interface/action";
+import ErrorMessage from "@components/error-message/error-message";
 
 const SignIn = () => {
-
+  const [isFetchFailed, setIsFetchFailed] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const dispatch = useDispatch();
   const emailRef = useRef();
@@ -15,10 +16,18 @@ const SignIn = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setIsFetching(true);
+    setIsFetchFailed(false);
     dispatch(login({
       email: emailRef.current.value,
       password: passwordRef.current.value,
-    }, setIsFetching));
+    }))
+      .then(() => {
+        setIsFetching(false);
+      })
+      .catch(() => {
+        setIsFetching(false);
+        setIsFetchFailed(true);
+      });
   };
   const handleCityClick = () => {
     dispatch(setCity(`AMSTERDAM`));
@@ -35,7 +44,8 @@ const SignIn = () => {
               <form className="login__form form"
                 action="#"
                 onSubmit={handleSubmit}>
-                <div className="login__input-wrapper form__input-wrapper">
+                <div className="login__input-wrapper form__input-wrapper"
+                >
                   <label className="visually-hidden">E-mail</label>
                   <input className="login__input form__input"
                     type="email"
@@ -57,6 +67,7 @@ const SignIn = () => {
                 </div>
                 <button className="login__submit form__submit button"
                   type="submit">Sign in</button>
+                {isFetchFailed ? <ErrorMessage/> : ``}
               </form>
             </fieldset>
           </section>
