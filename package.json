@@ -19,6 +19,7 @@
     "@babel/preset-env": "7.12",
     "@babel/preset-react": "7.12",
     "@reduxjs/toolkit": "1.5.0",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "11.2",
     "axios": "0.21.4",
     "axios-mock-adapter": "1.19",

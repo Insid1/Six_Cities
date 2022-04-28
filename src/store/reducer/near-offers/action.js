@@ -11,7 +11,7 @@ const loadNearOffers = createAction(ActionType.LOAD_NEAR_OFFERS, (nearOffers) =>
 }));
 
 const setIsNearOffersLoaded = createAction(ActionType.IS_NEAR_OFFERS_LOADED, (bool) => ({
-  payload: bool,
+  payload: Boolean(bool),
 }));
 
 

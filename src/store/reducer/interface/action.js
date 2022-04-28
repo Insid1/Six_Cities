@@ -14,7 +14,7 @@ const setCity = createAction(ActionType.SET_CITY, (city) => ({
 }));
 
 const setActiveOffer = createAction(ActionType.SET_ACTIVE_OFFER, (offerId) => ({
-  payload: offerId,
+  payload: +offerId,
 }));
 
 const setSortingType = createAction(ActionType.SET_SORTING_TYPE, (sortingType) => ({
@@ -30,7 +30,7 @@ const selectOffer = createAction(ActionType.SELECT_OFFER, (offer) => ({
 }));
 
 const setIsSelectedOfferLoaded = createAction(ActionType.IS_SELECTED_OFFER_LOADED, (bool) => ({
-  payload: bool,
+  payload: Boolean(bool),
 }));
 
 export {ActionType, setCity, setActiveOffer, setSortingType, redirectToRoute, selectOffer, setIsSelectedOfferLoaded};
