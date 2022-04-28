@@ -9,7 +9,8 @@
       "@store/*": ["src/store/*"],
       "@util/*": ["src/util/*"],
       "@api/*": ["src/api/*"],
-      "@src/*": ["src/*"]
+      "@src/*": ["src/*"],
+      "@public/*": ["public/*"]
     }
   }
 }
