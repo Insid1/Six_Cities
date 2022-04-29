@@ -1,4 +1,23 @@
-import {SortingType} from "../const";
+
+import {capitalize} from "./common";
+import {SortingType} from "@src/const";
+
+const filterByCity = (offers = [], cityName) => {
+  cityName = capitalize(cityName);
+  return offers.filter((offer) => offer.city.name === cityName);
+};
+
+const filterFavoriteOffers = (offers) => {
+  const result = {};
+  offers.forEach((offer) => {
+    const city = offer.city.name.toUpperCase();
+    if (!result[city]) {
+      result[city] = [];
+    }
+    result[city].push(offer);
+  });
+  return result;
+};
 
 const sortOffers = (currOffers, sortType) => {
   const copiedOffers = currOffers.slice();
@@ -21,4 +40,5 @@ const sortOffers = (currOffers, sortType) => {
   }
 };
 
-export {sortOffers};
+
+export {filterByCity, sortOffers, filterFavoriteOffers};

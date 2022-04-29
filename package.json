@@ -52,7 +52,14 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/style-mock.js"
+      "\\.(css|less)$": "<rootDir>/src/style-mock.js",
+      "@public/(.*)$": "<rootDir>/public/$1",
+      "@src/(.*)$": "<rootDir>/src/$1",
+      "@util/(.*)$": "<rootDir>/src/util/$1",
+      "@api/(.*)$": "<rootDir>/src/api/$1",
+      "@components/(.*)$": "<rootDir>/src/components//$1",
+      "@store/(.*)$": "<rootDir>/src/store/$1",
+      "@reducer/(.*)$": "<rootDir>/src/store/reducer/$1"
     },
     "setupFilesAfterEnv": [
       "./setup-tests.js"

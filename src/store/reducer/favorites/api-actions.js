@@ -1,19 +1,8 @@
 import {ServerRoute} from "@src/const";
 import {adaptOfferForClient} from "@util/adapter";
-// import { useSelector } from "react-redux";
+import {filterFavoriteOffers} from "@util/offers";
 import {loadFavoriteOffers, setIsFavoriteOffersLoaded} from "./action";
 
-const filterFavoriteOffers = (offers) => {
-  const result = {};
-  offers.forEach((offer) => {
-    const city = offer.city.name.toUpperCase();
-    if (!result[city]) {
-      result[city] = [];
-    }
-    result[city].push(offer);
-  });
-  return result;
-};
 
 const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
   dispatch(setIsFavoriteOffersLoaded(false));
@@ -32,10 +21,10 @@ const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
 };
 
 const postFavoriteOffer = (favoriteStatus, id) => (dispatch, _getState, api) => {
-  // значения могут быть 1 - добавляет , 0 - удаляет
+  // values may be 1 or 0. 0-delete, 1-add
   const status = favoriteStatus ? 0 : 1;
   return api.post(`${ServerRoute.FAVORITE_OFFERS}${id}/${status}`)
-    .catch(() => {}); // Обработать ошибку отправки
+    .catch(() => {});
 };
 
 

@@ -1,7 +1,6 @@
 import {selectCity, selectSortingType} from "@reducer/interface/selectors";
 import {createSelector} from "@reduxjs/toolkit";
-import {filterByCity} from "@util/filter";
-import {sortOffers} from "@util/sort";
+import {sortOffers, filterByCity} from "@util/offers";
 
 const selectAllOffers = (state) => state.OFFERS.allOffers;
 
