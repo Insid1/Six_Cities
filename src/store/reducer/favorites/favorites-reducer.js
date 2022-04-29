@@ -8,7 +8,7 @@ const initialState = {
 
 
 // Под капотом RTK есть библеотека immer, которая отвечает за имутабельность, следовательно копировать изначальный state ненужно
-const FavoritesReducer = createReducer(initialState, (builder) => {
+const favoritesReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(ActionType.LOAD_FAVORITE_OFFERS, (state, action) => {
     state.favoriteOffers = action.payload;
@@ -20,4 +20,4 @@ const FavoritesReducer = createReducer(initialState, (builder) => {
 });
 
 
-export default FavoritesReducer;
+export default favoritesReducer;

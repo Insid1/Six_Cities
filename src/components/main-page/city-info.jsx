@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {capitalize} from '@util/common';
 import {selectCity} from '@reducer/interface/selectors';
-import {selectFilteredOffers} from "@reducer/selectors-common";
+import {selectFilteredOffers} from '@reducer/offers/selectors';
 
 
 const CityInfo = () => {
