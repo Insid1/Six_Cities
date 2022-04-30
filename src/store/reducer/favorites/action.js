@@ -11,7 +11,7 @@ const loadFavoriteOffers = createAction(ActionType.LOAD_FAVORITE_OFFERS, (favori
 }));
 
 const setIsFavoriteOffersLoaded = createAction(ActionType.IS_FAVORITE_OFFERS_LOADED, (bool) => ({
-  payload: bool,
+  payload: Boolean(bool),
 }));
 
 
